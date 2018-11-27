@@ -1,0 +1,365 @@
+html {
+  background: url("../img/tile.png");
+}
+body {
+  background-color: white;
+  width: 60em;
+  padding: 2em 2em 0;
+  margin: 2em auto;
+  font: normal normal 16px "Lato", Arial, Tahoma, Verdana, sans-serif;
+  line-height: 1.6em;
+}
+a {
+  text-decoration: none;
+}
+a[href$=".zip"]::before {
+  font-family: 'FontAwesome';
+  color: #444444;
+  content: '\f1c6  ';
+}
+a[href$=".pdf"]::before {
+  font-family: 'FontAwesome';
+  color: #444444;
+  content: '\f1c1  ';
+}
+a[href^="http://"]:not([href*="~arestivo"]):after,
+a[href^="https://"]:not([href*="~arestivo"]):after {
+  font-family: "FontAwesome";
+  color: #444444;
+  content: "  \f14c";
+}
+i {
+  color: #444444;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1em;
+  color: black;
+  padding: 0;
+  margin: 1em 0 0.5em;
+  font: normal normal 14px "Abel", "Trebuchet MS", Arial, Tahoma, Verdana, sans-serif;
+  text-transform: uppercase;
+}
+header {
+  border-top: 2px solid #00796b;
+  background-color: #eeeeee;
+  padding: 0.5em 1em;
+  text-align: center;
+}
+header h1 {
+  font-size: 24px;
+  letter-spacing: 0.1em;
+}
+header h1 a {
+  color: black;
+}
+header h2 a {
+  color: #999999;
+}
+footer {
+  font: normal normal 14px "Abel", "Trebuchet MS", Arial, Tahoma, Verdana, sans-serif;
+  padding: 1em;
+  background-color: #00796b;
+  color: white;
+}
+article {
+  color: #444444;
+}
+article a {
+  color: #00796b;
+}
+article h2 {
+  background-color: #eeeeee;
+  margin-top: 2em;
+  font-size: 16px;
+  padding: 0.3em;
+  letter-spacing: 0.3em;
+}
+article h3 {
+  margin-top: 2em;
+  border-top: 2px solid #00796b;
+  border-bottom: 1px solid #999999;
+  font-size: 18px;
+  padding: 1em 0;
+  letter-spacing: 0.3em;
+}
+article h3:first-child {
+  margin-top: 0.5em;
+}
+article table {
+  border-collapse: collapse;
+}
+article table th {
+  text-align: left;
+  padding: 0.5em;
+  border-bottom: 1px solid #00796b;
+}
+article table td {
+  border-bottom: 1px solid #444444;
+  padding: 1em 0.5em;
+}
+article table.course {
+  width: 100%;
+}
+article table.course tr.class {
+  margin: 1em;
+  border-top: 5px solid white;
+  border-bottom: 5px solid white;
+  background-color: #eeeeee;
+}
+article table.course div.slide-list {
+  margin-top: 0.5em;
+  padding: 0.5em;
+  margin: 0.5em -0.5em 0;
+}
+article table.course div.example-list {
+  margin-top: 0.5em;
+  padding: 0.5em;
+  margin: 0.5em -0.5em 0;
+}
+article table.course div.slide-list::before {
+  content: "Slides: ";
+}
+article table.course div.example-list::before {
+  content: "Examples: ";
+}
+article table.course td {
+  border: none;
+}
+article table.course td.week {
+  font-size: 1.5em;
+  text-align: center;
+  background-color: #999999;
+  color: white;
+}
+article table.course td.theory {
+  max-width: 20em;
+}
+article table.course td.holiday {
+  text-align: center;
+  background-color: #444444;
+  color: white;
+  font-style: italic;
+}
+article table.course td.practice {
+  border-left: 1px dashed #999999;
+  background-color: #e1e1e1;
+}
+.exercises {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.exercises .exercise {
+  height: 7em;
+  flex-basis: 12em;
+  flex-grow: 1;
+  background-color: #eeeeee;
+  text-align: center;
+  padding-top: 2em;
+  display: inline-block;
+  margin: 0.5em;
+}
+.exercises .exercise a:first-child {
+  color: #00796b;
+  font-size: 18px;
+}
+.exercises .exercise a {
+  color: #444444;
+  font: normal normal 14px "Abel", "Trebuchet MS", Arial, Tahoma, Verdana, sans-serif;
+  display: block;
+  padding: 0.5em;
+}
+ol li {
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-bottom: 1px dashed #999999;
+}
+ol li:last-child {
+  padding-bottom: 0;
+  border-bottom-style: none;
+}
+#topbar {
+  display: flex;
+  justify-content: space-between;
+}
+#topbar li {
+  display: inline-block;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+#topbar .tags {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+#topbar .tags a {
+  text-decoration: none;
+  color: #444444;
+}
+#topbar .tags li {
+  background-color: #eeeeee;
+  border-top: 1px solid #999999;
+  padding: 0 0.5em;
+}
+#topbar .breadcrumbs {
+  display: block;
+  margin: 0;
+  padding: 0 5px;
+  background-color: #eeeeee;
+  border-top: 1px solid #999999;
+}
+#topbar .breadcrumbs li::after {
+  content: ' /';
+}
+#topbar .breadcrumbs li:last-child::after {
+  content: none;
+}
+#topbar .breadcrumbs a {
+  text-decoration: none;
+  color: #444444;
+}
+article ul {
+  padding-left: 1em;
+}
+article ul li {
+  margin-bottom: 1em;
+  padding-left: 1em;
+  display: block;
+}
+article ul li:before {
+  font-family: 'FontAwesome';
+  content: '\f192';
+  margin: 0 5px 0 -13px;
+  color: #c3c3c3;
+  font-size: 0.7em;
+  vertical-align: top;
+}
+article ul ul {
+  margin-top: 0.5em;
+}
+article ul ul li:before {
+  content: '\f111';
+}
+.hljs {
+  white-space: pre-wrap;
+  font-size: 13px;
+  line-height: 1.3em;
+  padding: 1em;
+}
+.slides {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.slides .slide {
+  height: 5em;
+  background-color: black;
+  text-align: center;
+  padding-top: 3em;
+  display: inline-block;
+  margin: 0.5em;
+}
+.slides .slide a {
+  color: white;
+  border-bottom: 1px solid #f92672;
+  font: normal normal 14px "Lato", "Trebuchet MS", Arial, Tahoma, Verdana, sans-serif;
+}
+article {
+  min-height: 30em;
+}
+article img.photo {
+  float: right;
+}
+article img.wide {
+  width: 100%;
+}
+article img.center {
+  display: block;
+  margin: 0 auto;
+  max-width: 80%;
+}
+article img.middle {
+  vertical-align: middle;
+}
+@media (max-width: 1026px) {
+  body {
+    width: 100%;
+    padding: 2em 0 0;
+    margin: 0;
+  }
+  article {
+    padding: 0 1em;
+  }
+  header,
+  nav {
+    margin: 0 1em;
+  }
+}
+@media (max-width: 900px) {
+  .slides {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 750px) {
+  article table.course thead {
+    display: none;
+  }
+  article table.course tr.class {
+    display: flex;
+    flex-direction: column;
+  }
+  article table.course td,
+  article table.course td.theory {
+    max-width: none;
+  }
+  article table.course td.week::before {
+    content: "Week ";
+  }
+  article table.course td.practice {
+    border-top: 1px dashed #999999;
+    border-left: none;
+  }
+  article table.course td.empty {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .slides {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 450px) {
+  #topbar .tags {
+    display: none;
+  }
+  .slides {
+    grid-template-columns: 1fr;
+  }
+}
+pre {
+  position: relative;
+}
+pre .copy {
+  display: none;
+}
+pre:hover .copy {
+  display: block;
+}
+.copy {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 1em;
+}
+.copy .fa-check {
+  display: none;
+  color: green;
+}
