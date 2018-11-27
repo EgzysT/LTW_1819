@@ -1,0 +1,18 @@
+$(function(){
+  $('pre').append('<button href="#" class="copy"><i class="fa fa-files-o" aria-hidden="true"></i> <i class="fa fa-check" aria-hidden="true"></i></button>');
+  var clipboard = new Clipboard('.copy', {
+      target: function(trigger) {
+          return trigger.parentElement;
+      }
+  });
+  clipboard.on('success', function(e) {
+      e.clearSelection();
+      $(e.trigger).children('.fa-check').fadeIn().delay(500).fadeOut();
+  });
+
+  clipboard.on('error', function(e) {
+      e.clearSelection();
+  });
+});
+
+
