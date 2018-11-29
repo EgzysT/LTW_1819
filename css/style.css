@@ -3,44 +3,44 @@
  */
 
  body {
-		margin: 0 auto;
-	
-		--bg-color: #EEE;
-		--panel-color: #FFF;
-	
-		--main-color: #036;
-	
-		--dark-color: #333;
-		--light-color: #CCC;
-	
-		--success-bg-color: #DFF2BF;
-		--success-fg-color: #4F8A10;
-	
-		--error-bg-color: #FFD2D2;
-		--error-fg-color: #D8000C;
-	
-		--serif-font: 'Merriweather';
-		--sans-font: 'Open Sans Condensed';
-	
-		background-color: var(--bg-color);
-	}
+	margin: 0 auto;
+
+	--bg-color: #EEE;
+	--panel-color: #FFF;
+
+	--main-color: #036;
+
+	--dark-color: #333;
+	--light-color: #CCC;
+
+	--success-bg-color: #DFF2BF;
+	--success-fg-color: #4F8A10;
+
+	--error-bg-color: #FFD2D2;
+	--error-fg-color: #D8000C;
+
+	--serif-font: 'Merriweather';
+	--sans-font: 'Open Sans Condensed';
+
+	background-color: var(--bg-color);
+}
 	
 /**
-* Generic
-*/
+ * Generic
+ */
 
 a, p, input, li {
-		font-family: var(--serif-font), serif;
+	font-family: var(--serif-font), serif;
 }
 
 a {
-		color: var(--panel-color);
-		text-decoration: none;
+	color: var(--panel-color);
+	text-decoration: none;
 }
 	
 
 h1 {
-		font-family: var(--sans-font), sans-serif;
+	font-family: var(--sans-font), sans-serif;
 }
 
 h2 {
@@ -48,104 +48,133 @@ h2 {
 }
 
 /**
+ * Responsive Container. Inspired by Bootstrap.
+ */
+
+.container {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+@media (min-width: 768px) {
+	.container {
+		width: 750px;
+	}
+}
+
+@media (min-width: 992px) {
+	.container {
+		width: 970px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.container {
+		width: 1170px;
+	}
+}
+
+/**
  * Primary header
  */
 
- header {
-		background-color: var(--main-color);
- }
+body > header {
 
- body > header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+	margin: 0;
+	padding: 0em;
+
+	font-size: 2em;
+
+	color: var(--panel-color);
+	background-color: var(--main-color);
+}
+
+body > header > .container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
 	
-		margin: 0;
-		padding: 0em;
-	
-		font-size: 2em;
-	
-		color: var(--panel-color);
-	}
-	
-	body > header h1 {
-		margin: 0 0.5em;
-		flex-grow: 1;
-	}
-	
-	body > header h1 i {
-		color: var(--panel-color);
-	}
-	
-	body > header h1 a {
-		font-family: var(--sans-font), sans-serif;
-	}
-	
-	body > header nav { 
-		margin: 0 0.5em;
-	}
+body > header h1 {
+	margin: 0 0.5em;
+	flex-grow: 1;
+}
 
-	body > header nav ul {
-		padding: 0em;
-		margin: 0em;
-	}
-	
-	body > header nav li {
-		display: inline-block;
-		font-size: 0.5em;
-		border-right: 1px solid var(--panel-color);
-		padding: 0 0.75em;
-		margin: 0em;
-	}
+body > header h1 i {
+	color: var(--panel-color);
+}
 
-	body > header nav li:last-child {
-		border: none;
-	}
-	
-	#login {
-		margin: 2em auto;
-		width: 40em;
-	}
+body > header h1 a {
+	font-family: sans-serif;
+}
 
-	#login header {
-		padding: 1em 3.5em;
-		font-size: 1.3em;
-		color: var(--panel-color);
-	}
+body > header nav { 
+	margin: 0 0.5em;
+}
 
-	#login header h2 {
-		margin: 0;
-	}
+body > header nav ul {
+	padding: 0em;
+	margin: 0em;
+}
 
-	#login form {
-		padding: 1em;
-		background-color: var(--panel-color);
-	}
+body > header nav li {
+	display: inline-block;
+	font-size: 0.5em;
+	border-right: 1px solid var(--panel-color);
+	padding: 0 0.75em;
+	margin: 0em;
+}
 
-	#login form input {
-		display: block;
-		width: 100%;
-		margin: 1em 0em;
-		padding: 0.7em 0em;
-		border: 0;
-		border-bottom: 1px solid var(--light-color);
-	}
+body > header nav li:last-child {
+	border: none;
+}
 
-	#login form input:last-of-type {
-		display: inline-block;
-		width: 30%;
-	}
+#login {
+	margin: 2em auto;
+	width: 40em;
+}
 
-	#login form p {
-		display: block;
-		float: right;
-		color: var(--dark-color);
-	}
+#login header {
+	padding: 1em 3.5em;
+	font-size: 1.3em;
+	color: var(--panel-color);
+}
 
-	#login form p a {
-		/* background-color: var(--light-color); */
-		color: var(--light-color);
-		font-weight: bold;
-		text-decoration: underline;
-		padding: 0.4em;
-	}
+#login header h2 {
+	margin: 0;
+}
+
+#login form {
+	padding: 1em;
+	background-color: var(--panel-color);
+}
+
+#login form input {
+	display: block;
+	width: 100%;
+	margin: 1em 0em;
+	padding: 0.7em 0em;
+	border: 0;
+	border-bottom: 1px solid var(--light-color);
+}
+
+#login form input:last-of-type {
+	display: inline-block;
+	width: 30%;
+}
+
+#login form p {
+	display: block;
+	float: right;
+	color: var(--dark-color);
+}
+
+#login form p a {
+	/* background-color: var(--light-color); */
+	color: var(--light-color);
+	font-weight: bold;
+	text-decoration: underline;
+	padding: 0.4em;
+}

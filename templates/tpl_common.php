@@ -10,6 +10,7 @@
     <head>
       <title>Blueit</title>
       <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link rel="stylesheet" href="../css/style.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
       <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans+Condensed:300" rel="stylesheet">
@@ -19,21 +20,23 @@
     <body>
 
       <header>
-        <h1><a href="main.php"><i class="far fa-flushed"></i> Blueit</a></h1>
-        <?php if ($username != NULL) { ?>
-          <nav>
-            <ul>
-              <li><?=$username?></li>
-              <li><a href="../actions/action_logout.php">Logout</a></li>
-            </ul>
-          </nav>
-        <?php } else { ?>
-          <nav>
-            <ul>
-              <li><a href="../pages/login.php">Login</a></li><li><a href="../pages/signup.php">Signup</a></li>
-            </ul>
-          </nav>
-        <?php } ?>
+        <div class="container">
+          <h1><a href="main.php"><i class="far fa-flushed"></i> Blueit</a></h1>
+          <?php if ($username != NULL) { ?>
+            <nav>
+              <ul>
+                <li><?=$username?></li>
+                <li><a href="../actions/action_logout.php">Logout</a></li>
+              </ul>
+            </nav>
+          <?php } else { ?>
+            <nav>
+              <ul>
+                <li><a href="../pages/login.php">Login</a></li><li><a href="../pages/signup.php">Signup</a></li>
+              </ul>
+            </nav>
+          <?php } ?>
+        </div>
       </header>
 <?php } ?>
 
