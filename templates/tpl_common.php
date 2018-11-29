@@ -19,7 +19,7 @@
     <body>
 
       <header>
-        <h1><a href="login.php"><i class="far fa-flushed"></i> Blueit</a></h1>
+        <h1><a href="main.php"><i class="far fa-flushed"></i> Blueit</a></h1>
         <?php if ($username != NULL) { ?>
           <nav>
             <ul>
@@ -35,12 +35,22 @@
             </ul>
           </nav>
         <?php } ?>
-        <?php if (isset($_SESSION['messages'])) {?>
-          <section id="messages">
+      </header>
+<?php } ?>
+
+<?php function draw_messages() { 
+    if (isset($_SESSION['messages'])) {?>
+        <section id="messages">
             <?php foreach($_SESSION['messages'] as $message) { ?>
               <div class="<?=$message['type']?>"><?=$message['content']?></div>
             <?php } ?>
-          </section>
-        <?php unset($_SESSION['messages']); } ?>
-      </header>
+        </section>
+<?php unset($_SESSION['messages']); } } ?>
+
+<?php function draw_footer() { 
+/**
+ * Draws the footer for all pages.
+ */ ?>
+  </body>
+</html>
 <?php } ?>
