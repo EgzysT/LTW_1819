@@ -52,20 +52,29 @@ h1 {
  }
 
  body > header {
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   
     margin: 0;
-    padding: 1em;
+    padding: 0em;
   
     font-size: 2em;
-    text-align: center;
   
     color: var(--panel-color);
   }
+
+  /* body > header h1 {
+    float: left;
+    clear: left;
+  }
+
+  body > header nav {
+    float: right;
+  } */
   
   body > header h1 {
-    margin: 0;
+    margin: 0 0.5em;
     flex-grow: 1;
     grid-column-start: 2;
   }
@@ -78,15 +87,22 @@ h1 {
     font-family: var(--sans-font), sans-serif;
   }
   
+  body > header nav { 
+    grid-column-start: 4;
+    margin: 0 0.5em;
+  }
+
   body > header nav ul {
-    padding: 0;
+    padding: 0em;
+    margin: 0em;
   }
   
   body > header nav li {
     display: inline-block;
     font-size: 0.5em;
     border-right: 1px solid var(--panel-color);
-    padding: 0 1em;
+    padding: 0 0.75em;
+    margin: 0em;
   }
 
   body > header nav li:last-child {

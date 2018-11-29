@@ -30,8 +30,7 @@
 				<?php } else { ?>
 					<nav>
 						<ul>
-							<li><a href="../actions/action_login.php">Login</a></li>
-							<li><a href="../actions/action_signup.php">Signup</a></li>
+							<li><a href="../actions/action_login.php">Login</a></li><li><a href="../actions/action_signup.php">Signup</a></li>
 						</ul>
 					</nav>
 				<?php } ?>
