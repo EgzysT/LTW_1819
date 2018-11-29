@@ -30,8 +30,7 @@
         <?php } else { ?>
           <nav>
             <ul>
-              <li><a href="../pages/login.php">Login</a></li>
-              <li><a href="../pages/signup.php">Signup</a></li>
+              <li><a href="../pages/login.php">Login</a></li><li><a href="../pages/signup.php">Signup</a></li>
             </ul>
           </nav>
         <?php } ?>
