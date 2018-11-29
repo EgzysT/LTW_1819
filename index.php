@@ -1,3 +1,3 @@
 <?php
-    echo 'helo';
+   header('Location: pages/login.php');
 ?>
