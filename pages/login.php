@@ -7,7 +7,7 @@
   if (isset($_SESSION['username']))
     die(header('Location: list.php'));
 
-  draw_header(null);
+  draw_header(NULL);
   // draw_login();
   // draw_footer();
 ?>
