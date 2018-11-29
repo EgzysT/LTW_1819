@@ -12,7 +12,7 @@ CREATE TABLE post (
     id INTEGER PRIMARY KEY,
     content VARCHAR NOT NULL,
     posted_at DATETIME NOT NULL,
-    user_id INTEGER REFERENCES user,
+    user_id INTEGER REFERENCES user(id),
     upvotes_count INTEGER NOT NULL DEFAULT(0),
     downvotes_count INTEGER NOT NULL DEFAULT(0)
 );
@@ -31,18 +31,18 @@ CREATE TABLE channel (
 );
 
 CREATE TABLE subscription (
-    user_id INTEGER REFERENCES user,
+    user_id INTEGER REFERENCES user(id),
     channel_id INTEGER REFERENCES channel,
     PRIMARY KEY (user_id, channel_id)
 );
 
 CREATE TABLE story (
-    post_id INTEGER PRIMARY KEY REFERENCES post,
-    channel_id REFERENCES channel,
+    post_id INTEGER PRIMARY KEY REFERENCES post(id),
+    channel_id INTEGER REFERENCES channel(id),
     title VARCHAR NOT NULL
 );
 
 CREATE TABLE comment (
-    post_id INTEGER PRIMARY KEY REFERENCES post,
-    parent_post REFERENCES post
+    post_id INTEGER PRIMARY KEY REFERENCES post(id),
+    parent_post INTEGER REFERENCES post(id)
 );

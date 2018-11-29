@@ -1,4 +1,4 @@
-<?php function draw_login() { 
+<?php function draw_login() {
 /**
  * Draws the login section.
  */ ?>
