@@ -71,7 +71,6 @@ h2 {
 	body > header h1 {
 		margin: 0 0.5em;
 		flex-grow: 1;
-		grid-column-start: 2;
 	}
 	
 	body > header h1 i {
@@ -83,7 +82,6 @@ h2 {
 	}
 	
 	body > header nav { 
-		grid-column-start: 4;
 		margin: 0 0.5em;
 	}
 
@@ -133,6 +131,21 @@ h2 {
 		border-bottom: 1px solid var(--light-color);
 	}
 
-	#login form input:last-child {
+	#login form input:last-of-type {
+		display: inline-block;
 		width: 30%;
+	}
+
+	#login form p {
+		display: block;
+		float: right;
+		color: var(--dark-color);
+	}
+
+	#login form p a {
+		/* background-color: var(--light-color); */
+		color: var(--light-color);
+		font-weight: bold;
+		text-decoration: underline;
+		padding: 0.4em;
 	}
