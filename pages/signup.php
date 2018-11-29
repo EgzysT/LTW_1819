@@ -6,4 +6,6 @@
 
   draw_header(null);
   draw_signup();
+  draw_messages();
+  draw_footer();
 ?>

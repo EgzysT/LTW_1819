@@ -4,5 +4,6 @@
   include_once('../templates/tpl_story_card.php');
 
   draw_header(null);
+  draw_footer();
 
 ?>
