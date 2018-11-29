@@ -12,3 +12,6 @@ after_success:
 - git remote add dokku dokku@foliveira.xyz:ltw
 - git config --global push.default simple
 - git push dokku master
+
+notifications:
+  email: false
