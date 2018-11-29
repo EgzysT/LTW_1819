@@ -1,0 +1,17 @@
+language: generic
+
+before_install:
+- openssl aes-256-cbc -K $encrypted_7ffb5d171f24_key -iv $encrypted_7ffb5d171f24_iv
+  -in .travis/id_rsa.enc -out .travis/id_rsa -d
+
+after_success:
+- eval "$(ssh-agent -s)"
+- chmod 600 .travis/id_rsa
+- ssh-add .travis/id_rsa
+- ssh-keyscan foliveira.xyz >> ~/.ssh/known_hosts
+- git remote add dokku dokku@foliveira.xyz:ltw
+- git config --global push.default simple
+- git push dokku master
+
+notifications:
+  email: false

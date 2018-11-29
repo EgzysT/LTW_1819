@@ -1,4 +1,7 @@
 <?php 
+  /**
+   * Draws the login page
+   */
   include_once('../includes/session.php');
   include_once('../templates/tpl_common.php');
   include_once('../templates/tpl_auth.php');
