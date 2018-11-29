@@ -8,7 +8,7 @@
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-  if (!checkUserPassword($username, $password)) {
+  if (checkUserPassword($username, $password)) {
     header('Location: ../pages/login.php');
   } else {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Login failed!');
