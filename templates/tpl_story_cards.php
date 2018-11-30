@@ -28,24 +28,24 @@
  */?>
     <article class="story-card">
         <header>
-            <div class="story-card-info-left">
-                <img class="story-card-author-avatar">
-                <p class="story-card-author-name"><?=$story->author_name?></p>
-                <p class="story-card-date"><?=$story->date?></p>
+            <div class="info-left">
+                <img class="author-avatar">
+                <p class="author-name"><?=$story->author_name?></p>
+                <p class="date"><?=$story->date?></p>
             </div>
-            <div class="story-card-info-right">
-                <p class="story-card-channel"><?=$story->channel?></p>
+            <div class="info-right">
+                <p class="channel"><?=$story->channel?></p>
             </div>
         </header>
 
-        <div class="story-card-body">
-            <h2 class="story-card-title"><?=$story->title?></h2>
-            <p class="story-card-content"><?=$story->content?></p>
-            <a class="story-card-read-more" href="#">Read more</a>
+        <div class="body">
+            <h2 class="title"><?=$story->title?></h2>
+            <p class="content"><?=$story->content?></p>
+            <a class="read-more" href="#">Read more</a>
         </div>
 
         <footer>
-            <ul class="story-card-footer-list">
+            <ul>
                 <li><p><?=$story->points?> Points</p>
                 <li><p><?=$story->comments?> Comments</li>
             </ul>
