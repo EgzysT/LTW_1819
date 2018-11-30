@@ -210,7 +210,7 @@ Log in and Sign up
 
 #auth form p a {
 	/* background-color: var(--light-color); */
-	color: var(--light-color);
+	color: var(--main-color);
 	font-weight: bold;
 	text-decoration: underline;
 	padding: 0.4em;
