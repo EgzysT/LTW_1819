@@ -23,8 +23,7 @@
  *  - the channel it was posted on,
  *  - the date it was created,
  *  - content (title and some text of the body),
- *  - 
- * the content (title and text) and the date it was created.
+ *  - the number of points and comments.
  */?>
     <article class="story-card">
         <header>
