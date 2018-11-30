@@ -2,7 +2,7 @@
 /**
  * Draws the login section.
  */ ?>
-  <section id="login">
+  <section id="auth">
     
     <header><h2>Welcome Back</h2></header>
 
@@ -13,10 +13,6 @@
       <p>Don't have an account? <a href="signup.php">Sign up here!</a></p>
     </form>
 
-    <footer>
-      
-    </footer>
-
   </section>
 <?php } ?>
 
@@ -24,7 +20,7 @@
 /**
  * Draws the signup section.
  */ ?>
-  <section id="signup">
+  <section id="auth">
 
     <header><h2>New Account</h2></header>
 
@@ -32,11 +28,8 @@
       <input type="text" name="username" placeholder="username" required>
       <input type="password" name="password" placeholder="password" required>
       <input type="submit" value="Signup">
-    </form>
-
-    <footer>
       <p>Already have an account? <a href="login.php">Login!</a></p>
-    </footer>
+    </form>
 
   </section>
 <?php } ?>
