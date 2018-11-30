@@ -91,6 +91,10 @@ body header {
 	background-color: var(--main-color);
 }
 
+body > header {
+	box-shadow: 0 1px 6px 0 #000;
+}
+
 body > header > .container {
 	display: flex;
 	justify-content: space-between;
