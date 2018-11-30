@@ -162,6 +162,12 @@ body > header nav li:last-child {
 	border: none;
 }
 
+/**
+
+Log in and Sign up
+
+*/
+
 #auth {
 	margin: 2em auto;
 	width: 40em;
