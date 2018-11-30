@@ -9,7 +9,7 @@
     <form method="post" action="../actions/action_login.php">
       <input type="text" name="username" placeholder="username" required>
       <input type="password" name="password" placeholder="password" required>
-      <input type="submit" value="Login">
+      <input type="submit" value="Login" class="button button-auth">
       <p>Don't have an account? <a href="signup.php">Sign up here!</a></p>
     </form>
 
