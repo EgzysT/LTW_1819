@@ -1,10 +1,10 @@
 <?php function draw_story_cards($stories) { 
 /**
- * Draws a section (#cards) containing several story cards
+ * Draws a section (#stories) containing several story cards
  * as articles. Uses the draw_story_card function to draw
  * each story card.
  */ ?>
-    <section id="lists">
+    <section id="stories">
 
     <?php 
         foreach($stories as $story)
