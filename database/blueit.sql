@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.1.1 on Fri Nov 30 23:34:22 2018
+-- File generated with SQLiteStudio v3.1.1 on Fri Nov 30 23:41:27 2018
 --
 -- Text encoding used: System
 --
@@ -122,6 +122,30 @@ BEGIN
     UPDATE post
        SET upvotes_count = post.upvotes_count + 1
      WHERE post.id = new.post_id;
+END;
+
+
+-- Trigger: subscribe
+DROP TRIGGER IF EXISTS subscribe;
+CREATE TRIGGER subscribe
+         AFTER INSERT
+            ON subscription
+BEGIN
+    UPDATE channel
+       SET subscription_counter = channel.subscription_counter + 1
+     WHERE new.channel_id = channel.id;
+END;
+
+
+-- Trigger: unsubscribe
+DROP TRIGGER IF EXISTS unsubscribe;
+CREATE TRIGGER unsubscribe
+        BEFORE DELETE
+            ON subscription
+BEGIN
+    UPDATE channel
+       SET subscription_counter = channel.subscription_counter + 1
+     WHERE old.channel_id = channel.id;
 END;
 
 
