@@ -1,10 +1,10 @@
 <?php function draw_story_cards($stories) { 
 /**
- * Draws a section (#cards) containing several story cards
+ * Draws a section (#stories) containing several story cards
  * as articles. Uses the draw_story_card function to draw
  * each story card.
  */ ?>
-    <section id="lists">
+    <section id="stories">
 
     <?php 
         foreach($stories as $story)
@@ -23,29 +23,28 @@
  *  - the channel it was posted on,
  *  - the date it was created,
  *  - content (title and some text of the body),
- *  - 
- * the content (title and text) and the date it was created.
+ *  - the number of points and comments.
  */?>
     <article class="story-card">
         <header>
-            <div class="story-card-info-left">
-                <img class="story-card-author-avatar">
-                <p class="story-card-author-name"><?=$story->author_name?></p>
-                <p class="story-card-date"><?=$story->date?></p>
+            <div class="info-left">
+                <img class="author-avatar">
+                <p class="author-name"><?=$story->author_name?></p>
+                <p class="date"><?=$story->date?></p>
             </div>
-            <div class="story-card-info-right">
-                <p class="story-card-channel"><?=$story->channel?></p>
+            <div class="info-right">
+                <p class="channel"><?=$story->channel?></p>
             </div>
         </header>
 
-        <div class="story-card-body">
-            <h2 class="story-card-title"><?=$story->title?></h2>
-            <p class="story-card-content"><?=$story->content?></p>
-            <a class="story-card-read-more" href="#">Read more</a>
+        <div class="body">
+            <h2 class="title"><?=$story->title?></h2>
+            <p class="content"><?=$story->content?></p>
+            <a class="read-more" href="#">Read more</a>
         </div>
 
         <footer>
-            <ul class="story-card-footer-list">
+            <ul>
                 <li><p><?=$story->points?> Points</p>
                 <li><p><?=$story->comments?> Comments</li>
             </ul>
