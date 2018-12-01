@@ -22,18 +22,18 @@
 
       <header>
         <div class="container">
-          <h1><a href="main.php"><i class="far fa-flushed" id="logo-icon"></i> Blueit</a></h1>
+          <h1><a href="main"><i class="far fa-flushed" id="logo-icon"></i> Blueit</a></h1>
           <?php if ($username != NULL) { ?>
             <nav>
               <ul>
                 <li><?=$username?></li>
-                <li><a href="../actions/action_logout.php">Logout</a></li>
+                <li><a href="../actions/action_logout">Logout</a></li>
               </ul>
             </nav>
           <?php } else { ?>
             <nav>
               <ul>
-                <li><a href="../pages/login.php">Login</a></li><li><a href="../pages/signup.php">Signup</a></li>
+                <li><a href="../pages/login">Login</a></li><li><a href="../pages/signup">Signup</a></li>
               </ul>
             </nav>
           <?php } ?>
