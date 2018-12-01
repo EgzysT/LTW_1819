@@ -5,7 +5,9 @@
 
   $page_title = 'Bluedit';
 
-  draw_header(null, $page_title);
+  $username = $_SESSION['username'];
+
+  draw_header($username, $page_title);
   draw_footer();
 
 ?>

@@ -7,8 +7,8 @@
   include_once('../templates/tpl_auth.php');
 
   // Verify if user is logged in
-  // if (isset($_SESSION['username']))
-  //   die(header('Location: list.php'));
+  if($_SESSION['username'])
+    die(header('Location: ../pages/main.php'));
   
   $page_title = 'Bluedit - Login';
 
