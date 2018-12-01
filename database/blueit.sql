@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.1.1 on Fri Nov 30 23:59:02 2018
+-- File generated with SQLiteStudio v3.1.1 on Sat Dec 1 00:20:41 2018
 --
 -- Text encoding used: System
 --
@@ -15,6 +15,39 @@ CREATE TABLE channel (
     subscription_counter INTEGER NOT NULL
                                  DEFAULT (1) 
 );
+
+INSERT INTO channel (
+                        id,
+                        name,
+                        subscription_counter
+                    )
+                    VALUES (
+                        0,
+                        'funny',
+                        0
+                    );
+
+INSERT INTO channel (
+                        id,
+                        name,
+                        subscription_counter
+                    )
+                    VALUES (
+                        1,
+                        'science',
+                        0
+                    );
+
+INSERT INTO channel (
+                        id,
+                        name,
+                        subscription_counter
+                    )
+                    VALUES (
+                        2,
+                        'news',
+                        0
+                    );
 
 
 -- Table: comment
