@@ -14,6 +14,7 @@
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
       <link rel="stylesheet" href="../css/style.css">
       <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans+Condensed:300" rel="stylesheet">
+      <link rel="icon" href="../assets/favicon.ico">
       <script src="../js/main.js" defer></script>
     </head>
 
