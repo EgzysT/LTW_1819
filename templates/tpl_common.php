@@ -1,4 +1,4 @@
-<?php function draw_header($username) { 
+<?php function draw_header($username, $page_title) { 
 /**
  * Draws the header for all pages. Receives an username
  * if the user is logged in in order to draw the logout
@@ -8,7 +8,7 @@
   <html>
 
     <head>
-      <title>Blueit</title>
+      <title><?=$page_title?></title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">

@@ -139,7 +139,7 @@ body > header h1 {
 }
 
 /* Hide logo icon on small screens. Adjust logo text font-size also. */
-@media (max-width: 450px) {
+@media (max-width: 470px) {
 	body > header h1 {
 		font-size: 1.1em;
 	}
