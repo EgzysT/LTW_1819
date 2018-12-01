@@ -11,8 +11,8 @@
       <title>Blueit</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link rel="stylesheet" href="../css/style.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
+      <link rel="stylesheet" href="../css/style.css">
       <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans+Condensed:300" rel="stylesheet">
       <script src="../js/main.js" defer></script>
     </head>
@@ -21,7 +21,7 @@
 
       <header>
         <div class="container">
-          <h1><a href="main.php"><i class="far fa-flushed"></i> Blueit</a></h1>
+          <h1><a href="main.php"><i class="far fa-flushed" id="logo-icon"></i> Blueit</a></h1>
           <?php if ($username != NULL) { ?>
             <nav>
               <ul>

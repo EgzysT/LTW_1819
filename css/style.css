@@ -129,12 +129,20 @@ body > header > .container {
 }
 	
 body > header h1 {
-	margin: 0 0.5em;
+	margin: 0 0.1em;
 	flex-grow: 1;
+	flex-shrink: 0;
 }
 
-body > header h1 i {
+#logo-icon {
 	color: var(--panel-color);
+}
+
+/* Hide logo icon on small screens */
+@media (max-width: 450px) {
+	#logo-icon {
+		display: none;
+	}
 }
 
 body > header h1 a {
@@ -142,7 +150,7 @@ body > header h1 a {
 }
 
 body > header nav { 
-	margin: 0 0.5em;
+	margin: 0 0.1em;
 }
 
 body > header nav ul {
@@ -172,6 +180,7 @@ Log in and Sign up
 	margin: 2em auto;
 	width: 40em;
 	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.35);
+	max-width: 100%
 }
 
 #auth header {
@@ -207,6 +216,12 @@ Log in and Sign up
 	display: block;
 	float: right;
 	color: var(--dark-color);
+}
+
+@media (max-width: 450px) {
+	#auth form p {
+		float: none;
+	}
 }
 
 #auth form p a {
