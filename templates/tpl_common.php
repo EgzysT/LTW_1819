@@ -38,6 +38,7 @@
           <?php } ?>
         </div>
       </header>
+      <div class="container">
 <?php } ?>
 
 <?php function draw_messages() { 
@@ -53,6 +54,7 @@
 /**
  * Draws the footer for all pages.
  */ ?>
+   </div>
   </body>
 </html>
 <?php } ?>

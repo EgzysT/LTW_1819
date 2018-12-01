@@ -138,10 +138,10 @@ body > header h1 {
 	color: var(--panel-color);
 }
 
-/* Hide logo icon on small screens */
+/* Hide logo icon on small screens. Adjust logo text font-size also. */
 @media (max-width: 450px) {
-	#logo-icon {
-		display: none;
+	body > header h1 {
+		font-size: 1.1em;
 	}
 }
 
@@ -163,7 +163,7 @@ body > header nav li {
 	font-size: 0.5em;
 	border-right: 1px solid var(--panel-color);
 	padding: 0 0.75em;
-	margin: 0em;
+	margin-bottom: 10px;
 }
 
 body > header nav li:last-child {
@@ -216,11 +216,13 @@ Log in and Sign up
 	display: block;
 	float: right;
 	color: var(--dark-color);
+	margin-top: 1.3em;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 500px) {
 	#auth form p {
 		float: none;
+		margin-top: 0.5em;
 	}
 }
 
