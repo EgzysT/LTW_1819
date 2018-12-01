@@ -15,12 +15,12 @@
     return $user !== false && password_verify($password, $user['password']);
   }
 
-  function insertUser($username, $password) {
+  function insertUser($username, $email, $password) {
     $db = Database::instance()->db();
 
     $options = ['cost' => 12];
 
     $stmt = $db->prepare('INSERT INTO user (username, password, email) VALUES (?, ?, ?)');
-    $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options), $username));
+    $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options), $email));
   }
 ?>

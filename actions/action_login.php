@@ -10,10 +10,9 @@
 
   if (checkUserPassword($username, $password)) {
     $_SESSION['username'] = $username;
-    header('Location: ../pages/login');
+    echo 'ok';
   } else {
-    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Login failed!');
-    header('Location: ../pages/login');
+    echo 'fail';
   }
 
 ?>
