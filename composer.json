@@ -1,0 +1,7 @@
+{
+    "name": "Bluedit - LTW Project",
+    "require": {
+        "php": ">=5.6.28",
+        "ext-pdo_sqlite": "*"
+    }
+ }
