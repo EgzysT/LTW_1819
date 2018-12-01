@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.1.1 on Fri Nov 30 23:41:27 2018
+-- File generated with SQLiteStudio v3.1.1 on Fri Nov 30 23:59:02 2018
 --
 -- Text encoding used: System
 --
@@ -102,13 +102,17 @@ CREATE TABLE vote (
 -- Trigger: insert_downvote
 DROP TRIGGER IF EXISTS insert_downvote;
 CREATE TRIGGER insert_downvote
-        DELETE
+        BEFORE DELETE
             ON vote
           WHEN new.vote_type = 'd'
 BEGIN
     UPDATE post
        SET downvotes_count = post.downvotes_count + 1
-     WHERE post.id = new.post_id;
+     WHERE post.id = old.post_id;
+    UPDATE user
+       SET points = user.points - 1
+     WHERE old.post_id = post.id AND 
+           post.user_id = user.id;
 END;
 
 
@@ -122,6 +126,10 @@ BEGIN
     UPDATE post
        SET upvotes_count = post.upvotes_count + 1
      WHERE post.id = new.post_id;
+    UPDATE user
+       SET points = user.points + 1
+     WHERE new.post_id = post.id AND 
+           post.user_id = user.id;
 END;
 
 
@@ -161,6 +169,10 @@ BEGIN
        SET upvotes_count = post.upvotes_count - 1,
            downvotes_count = post.downvotes_count + 1
      WHERE post.id = new.post_id;
+    UPDATE user
+       SET points = user.points - 2
+     WHERE new.post_id = post.id AND 
+           post.user_id = user.id;
 END;
 
 
@@ -176,6 +188,10 @@ BEGIN
        SET upvotes_count = post.upvotes_count + 1,
            downvotes_count = post.downvotes_count - 1
      WHERE post.id = new.post_id;
+    UPDATE user
+       SET points = user.points + 2
+     WHERE new.post_id = post.id AND 
+           post.user_id = user.id;
 END;
 
 
