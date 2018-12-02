@@ -25,10 +25,16 @@
           <h1><a href="main"><i class="far fa-flushed" id="logo-icon"></i> Blueit</a></h1>
           <?php if ($username != NULL) { ?>
             <nav>
-              <ul>
-                <li><?=$username?></li>
-                <li><a href="../actions/action_logout.php">Logout</a></li>
-              </ul>
+              <div class="dropdown">
+                <span class="dropdown_btn">
+                  <a><?=$username?></a>
+                  <a><i class="fas fa-caret-down"></i></a>
+                </span>
+                <div class="dropdown_content">
+                  <a href=""><i class="fas fa-user"></i>  Profile</a>
+                  <a href="../actions/action_logout"><i class="fas fa-sign-out-alt"></i>  Logout</a>
+                </div>
+              </div>
             </nav>
           <?php } else { ?>
             <nav>

@@ -11,7 +11,7 @@
 	--main-color: #036;
 
 	--dark-color: #333;
-	--light-color: #CCC;
+	--light-color: #EEE;
 
 	--success-bg-color: #DFF2BF;
 	--success-fg-color: #4F8A10;
@@ -169,6 +169,36 @@ body > header nav li {
 body > header nav li:last-child {
 	border: none;
 }
+
+.dropdown {
+	font-size: 0.5em;
+}
+
+.dropdown_content {
+	display: none;
+	position: absolute;
+    background-color: var(--panel-color);
+	border: 1px solid var(--main-color);
+}
+
+.dropdown_content a {
+	display: block;
+	padding: 10px 10px 10px 10px;
+	color: var(--main-color);
+}
+
+ .dropdown_btn * {
+	margin: 10px 0px 10px 2px;
+} 
+
+.dropdown:hover .dropdown_content {
+	display: block;
+}
+
+.dropdown_content a:hover {
+	background-color: var(--light-color);
+}
+
 
 /**
 
