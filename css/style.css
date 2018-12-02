@@ -223,6 +223,7 @@ body > header nav li:last-child {
 }
 
 
+
 /**
 
 Log in and Sign up
@@ -331,8 +332,8 @@ Log in and Sign up
 body > footer {
 	position:absolute; 
 	bottom:0;
-	font-size: 1em;
-	padding: 0.7em 0;
+	font-size: 0.8em;
+	padding: 0.3em 0em 0.3em 0em;
 	width: 100%;
 	text-align: center;
 	font-family: var(--footer-font);
