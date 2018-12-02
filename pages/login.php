@@ -8,7 +8,7 @@
 
   // Verify if user is logged in
   if($_SESSION['username'])
-    die(header('Location: ../pages/main'));
+    die(header('Location: ../pages/main.php'));
   
   $page_title = 'Bluedit - Login';
 
