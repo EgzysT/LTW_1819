@@ -22,7 +22,7 @@
 
       <header>
         <div class="container">
-          <h1><a href="main"><i class="far fa-flushed" id="logo-icon"></i> Blueit</a></h1>
+          <h1><a href="main.php"><i class="far fa-flushed" id="logo-icon"></i> Blueit</a></h1>
           <?php if ($username != NULL) { ?>
             <nav>
               <div class="dropdown">
@@ -32,14 +32,14 @@
                 </span>
                 <div class="dropdown_content">
                   <a href=""><i class="fas fa-user"></i>  Profile</a>
-                  <a href="../actions/action_logout"><i class="fas fa-sign-out-alt"></i>  Logout</a>
+                  <a href="../actions/action_logout.php"><i class="fas fa-sign-out-alt"></i>  Logout</a>
                 </div>
               </div>
             </nav>
           <?php } else { ?>
             <nav>
               <ul>
-                <li><a href="../pages/login">Login</a></li><li><a href="../pages/signup">Signup</a></li>
+                <li><a href="../pages/login.php">Login</a></li><li><a href="../pages/signup.php">Signup</a></li>
               </ul>
             </nav>
           <?php } ?>

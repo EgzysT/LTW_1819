@@ -7,7 +7,7 @@
   include_once('../templates/tpl_auth.php');
 
   if($_SESSION['username'])
-    die(header('Location: ../pages/main'));
+    die(header('Location: ../pages/main.php'));
 
   $page_title = 'Bluedit - Register';
 
