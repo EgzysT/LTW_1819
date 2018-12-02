@@ -23,7 +23,8 @@
 	--error-fg-color: #D8000C;
 
 	--serif-font: 'Merriweather';
-	--sans-font: 'Lato';
+	--sans-font: 'Open Sans Condensed';
+	--footer-font: 'Lato';
 	font-family: var(--serif-font);
 
 	background-color: var(--bg-color);
@@ -304,7 +305,7 @@ body > footer {
 	padding: 0.7em 0;
 	width: 100%;
 	text-align: center;
-	font-family: var(--sans-font);
+	font-family: var(--footer-font);
 
 	color: var(--panel-color);
 	background-color: var(--main-color);
