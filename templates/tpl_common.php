@@ -13,7 +13,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
       <link rel="stylesheet" href="../css/style.css">
-      <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans+Condensed:300" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans+Condensed:300|Lato" rel="stylesheet">
       <link rel="icon" href="../assets/favicon2.ico">
       <script src="../js/main.js" defer></script>
     </head>
@@ -62,6 +62,9 @@
  * Draws the footer for all pages.
  */ ?>
    </div>
+   <footer>
+    Made with <i class="fas fa-heart"></i> by Ana Silva, Fábio Oliveira and Ricardo Teixeira.
+   </footer>
   </body>
 </html>
 <?php } ?>

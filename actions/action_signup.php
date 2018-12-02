@@ -3,32 +3,41 @@
   include_once('../database/db_user.php');
 
   $username = $_POST['username'];
+  $email = $_POST['email'];
   $password = $_POST['password'];
+  $confirm_password = $_POST['confirm_password'];
 
   // Only allow letters and numbers in username.
   if (!preg_match ("/^[a-zA-Z0-9]+$/", $username)) {
-    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username can only contain letters and numbers.');
-    die(header('Location: ../pages/signup'));
+    echo 'Username must only contain letters and digits.';
+    return;
   }
 
   // Make sure password is not small
   if(strlen($password) < 5) {
-    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Password length must have atleast 5 characters.');
-    die(header('Location: ../pages/signup'));
+    echo 'Password must be greater than 5 characters.';
+    return;
+  }
+
+  // Make sure the user entered the same input on the password and confirm password field.
+  if($password !== $confirm_password) {
+    echo 'Passwords don\'t match.';
+    return;
   }
 
   try {
-    insertUser($username, $password);
+    insertUser($username, $email, $password);
     $_SESSION['username'] = $username;
-    $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Signed up and logged in!');
-    header('Location: ../pages/signup');
+    echo 'ok';
   } catch (PDOException $e) {
     if ($e->errorInfo[2] == "UNIQUE constraint failed: user.username") { // Duplicate username.
-      $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username already exists.');
+      echo 'Username already exists.';
+    }
+    else if ($e->errorInfo[2] == "UNIQUE constraint failed: user.email") { // Duplicate email.
+      echo 'Email already exists.';
     }
     else {
-      $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Unknown error.');
+      echo 'Unknown error.';
     }
-    header('Location: ../pages/signup');
   }
 ?>

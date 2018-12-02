@@ -4,6 +4,9 @@
 
  body {
 	margin: 0 auto;
+	min-height: 100vh;
+	height: 100%;
+	position: relative;
 
 	--bg-color: #EEE;
 	--panel-color: #FFF;
@@ -21,6 +24,8 @@
 
 	--serif-font: 'Merriweather';
 	--sans-font: 'Open Sans Condensed';
+	--footer-font: 'Lato';
+	font-family: var(--serif-font);
 
 	background-color: var(--bg-color);
 }
@@ -83,25 +88,43 @@ h2 {
  	display: inline-block;
  	border-radius: 0.15em;
  	box-sizing: border-box;
- 	color: #FFFFFF;
+	color: #FFFFFF;
+	margin: 1em 0em;
+	padding: 0.7em 0em;
+    border: 0;
  	box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
  	text-align: center;
-	position: relative;
 	transition: all 0.2s;
+	font-family: var(--serif-font);
+}
+
+.button-block {
+	display: block;
+	width: 100%;
 }
 
 .button:active {
+	position: relative;
  	top: 0.1em;
 }
 
-.button-auth {
+.button-blue {
+	color: white;
 	background-color: #014b96;
 }
 
-.button-auth:hover {
+.button-blue:hover {
 	background-color: #003e7d;
 }
 
+.button-red {
+	color: white;
+	background-color: #dc3545;
+}
+
+.button-red:hover {
+	background-color: #c82333;
+}
 
 /**
  * Primary header
@@ -262,4 +285,63 @@ Log in and Sign up
 	font-weight: bold;
 	text-decoration: underline;
 	padding: 0.4em;
+}
+
+/* Ajax CSS */
+
+#ajax-form-container {
+	position: relative;
+}
+
+#ajax-form-request-fill {
+	width: 100%;
+	height: 100%;
+	background-color: #cce5ffad;
+	position: absolute;
+	display: none;
+    align-items: center;
+	justify-content: center;
+	color: #004085;
+}
+
+#ajax-form-failure-fill {
+	width: 100%;
+	height: 100%;
+	background-color: #f8d7da;
+	color: #721c24;
+	position: absolute;
+	display: none;
+    align-items: center;
+	justify-content: center;
+}
+
+#ajax-form-success-fill {
+	width: 100%;
+	height: 100%;
+	background-color: #d4edda;
+    color: #155724;
+	position: absolute;
+	display: none;
+    align-items: center;
+	justify-content: center;
+}
+
+/* Body Footer */
+
+body > footer {
+	position:absolute; 
+	bottom:0;
+	font-size: 1em;
+	padding: 0.7em 0;
+	width: 100%;
+	text-align: center;
+	font-family: var(--footer-font);
+
+	color: var(--panel-color);
+	background-color: var(--main-color);
+	box-shadow: 0 1px 6px 0 #000;
+}
+
+body > footer > i {
+	color: red;
 }
