@@ -2,7 +2,7 @@
 /**
  * Draws the login section.
  */ ?>
-  <section id="auth">
+  <section id="auth" class="panel">
     
     <header><h2>Welcome Back</h2></header>
   
@@ -36,7 +36,7 @@
 /**
  * Draws the signup section.
  */ ?>
-  <section id="auth">
+  <section id="auth" class="panel">
 
     <header><h2>New Account</h2></header>
 

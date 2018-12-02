@@ -12,6 +12,7 @@
 	--panel-color: #FFF;
 
 	--main-color: #036;
+	--secondary-color: #3487f7;
 
 	--dark-color: #333;
 	--light-color: #EEE;
@@ -130,7 +131,7 @@ h2 {
  * Primary header
  */
 
-body header {
+body > header, .panel header {
 
 	margin: 0;
 	padding: 0em;
@@ -345,4 +346,71 @@ body > footer {
 
 body > footer > i {
 	color: red;
+}
+
+.story-card {
+	width: 100%;
+	height: 100px;
+}
+
+/* Main page content body */
+#main {
+	display: grid;
+	grid-template-columns: 5fr 2fr;
+  	grid-template-rows: auto auto;
+}
+
+#main > #stories {
+	grid-column-start: 1;
+  	grid-column-end: 2;
+  	grid-row-start: 1;
+	grid-row-end: 2;
+	margin: 2em;
+}
+
+#main > #main-aside {
+	grid-column-start: 2;
+  	grid-column-end: 3;
+  	grid-row-start: 1;
+	grid-row-end: 2;
+	margin-top: 2em;
+}
+
+.aside {
+	background-color: var(--panel-color);
+	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.35);
+	overflow: hidden;
+	position: relative;
+	border-radius: 2px;
+}
+
+.aside-img {
+	background: url(../assets/main_aside.jpg) no-repeat center bottom;
+    background-size: 50%;
+    border-radius: 50%;
+    width: 200%;
+    height: 400px;
+    position: absolute;
+    left: -50%;
+    right: 0;
+    margin: 0 auto;
+	transform: translateY(-65%);
+	box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.61);
+}
+
+.aside-header-text {
+	margin-top: 8.5em;
+	color: var(--main-color);
+	text-align: center;
+	font-family: var(--serif-font);
+	margin-bottom: 0;
+}
+
+.aside-body-text {
+	padding: 0.6em 1em 1em;
+    margin: 0;
+    text-align: center;
+    line-height: 1.4em;
+	font-family: var(--serif-font);
+	color: var(--dark-color);
 }
