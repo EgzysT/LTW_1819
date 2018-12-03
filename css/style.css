@@ -12,6 +12,7 @@
 	--panel-color: #FFF;
 
 	--main-color: #036;
+	--secondary-color: #0056ad;
 
 	--dark-color: #333;
 	--light-color: #EEE;
@@ -43,6 +44,8 @@
 	font-family: var(--serif-font);
 
 	background-color: var(--bg-color);
+
+	padding-bottom: 1em; /* Page footer goes here */
 }
 	
 /**
@@ -433,12 +436,17 @@ body > footer > i {
 .aside {
 	display: inline-table; /* CSS trick to make the bottom padding collapse. */
 	grid-area: aside;
-	margin-top: 2em;
+	margin-top: 1em;
 	background-color: var(--panel-color);
 	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.65);
 	overflow: hidden;
 	position: relative;
 	border-radius: 2px;
+	width: 100%;
+}
+
+.aside:last-of-type() {
+	margin-bottom: 1em;
 }
 
 .aside-img {
@@ -472,22 +480,88 @@ body > footer > i {
 	color: var(--dark-color);
 }
 
+.aside .subscribed-channels li {
+	border-top: 1px solid rgba(0,0,0,.125);
+	padding: 0.2em 0.5em;
+	font-family: var(--sans-font);
+	font-weight: bold;
+	font-size: 1.8em;
+	position: relative;
+	overflow: hidden;
+}
+
+
+.aside .subscribed-channels li:first-of-type {
+	border-top: 0;
+}
+
+.aside .subscribed-channels i { /* correct font-awesome icons offsets */
+	transform: translateY(8%);
+}
+
+.aside .subscribed-channels {
+	padding: 0;
+	margin: 0;
+}
+
+.aside > header {
+	margin: 0;
+	padding: 0.2em;
+
+	font-size: 2em;
+
+	color: var(--panel-color);
+	background-color: var(--main-color);
+	text-align: center;
+	font-family: var(--sans-font)
+}
+
+
+.aside > header > h4 {
+	margin: 0;
+}
+
 .aside > footer {
 	border-top: 1px solid rgba(0,0,0,.125);
-	padding: 0.7em 1em;
-	position: relative;
-	height: 2em;
-}
-
-.aside > footer > * {
-	margin: 0 auto 0.5em;
-}
-
-.aside > footer > *:last-of-type { 
+	padding: 0 1em;
 	margin: 0 auto; /* remove bottom margin for last element */
 }
 
-.aside > footer button {
-	width: 80%;
-	display: block;
+.aside > footer > div {
+	padding: 1em auto 0.8em;
+	position: relative;
+	min-height: 2em;
+}
+
+.aside > footer > div:not(:first-of-type) {
+	margin-top: 1.5em;
+}
+
+.aside > footer > div:last-of-type {
+	margin-top: -0.4em;
+}
+
+#main-aside footer {
+	color: white;
+	height: auto;
+	background-color: var(--secondary-color);
+	margin: 0 auto;
+	text-align: center;
+	font-family: var(--serif-font);
+}
+
+#main-aside footer p {
+	font-weight: normal;
+}
+
+.channel-background {
+	position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 40%;
+    color: red;
+    background: url(../assets/main_aside.jpg) no-repeat center center;
+    background-size: 100%;
+    box-shadow: inset 30px 0px 20px 0px white;
 }
