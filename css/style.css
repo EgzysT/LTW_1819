@@ -587,6 +587,8 @@ body > footer > i {
 	/* display: block; */
 	/* float: right; */
 	display: block;
+}
+
 .aside > footer > div {
 	padding: 1em auto 0.8em;
 	position: relative;
