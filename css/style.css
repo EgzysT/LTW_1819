@@ -14,6 +14,7 @@
 	--main-color: #036;
 
 	--dark-color: #333;
+	--grey-color: #AAA;
 	--light-color: #EEE;
 
 	--success-bg-color: #d4edda;
@@ -391,9 +392,7 @@ body > footer > i {
 	color: red;
 }
 
-.story-card {
-	width: 100%;
-}
+
 
 /* Channel page content body */
 .channel {
@@ -430,6 +429,11 @@ body > footer > i {
 	margin: 2em;
 }
 
+/**
+
+	Aside information
+
+*/
 .aside {
 	display: inline-table; /* CSS trick to make the bottom padding collapse. */
 	grid-area: aside;
@@ -490,4 +494,66 @@ body > footer > i {
 .aside > footer button {
 	width: 80%;
 	display: block;
+}
+
+/**
+	Post compressed view
+*/
+
+.story-card {
+	width: 100%;
+	border-radius: 2px;
+	background-color: var(--panel-color);
+	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.65);
+}
+
+.story-card > header {
+	display: grid;
+	/* justify-content: space-between; */
+	padding: 5px;
+	box-shadow: 0px 0.5px 0px 0px rgba(90, 90, 90, 0.65);
+}
+
+.story-card .author-avatar {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	padding: 10px;
+	grid-column: 1;
+	grid-row: 1/2;
+}
+
+.story-card .date {
+	font-size: 0.8em;
+	color: var(--grey-color);
+	margin: 0;
+}
+
+.story-card .info-left {
+	grid-column: 2;
+}
+
+.story-card .info-right {
+	grid-column: 40;
+	text-align:right;
+}
+
+.story-card .body {
+	padding-right: 20px;
+	padding-left: 20px;
+	text-align: justify;
+}
+
+.story-card .body a {
+	color: var(--dark-color);
+}
+
+.story-card ul {
+	display: inline;
+	padding-left: 20px;
+}
+
+.story-card li {
+	display: inline-block;
+	padding-right: 50px;
 }

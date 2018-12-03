@@ -27,8 +27,8 @@
  */?>
     <article class="story-card">
         <header>
+            <img class="author-avatar" src="../assets/main_aside.jpg">
             <div class="info-left">
-                <img class="author-avatar">
                 <p class="author-name"><?=$story->author_name?></p>
                 <p class="date"><?=$story->date?></p>
             </div>
