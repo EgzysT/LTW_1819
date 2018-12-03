@@ -552,13 +552,14 @@ body > footer > i {
 
 .aside > footer {
 	border-top: 1px solid rgba(0,0,0,.125);
-	padding: 0 1em;
-	margin: 0 auto; /* remove bottom margin for last element */
+	padding: 0 1em 0;
+	margin: -0.4em auto -0.2em auto; /* remove bottom margin for last element */
 }
 
 .aside > footer button {
 	width: 100%;
 	display: block;
+
 }
 
 #profile-info {

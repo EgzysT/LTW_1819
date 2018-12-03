@@ -18,3 +18,37 @@
     $channel = $stmt->fetch(PDO::FETCH_OBJ);
     return $channel;
   }
+
+  /**
+   * Unsubscribe user to channel.
+   */
+  function unsubscribe($username, $channel_name) {
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare('DELETE FROM subscription
+    WHERE subscription.channel_id in (
+    SELECT channel.id
+    FROM channel
+    WHERE channel.name = ?)
+    AND subscription.user_id in (
+    SELECT user.id
+    FROM user
+    WHERE user.username = ?)');
+
+    $stmt->execute(array($channel_name, $username));
+  };
+
+  /**
+   * Subscribe user to channel.
+   */
+  function subscribe($username, $channel_name) {
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare('INSERT INTO subscription (user_id, channel_id)
+    SELECT user.id, channel.id
+    FROM channel, user 
+    WHERE channel.name = ? AND user.username = ?');
+
+    $stmt->execute(array($channel_name, $username));
+  };
+?>
