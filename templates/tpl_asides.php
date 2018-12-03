@@ -7,6 +7,9 @@
         <div class="aside-img"> </div>
         <h3 class="aside-header-text">Meaningful Stories</h3>
         <p class="aside-body-text">Stories worth reading about life and technology. Crafted with pen and passion by our community.</p>
+        <footer>
+            <button class="button button-blue search-button"> Search </button>
+        </footer>
     </aside>
 
 <?php } ?>

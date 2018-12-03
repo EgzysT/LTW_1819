@@ -10,7 +10,7 @@
 
   draw_header($username, $page_title); ?>
 
-  <section id="main">
+  <section class="channel">
     
     <?php  
       $stories = getStories(0);
