@@ -100,11 +100,11 @@ if(asideChannel) {
     }
     // User subscribes.
     subscribeButton.onclick = () => {
-        toggleRotation;
+        toggleRotation();
     }
     // User unsubscribes.
     unsubscribeButton.onclick = () => {
-        toggleRotation;
+        toggleRotation();
     }
 }
 
