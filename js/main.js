@@ -87,6 +87,20 @@ if (loginForm) {
 
 }
 
+/* Channel aside subscription related JS */
+let asideChannel = document.querySelector('.channel aside');
+if(asideChannel) {
+    let subscribeButton = asideChannel.querySelector('#subscribe');
+    let unsubscribeButton = asideChannel.querySelector('#unsubscribe');
+    let toggleRotation = () => {
+        subscribeButton.classList.toggle('button-180Y-rotate');
+        unsubscribeButton.classList.toggle('button-180Y-rotate');
+    }
+    subscribeButton.onclick = toggleRotation;
+    unsubscribeButton.onclick = toggleRotation;
+}
+
+
 /* Helper functions */
 function makeHTTPRequest(url, type, params, callback) {
     let request = new XMLHttpRequest();
@@ -100,6 +114,6 @@ function makeHTTPRequest(url, type, params, callback) {
 
 function encodeForAjax(data) {
     return Object.keys(data).map(function(k){
-      return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-    }).join('&')
+      return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]);
+    }).join('&');
 }

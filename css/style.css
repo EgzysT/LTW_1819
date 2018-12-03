@@ -16,11 +16,26 @@
 	--dark-color: #333;
 	--light-color: #EEE;
 
-	--success-bg-color: #DFF2BF;
-	--success-fg-color: #4F8A10;
+	--success-bg-color: #d4edda;
+	--success-text-color: #155724;
 
-	--error-bg-color: #FFD2D2;
-	--error-fg-color: #D8000C;
+	--loading-bg-color: #cce5ffad;
+	--loading-text-color: #004085;
+
+	--error-bg-color: #f8d7da;
+	--error-text-color: #721c24;
+	
+	--button-blue-color: #014b96;
+	--button-blue-color-hover: #003e7d;
+
+	--button-red-color: #dc3545;
+	--button-red-color-hover: #c82333;
+
+	--button-green-color: #28a745;
+	--button-green-color-hover: #218838;
+
+	--button-orange-color: #d68906;
+	--button-orange-color-hover: #B27000;
 
 	--serif-font: 'Merriweather';
 	--sans-font: 'Open Sans Condensed';
@@ -103,34 +118,63 @@ h2 {
 	width: 100%;
 }
 
-.button:active {
+.button:active:not(.button-channel-subscription) {
 	position: relative;
  	top: 0.1em;
 }
 
 .button-blue {
 	color: white;
-	background-color: #014b96;
+	background-color: var(--button-blue-color);
 }
 
 .button-blue:hover {
-	background-color: #003e7d;
+	background-color: var(--button-blue-color-hover);
 }
 
 .button-red {
 	color: white;
-	background-color: #dc3545;
+	background-color: var(--button-red-color);
 }
 
 .button-red:hover {
-	background-color: #c82333;
+	background-color: var(--button-red-color-hover);
+}
+
+.button-orange {
+	color: white;
+	background-color: var(--button-orange-color);
+}
+
+.button-orange:hover {
+	background-color: var(--button-orange-color-hover);
+}
+
+.button-green {
+	color: white;
+	background-color: var(--button-green-color);
+}
+
+.button-green:hover {
+	background-color: var(--button-green-color-hover);
+}
+
+.button-channel-subscription {
+	position: absolute;
+	left: 0;
+	right: 0;
+	backface-visibility: hidden;
+}
+
+.button-180Y-rotate {
+	transform: rotateY(180deg);
 }
 
 /**
  * Primary header
  */
 
-body header {
+body > header, .panel header {
 
 	margin: 0;
 	padding: 0em;
@@ -297,19 +341,19 @@ Log in and Sign up
 #ajax-form-request-fill {
 	width: 100%;
 	height: 100%;
-	background-color: #cce5ffad;
+	background-color: var(--loading-bg-color);
+    color: var(--loading-text-color);
 	position: absolute;
 	display: none;
     align-items: center;
 	justify-content: center;
-	color: #004085;
 }
 
 #ajax-form-failure-fill {
 	width: 100%;
 	height: 100%;
-	background-color: #f8d7da;
-	color: #721c24;
+	background-color: var(--error-bg-color);
+    color: var(--error-text-color);
 	position: absolute;
 	display: none;
     align-items: center;
@@ -319,8 +363,8 @@ Log in and Sign up
 #ajax-form-success-fill {
 	width: 100%;
 	height: 100%;
-	background-color: #d4edda;
-    color: #155724;
+	background-color: var(--success-bg-color);
+    color: var(--success-text-color);
 	position: absolute;
 	display: none;
     align-items: center;
@@ -345,4 +389,105 @@ body > footer {
 
 body > footer > i {
 	color: red;
+}
+
+.story-card {
+	width: 100%;
+}
+
+/* Channel page content body */
+.channel {
+	display: grid;
+	grid-template-rows: auto auto;
+	grid-template-columns: 1fr;
+	grid-template-areas: "aside" /* Default for small screens */
+						 "stories";
+}
+
+@media (min-width: 600px) {
+	.channel {
+		grid-template-columns: 4fr 2fr;
+		grid-template-areas: "stories aside";
+	}
+}
+
+@media (min-width: 800px) {
+	.channel {
+		grid-template-columns: 5fr 2fr;
+		grid-template-areas: "stories aside";
+	}
+}
+
+@media (min-width: 1200px) {
+	.channel {
+		grid-template-columns: 6fr 2fr;
+		grid-template-areas: "stories aside";
+	}
+}
+
+#stories {
+	grid-area: stories;
+	margin: 2em;
+}
+
+.aside {
+	display: inline-table; /* CSS trick to make the bottom padding collapse. */
+	grid-area: aside;
+	margin-top: 2em;
+	background-color: var(--panel-color);
+	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.65);
+	overflow: hidden;
+	position: relative;
+	border-radius: 2px;
+}
+
+.aside-img {
+	background: url(../assets/main_aside.jpg) no-repeat center bottom;
+    background-size: 50%;
+    border-radius: 50%;
+    width: 200%;
+    height: 400px;
+    position: absolute;
+    left: -50%;
+    right: 0;
+    margin: 0 auto;
+	transform: translateY(-65%);
+	box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.61);
+}
+
+.aside-header-text {
+	margin-top: 8.5em;
+	color: var(--main-color);
+	text-align: center;
+	font-family: var(--serif-font);
+	margin-bottom: 0;
+}
+
+.aside-body-text {
+	padding: 0.6em 1em 1em;
+    margin: 0;
+    text-align: center;
+    line-height: 1.4em;
+	font-family: var(--serif-font);
+	color: var(--dark-color);
+}
+
+.aside > footer {
+	border-top: 1px solid rgba(0,0,0,.125);
+	padding: 0.7em 1em;
+	position: relative;
+	height: 2em;
+}
+
+.aside > footer > * {
+	margin: 0 auto 0.5em;
+}
+
+.aside > footer > *:last-of-type { 
+	margin: 0 auto; /* remove bottom margin for last element */
+}
+
+.aside > footer button {
+	width: 80%;
+	display: block;
 }
