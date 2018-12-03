@@ -37,14 +37,15 @@
 
     $stmt = $db->prepare('SELECT channel.id, channel.name, channel.image
     FROM user, subscription, channel
-    WHERE user.username = ? AND subscription.user_id = user.id AND subscription.channel_id = channel.id');
+    WHERE user.username = ? AND subscription.user_id = user.id AND subscription.channel_id = channel.id
+    ORDER BY channel.name');
 
     $stmt->execute(array($username));
 
     $subscribed_channels = $stmt->fetchAll(PDO::FETCH_OBJ);
     return $subscribed_channels;
   }
-  
+
   function fetchProfilePicURL($username) {
     $db = Database::instance()->db();
 
