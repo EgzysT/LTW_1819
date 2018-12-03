@@ -118,7 +118,7 @@ h2 {
 	width: 100%;
 }
 
-.button:active {
+.button:active:not(.button-channel-subscription) {
 	position: relative;
  	top: 0.1em;
 }
@@ -157,6 +157,17 @@ h2 {
 
 .button-green:hover {
 	background-color: var(--button-green-color-hover);
+}
+
+.button-channel-subscription {
+	position: absolute;
+	left: 0;
+	right: 0;
+	backface-visibility: hidden;
+}
+
+.button-180Y-rotate {
+	transform: rotateY(180deg);
 }
 
 /**
@@ -388,17 +399,12 @@ body > footer > i {
 .channel {
 	display: grid;
 	grid-template-rows: auto auto;
+	grid-template-columns: 1fr;
+	grid-template-areas: "aside" /* Default for small screens */
+						 "stories";
 }
 
-@media (min-width: 500px) {
-	.channel {
-		grid-template-columns: 1fr;
-		grid-template-areas: "aside"
-		                     "stories";
-	}
-}
-
-@media (min-width: 650px) {
+@media (min-width: 600px) {
 	.channel {
 		grid-template-columns: 4fr 2fr;
 		grid-template-areas: "stories aside";
@@ -469,9 +475,11 @@ body > footer > i {
 .aside > footer {
 	border-top: 1px solid rgba(0,0,0,.125);
 	padding: 0.7em 1em;
+	position: relative;
+	height: 2em;
 }
 
-.aside > footer > *{
+.aside > footer > * {
 	margin: 0 auto 0.5em;
 }
 
