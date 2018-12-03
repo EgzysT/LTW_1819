@@ -15,7 +15,7 @@
 
   // Make sure password is not small
   if(strlen($password) < 5) {
-    echo 'Password must be greater than 5 characters.';
+    echo 'Password length must be greater than 4 characters.';
     return;
   }
 
