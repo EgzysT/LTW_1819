@@ -11,11 +11,12 @@
   include_once('../database/db_user.php');
   include_once('../database/db_channel.php');
 
-  $page_title = 'Bluedit';
   $username = $_SESSION['username'];
 
   $channel_name = $_GET['name'];
   $current_page_channel = get_channel_info($channel_name);
+
+  $page_title = 'Bluedit #'.$current_page_channel->name;
 
   if(!$current_page_channel) { // Channel doesn't exist.
     header('Location: ./main.php');
