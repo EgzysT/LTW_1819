@@ -7,6 +7,11 @@
         <div class="aside-img"> </div>
         <h3 class="aside-header-text">Blueit</h3>
         <p class="aside-body-text">Stories worth reading about life and technology. Crafted with pen and passion by our community.</p>
+        <footer>
+            <div>
+                <button class="button button-blue button-block"> Search </button>
+            </div>
+        </footer>
     </aside>
 
 <?php }
