@@ -8,9 +8,19 @@
   include_once('../templates/tpl_story_cards.php');
   include_once('../templates/tpl_asides.php');
   include_once('../database/db_story.php');
+  include_once('../database/db_user.php');
+  include_once('../database/db_channel.php');
 
   $page_title = 'Bluedit';
   $username = $_SESSION['username'];
+
+  $channel_name = $_GET['name'];
+  $channel = get_channel_info($channel_name);
+
+  if(!$channel) { // Channel doesn't exist.
+    echo '--- need to implement 404';
+    exit(0);
+  }
 
   draw_header($username, $page_title); ?>
 
@@ -23,8 +33,11 @@
 
       <section class="aside-container">
         <?php 
-          draw_channel_aside();
-          draw_subscriptions_aside();
+          draw_channel_aside($channel);
+          if($username) { 
+            $subscribed_channels = getSubscribedChannels($username);
+            draw_subscriptions_aside($subscribed_channels);
+          }
           ?>
       </section>
   </section>

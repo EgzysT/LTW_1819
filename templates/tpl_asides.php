@@ -11,15 +11,15 @@
 
 <?php }
 
-function draw_channel_aside() {
+function draw_channel_aside($current_channel) {
 /**
  * Draws the aside for a specific channel.
  */ ?>
     
-    <aside class="aside">
-        <div class="aside-img"> </div>
-        <h3 class="aside-header-text">Blueit</h3>
-        <p class="aside-body-text">O Lorem Ipsum é um texto modelo da indústria tipográfica e de impressão. O Lorem Ipsum tem vindo a ser o texto padrão usado por estas indústrias desde o ano de 1500.</p>
+    <aside class="aside aside-channel">
+        <div class="aside-img" style="background: url('<?=$current_channel->image?>') no-repeat center bottom; background-size: 50%;"> </div>
+        <h3 class="aside-header-text">#<?=$current_channel->name?></h3>
+        <p class="aside-body-text"><?=$current_channel->description?></p>
         <footer>
             <div>
                 <button class="button button-green button-block button-channel-subscription button-180Y-rotate" id="subscribe"> Subscribe </button>
@@ -36,7 +36,7 @@ function draw_channel_aside() {
     </aside>
 
 <?php }
-function draw_subscriptions_aside() {
+function draw_subscriptions_aside($subscribed_channels) {
 /**
  * Draws the aside for a specific channel.
  */ ?>
@@ -46,14 +46,13 @@ function draw_subscriptions_aside() {
             <h4>Subscriptions</h4>
         </header>
         <ul class="subscribed-channels">
-            <li>
-                <i class="fas fa-bookmark"></i>&nbsp; science 
-                <div class="channel-background"></div> 
-            </li>
-            <li>
-                <i class="fas fa-bookmark"></i>&nbsp; technology
-                <div class="channel-background"></div> 
-            </li>
+            <?php
+            foreach($subscribed_channels as $channel) { ?>
+                <li>
+                    <i class="fas fa-bookmark"></i>&nbsp; <a href="http://localhost:8080/ltw/pages/channel.php?name=<?=$channel->name?>"><?=$channel->name?></a>
+                    <div class="channel-background" style="background: url('<?=$channel->image?>') no-repeat center center; background-size: 105%"></div> 
+                </li>
+            <?php } ?>
         </ul>
     </aside>
 <?php } ?>

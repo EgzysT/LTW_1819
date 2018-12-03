@@ -44,8 +44,6 @@
 	font-family: var(--serif-font);
 
 	background-color: var(--bg-color);
-
-	padding-bottom: 1em; /* Page footer goes here */
 }
 	
 /**
@@ -450,7 +448,6 @@ body > footer > i {
 }
 
 .aside-img {
-	background: url(../assets/main_aside.jpg) no-repeat center bottom;
     background-size: 50%;
     border-radius: 50%;
     width: 200%;
@@ -461,6 +458,8 @@ body > footer > i {
     margin: 0 auto;
 	transform: translateY(-65%);
 	box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.61);
+	background: url(../assets/main_aside.jpg) no-repeat center bottom; /* Default bg */
+    background-size: 50%;
 }
 
 .aside-header-text {
@@ -488,6 +487,11 @@ body > footer > i {
 	font-size: 1.8em;
 	position: relative;
 	overflow: hidden;
+}
+
+.aside .subscribed-channels a {
+	color: var(--main-color);
+	text-shadow: 1px 1px 1px #717171b3;
 }
 
 
@@ -560,8 +564,5 @@ body > footer > i {
     top: 0;
     height: 100%;
     width: 40%;
-    color: red;
-    background: url(../assets/main_aside.jpg) no-repeat center center;
-    background-size: 100%;
-    box-shadow: inset 30px 0px 20px 0px white;
+	box-shadow: inset 35px 0px 20px 0px white;
 }

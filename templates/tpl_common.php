@@ -11,10 +11,11 @@
       <title><?=$page_title?></title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="csrf-token" content="<?=$_SESSION['csrf']?>">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
       <link rel="stylesheet" href="../css/style.css">
       <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans+Condensed:300|Lato" rel="stylesheet">
-      <link rel="icon" href="../assets/favicon2.ico">
+      <link rel="icon" href="../assets/favicon.ico">
       <script src="../js/main.js" defer></script>
     </head>
 
