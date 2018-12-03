@@ -32,7 +32,7 @@
                   <a><i class="fas fa-caret-down"></i></a>
                 </span>
                 <div class="dropdown_content">
-                  <a href=""><i class="fas fa-user"></i>  Profile</a>
+                  <a href="../pages/profile.php"><i class="fas fa-user"></i>  Profile</a>
                   <a href="../actions/action_logout.php"><i class="fas fa-sign-out-alt"></i>  Logout</a>
                 </div>
               </div>
