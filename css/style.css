@@ -12,6 +12,7 @@
 	--panel-color: #FFF;
 
 	--main-color: #036;
+	--secondary-color: #0056ad;
 
 	--dark-color: #333;
 	--grey-color: #AAA;
@@ -245,6 +246,7 @@ body > header nav li:last-child {
 .dropdown_content {
 	display: none;
 	position: absolute;
+	z-index: 1;
     background-color: var(--panel-color);
 	border: 1px solid var(--main-color);
 }
@@ -403,8 +405,20 @@ body > footer > i {
 						 "stories";
 }
 
+.profile {
+	display: grid;
+	grid-template-rows: auto auto;
+	grid-template-columns: 1fr;
+	grid-template-areas: "aside" /* Default for small screens */
+						 "stories";
+}
+
 @media (min-width: 600px) {
 	.channel {
+		grid-template-columns: 4fr 2fr;
+		grid-template-areas: "stories aside";
+	}
+	.profile {
 		grid-template-columns: 4fr 2fr;
 		grid-template-areas: "stories aside";
 	}
@@ -415,11 +429,19 @@ body > footer > i {
 		grid-template-columns: 5fr 2fr;
 		grid-template-areas: "stories aside";
 	}
+	.profile {
+		grid-template-columns: 4fr 2fr;
+		grid-template-areas: "stories aside";
+	}
 }
 
 @media (min-width: 1200px) {
 	.channel {
 		grid-template-columns: 6fr 2fr;
+		grid-template-areas: "stories aside";
+	}
+	.profile {
+		grid-template-columns: 4fr 2fr;
 		grid-template-areas: "stories aside";
 	}
 }
@@ -437,16 +459,20 @@ body > footer > i {
 .aside {
 	display: inline-table; /* CSS trick to make the bottom padding collapse. */
 	grid-area: aside;
-	margin-top: 2em;
+	margin-top: 1em;
 	background-color: var(--panel-color);
 	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.65);
 	overflow: hidden;
 	position: relative;
 	border-radius: 2px;
+	width: 100%;
+}
+
+.aside:last-of-type() {
+	margin-bottom: 1em;
 }
 
 .aside-img {
-	background: url(../assets/main_aside.jpg) no-repeat center bottom;
     background-size: 50%;
     border-radius: 50%;
     width: 200%;
@@ -457,6 +483,8 @@ body > footer > i {
     margin: 0 auto;
 	transform: translateY(-65%);
 	box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.61);
+	background: url(../assets/main_aside.jpg) no-repeat center bottom; /* Default bg */
+    background-size: 50%;
 }
 
 .aside-header-text {
@@ -476,24 +504,133 @@ body > footer > i {
 	color: var(--dark-color);
 }
 
+.aside .subscribed-channels li {
+	border-top: 1px solid rgba(0,0,0,.125);
+	padding: 0.2em 0.5em;
+	font-family: var(--sans-font);
+	font-weight: bold;
+	font-size: 1.8em;
+	position: relative;
+	overflow: hidden;
+}
+
+.aside .subscribed-channels a {
+	color: var(--main-color);
+	text-shadow: 1px 1px 1px #717171b3;
+}
+
+
+.aside .subscribed-channels li:first-of-type {
+	border-top: 0;
+}
+
+.aside .subscribed-channels i { /* correct font-awesome icons offsets */
+	transform: translateY(8%);
+}
+
+.aside .subscribed-channels {
+	padding: 0;
+	margin: 0;
+}
+
+.aside > header {
+	margin: 0;
+	padding: 0.2em;
+
+	font-size: 2em;
+
+	color: var(--panel-color);
+	background-color: var(--main-color);
+	text-align: center;
+	font-family: var(--sans-font)
+}
+
+
+.aside > header > h4 {
+	margin: 0;
+}
+
 .aside > footer {
 	border-top: 1px solid rgba(0,0,0,.125);
-	padding: 0.7em 1em;
-	position: relative;
-	height: 2em;
-}
-
-.aside > footer > * {
-	margin: 0 auto 0.5em;
-}
-
-.aside > footer > *:last-of-type { 
+	padding: 0 1em;
 	margin: 0 auto; /* remove bottom margin for last element */
 }
 
 .aside > footer button {
 	width: 80%;
 	display: block;
+}
+
+#profile-info {
+	margin: 0.75em 0em;
+	background-color: var(--panel-color);
+	box-shadow: 0 1px 6px 0 #000;
+}
+#profile-info > img {
+	display: block;
+	margin: 1em 1em 0em 1em;
+	box-shadow: 0 3px 10px 0 #000;
+}
+#profile-info > h1 {
+	display: block;
+	font-size: 2em;
+	margin-top: 10rem;
+	text-align: center;
+}
+#profile-info p {
+	margin: 0em;
+	padding: 1em;
+}
+#profile-info p:first-of-type {
+	padding: 0em;
+}
+#profile-info > footer > p > a {
+	display: block;
+	background-color: var(--main-color);
+	text-align: center;
+	/* margin: 1em; */
+	padding: 0.5em;
+}
+#profile-info + p {
+	/* display: block; */
+	/* float: right; */
+	display: block;
+}
+
+.aside > footer > div {
+	padding: 1em auto 0.8em;
+	position: relative;
+	min-height: 2em;
+}
+
+.aside > footer > div:not(:first-of-type) {
+	margin-top: 1.5em;
+}
+
+.aside > footer > div:last-of-type {
+	margin-top: -0.4em;
+}
+
+#main-aside footer {
+	color: white;
+	height: auto;
+	background-color: var(--secondary-color);
+	margin: 0 auto;
+	text-align: center;
+	font-family: var(--serif-font);
+}
+
+#main-aside footer p {
+	font-weight: normal;
+}
+
+.channel-background {
+	position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 40%;
+	box-shadow: inset 35px 0px 20px 0px white;
 }
 
 /**
@@ -556,4 +693,3 @@ body > footer > i {
 .story-card li {
 	display: inline-block;
 	padding-right: 50px;
-}

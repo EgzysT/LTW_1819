@@ -1,5 +1,7 @@
 'use strict';
 
+let csrf = document.querySelector('meta[name="csrf-token"]').content;
+
 /* Signup page functions */
 let signupForm = document.querySelector('#signup-form');
 if (signupForm) {
@@ -87,8 +89,8 @@ if (loginForm) {
 
 }
 
-/* Channel aside subscription related JS */
-let asideChannel = document.querySelector('.channel aside');
+/* Channel Subscribe related JS */
+let asideChannel = document.querySelector('.channel .aside-channel');
 if(asideChannel) {
     let subscribeButton = asideChannel.querySelector('#subscribe');
     let unsubscribeButton = asideChannel.querySelector('#unsubscribe');
@@ -96,8 +98,14 @@ if(asideChannel) {
         subscribeButton.classList.toggle('button-180Y-rotate');
         unsubscribeButton.classList.toggle('button-180Y-rotate');
     }
-    subscribeButton.onclick = toggleRotation;
-    unsubscribeButton.onclick = toggleRotation;
+    // User subscribes.
+    subscribeButton.onclick = () => {
+        toggleRotation;
+    }
+    // User unsubscribes.
+    unsubscribeButton.onclick = () => {
+        toggleRotation;
+    }
 }
 
 
