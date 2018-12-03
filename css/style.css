@@ -12,16 +12,30 @@
 	--panel-color: #FFF;
 
 	--main-color: #036;
-	--secondary-color: #3487f7;
 
 	--dark-color: #333;
 	--light-color: #EEE;
 
-	--success-bg-color: #DFF2BF;
-	--success-fg-color: #4F8A10;
+	--success-bg-color: #d4edda;
+	--success-text-color: #155724;
 
-	--error-bg-color: #FFD2D2;
-	--error-fg-color: #D8000C;
+	--loading-bg-color: #cce5ffad;
+	--loading-text-color: #004085;
+
+	--error-bg-color: #f8d7da;
+	--error-text-color: #721c24;
+	
+	--button-blue-color: #014b96;
+	--button-blue-color-hover: #003e7d;
+
+	--button-red-color: #dc3545;
+	--button-red-color-hover: #c82333;
+
+	--button-green-color: #28a745;
+	--button-green-color-hover: #218838;
+
+	--button-orange-color: #d68906;
+	--button-orange-color-hover: #B27000;
 
 	--serif-font: 'Merriweather';
 	--sans-font: 'Open Sans Condensed';
@@ -111,25 +125,38 @@ h2 {
 
 .button-blue {
 	color: white;
-	background-color: #014b96;
+	background-color: var(--button-blue-color);
 }
 
 .button-blue:hover {
-	background-color: #003e7d;
+	background-color: var(--button-blue-color-hover);
 }
 
 .button-red {
 	color: white;
-	background-color: #dc3545;
+	background-color: var(--button-red-color);
 }
 
 .button-red:hover {
-	background-color: #c82333;
+	background-color: var(--button-red-color-hover);
 }
 
-.search-button {
-	width: 80%;
-	display: block; /* may have background-color: #ffbd00; in the future */
+.button-orange {
+	color: white;
+	background-color: var(--button-orange-color);
+}
+
+.button-orange:hover {
+	background-color: var(--button-orange-color-hover);
+}
+
+.button-green {
+	color: white;
+	background-color: var(--button-green-color);
+}
+
+.button-green:hover {
+	background-color: var(--button-green-color-hover);
 }
 
 /**
@@ -303,19 +330,19 @@ Log in and Sign up
 #ajax-form-request-fill {
 	width: 100%;
 	height: 100%;
-	background-color: #cce5ffad;
+	background-color: var(--loading-bg-color);
+    color: var(--loading-text-color);
 	position: absolute;
 	display: none;
     align-items: center;
 	justify-content: center;
-	color: #004085;
 }
 
 #ajax-form-failure-fill {
 	width: 100%;
 	height: 100%;
-	background-color: #f8d7da;
-	color: #721c24;
+	background-color: var(--error-bg-color);
+    color: var(--error-text-color);
 	position: absolute;
 	display: none;
     align-items: center;
@@ -325,8 +352,8 @@ Log in and Sign up
 #ajax-form-success-fill {
 	width: 100%;
 	height: 100%;
-	background-color: #d4edda;
-    color: #155724;
+	background-color: var(--success-bg-color);
+    color: var(--success-text-color);
 	position: absolute;
 	display: none;
     align-items: center;
@@ -402,7 +429,7 @@ body > footer > i {
 	grid-area: aside;
 	margin-top: 2em;
 	background-color: var(--panel-color);
-	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.35);
+	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.65);
 	overflow: hidden;
 	position: relative;
 	border-radius: 2px;
@@ -445,5 +472,14 @@ body > footer > i {
 }
 
 .aside > footer > *{
-	margin: 0 auto;
+	margin: 0 auto 0.5em;
+}
+
+.aside > footer > *:last-of-type { 
+	margin: 0 auto; /* remove bottom margin for last element */
+}
+
+.aside > footer button {
+	width: 80%;
+	display: block;
 }
