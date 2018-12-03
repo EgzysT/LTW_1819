@@ -9,7 +9,7 @@
   $page_title = 'Bluedit';
   $username = $_SESSION['username'];
 
-  draw_header($username, $page_title)); ?>
+  draw_header($username, $page_title); ?>
 
   <section class="channel">
     
