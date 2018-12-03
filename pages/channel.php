@@ -18,8 +18,7 @@
   $channel = get_channel_info($channel_name);
 
   if(!$channel) { // Channel doesn't exist.
-    echo '--- need to implement 404';
-    exit(0);
+    header('Location: ./main.php');
   }
 
   draw_header($username, $page_title); ?>
