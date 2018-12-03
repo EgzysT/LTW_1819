@@ -562,7 +562,6 @@ body > footer > i {
 }
 
 #profile-info {
-	margin: 0.75em 0em;
 	background-color: var(--panel-color);
 	box-shadow: 0 1px 6px 0 #000;
 }
