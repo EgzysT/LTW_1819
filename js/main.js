@@ -88,7 +88,7 @@ if (loginForm) {
 }
 
 /* Channel aside subscription related JS */
-let asideChannel = document.querySelector('.channel aside');
+let asideChannel = document.querySelector('.channel aside:not(#main-aside)');
 if(asideChannel) {
     let subscribeButton = asideChannel.querySelector('#subscribe');
     let unsubscribeButton = asideChannel.querySelector('#unsubscribe');
