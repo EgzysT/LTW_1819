@@ -632,21 +632,20 @@ body > footer > i {
 	Post compressed view
 */
 
-.story-card {
+.sm-story-card {
 	width: 100%;
 	border-radius: 2px;
 	background-color: var(--panel-color);
 	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.65);
 }
 
-.story-card > header {
+.sm-story-card > header {
 	display: grid;
-	/* justify-content: space-between; */
 	padding: 5px;
 	box-shadow: 0px 0.5px 0px 0px rgba(90, 90, 90, 0.65);
 }
 
-.story-card .author-avatar {
+.sm-story-card .author-avatar {
 	width: 70px;
 	height: 70px;
 	border-radius: 50%;
@@ -655,38 +654,114 @@ body > footer > i {
 	grid-row: 1/2;
 }
 
-.story-card .date {
+.sm-story-card .date {
 	font-size: 0.8em;
 	color: var(--grey-color);
 	margin: 0;
 }
 
-.story-card .info-left {
+.sm-story-card .info-left {
 	grid-column: 2;
 }
 
-.story-card .info-right {
+.sm-story-card .info-right {
 	grid-column: 50;
 	text-align:right;
 	padding-right: 15px;
 }
 
-.story-card .body {
+.sm-story-card .body {
 	padding-right: 20px;
 	padding-left: 20px;
 	text-align: justify;
 }
 
-.story-card .body a {
+.sm-story-card .body a {
 	color: var(--dark-color);
 }
 
-.story-card ul {
+.sm-story-card ul {
 	display: inline;
 	padding-left: 20px;
 }
 
-.story-card li {
+.sm-story-card li {
 	display: inline-block;
 	padding-right: 50px;
+}
+
+.full-story-card {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.full-story-card .sc-aside {
+	margin-top: 1.5em;
+}
+
+.full-story-card .sc-aside p {
+	color: var(--main-color);
+	text-align: center;
+	vertical-align: middle;
+	font-size: 1.7em;
+	margin-right: 0.5em;
+	margin-top: 0.2em;
+	margin-bottom: 0;
+}
+
+.full-story-card .sc-aside i {
+	opacity: 0.5;
+}
+
+.full-story-card .sc-aside .arrow-up:hover i {
+	opacity: 1;
+	color: var(--success-text-color);
+}
+
+.full-story-card .sc-aside .arrow-down:hover i {
+	opacity: 1;
+	color: var(--error-text-color);
+}
+
+
+.full-story-card .story-card {
+	width: 100%;
+	border-radius: 2px;
+	background-color: var(--panel-color);
+	box-shadow: 0px 0px 2px 0px rgba(218, 211, 211, 0.65);
+}
+
+
+.full-story-card header * {
+	padding: 0.5em;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.full-story-card .author-avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+
+.full-story-card .date {
+	font-size: 0.8em;
+	color: var(--grey-color);
+}
+
+.full-story-card .info-right {
+	float: right;
+	padding-right: 1em;
+}
+
+
+.full-story-card .body {
+	padding-right: 20px;
+	padding-left: 20px;
+	text-align: justify;
+}
+
+.full-story-card .points {
+	float:left;
 }

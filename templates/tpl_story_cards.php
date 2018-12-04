@@ -8,14 +8,14 @@
 
     <?php 
         foreach($stories as $story)
-            draw_story_card($story);
+            draw_small_story_card($story);
     ?>
 
     </section>
 
 <?php } ?>
 
-<?php function draw_story_card($story) { 
+<?php function draw_small_story_card($story) { 
 /**
  * Draws the card for the story passed as an argument.
  * A card is simply a block that contains:
@@ -25,7 +25,7 @@
  *  - content (title and some text of the body),
  *  - the number of points and comments.
  */?>
-    <article class="story-card">
+    <article class="sm-story-card">
         <header>
             <img class="author-avatar" src="../assets/main_aside.jpg">
             <div class="info-left">
@@ -49,6 +49,46 @@
                 <li><p><?=$story->comments?> Comments</li>
             </ul>
         </footer>
+    </article>
+
+<?php } ?>
+
+<?php function draw_full_story_card($story) { 
+/**
+ * Draws the card for the story passed as an argument.
+ * A card is simply a block that contains:
+ *  - the author of the story (name and avatar),
+ *  - the channel it was posted on,
+ *  - the date it was created,
+ *  - content (title and some text of the body),
+ *  - the number of points and comments.
+ */?>
+    <article class="full-story-card">
+        <div class="sc-aside">
+            <p class="arrow-up"> <i class="fas fa-arrow-alt-circle-up"></i> </p>
+            <p><?=$story->points?></p>
+            <p class="arrow-down"> <i class="fas fa-arrow-alt-circle-down"></i> </p>
+        </div>
+
+        <div class="story-card">
+
+            <header>
+                <div class="info-left">
+                    <img class="author-avatar" src="../assets/main_aside.jpg">
+                    <p class="author-name"><?=$story->author_name?></p>
+                    <p class="date"><?=$story->date?></p>
+                </div>
+                <div class="info-right">
+                    <p class="sc_channel"><?=$story->channel?></p>
+                </div>
+            </header>
+
+            <div class="body">
+                <h2 class="title"><?=$story->title?></h2>
+                <p class="content"><?=$story->content?></p>
+            </div>
+        </div>
+
     </article>
 
 <?php } ?>
