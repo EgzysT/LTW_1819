@@ -715,10 +715,9 @@ body > .container { /* Make room for the absolute placed footer */
 
 .sm-story-card .body p {
 	color: var(--dark-color);
-	line-height: 150%;
 	text-align: justify;
 	line-height: 1.5em;
-	height: 3em;
+	max-height: 5.1em;
     text-overflow: ellipsis;
 	overflow: hidden;
 } 
