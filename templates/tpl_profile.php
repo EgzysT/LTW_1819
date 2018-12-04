@@ -11,7 +11,7 @@
 			<p class="aside-body-text"><?=$bio?></p>
 			<?php if($username == $_SESSION['username']) {?>
 				<footer>
-					<p><a href="../pages/editprofile.php">Edit Profile</a></p>
+					<p><a href="../pages/edit_profile.php">Edit Profile</a></p>
 				</footer>
 			<?php } ?>
 		</aside>

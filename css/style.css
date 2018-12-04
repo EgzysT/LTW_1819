@@ -683,3 +683,40 @@ body > footer > i {
 	display: inline-block;
 	padding-right: 50px;
 }
+
+#edit-profile-section {
+	background-color: var(--panel-color);
+	box-shadow: 0 1px 6px 0 #000;
+}
+#edit-profile-section > h1{
+	color: var(--main-color);
+	padding: 0.5em 1em;
+	margin-bottom: 0;
+	font-size: 2em;
+	box-shadow: 0 0px 2px 0 #888;
+}
+#edit-profile-form {
+	display: block;
+}
+#edit-profile-form > input {
+	display: inline-block;
+	margin: 0.5em 1em;
+}
+#edit-profile-form > textarea {
+	display: block;
+	margin: 0.5em 1em;
+}
+#edit-profile-form > h3{
+	padding: 1.5em 0 0.5em 1em;
+	margin: 0;
+	font-size: 1.25em;
+}
+#edit-profile-form > img {
+	padding: 0.0em 1em;
+	font-size: 1.25em;
+}
+#edit-profile-form > p {
+	display: block;
+	padding: 0.0em 1em;
+	font-size: 1em;
+}
