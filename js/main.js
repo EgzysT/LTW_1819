@@ -94,6 +94,7 @@ let asideChannel = document.querySelector('.channel .aside-channel');
 if(asideChannel) {
     let subscribeButton = asideChannel.querySelector('#subscribe');
     let unsubscribeButton = asideChannel.querySelector('#unsubscribe');
+    let channel_name = asideChannel.querySelector('#channel_name').textContent;
     let toggleRotation = () => {
         subscribeButton.classList.toggle('button-180Y-rotate');
         unsubscribeButton.classList.toggle('button-180Y-rotate');
@@ -101,10 +102,16 @@ if(asideChannel) {
     // User subscribes.
     subscribeButton.onclick = () => {
         toggleRotation();
+        makeHTTPRequest('../actions/action_subscribe.php', 
+        'post', 
+        {action: 'subscribe', channel_name: channel_name, csrf: csrf}, (response) => { console.log(response) });
     }
     // User unsubscribes.
     unsubscribeButton.onclick = () => {
         toggleRotation();
+        makeHTTPRequest('../actions/action_subscribe.php', 
+        'post', 
+        {action: 'unsubscribe', channel_name: channel_name, csrf: csrf}, (response) => { console.log(response) });
     }
 }
 
