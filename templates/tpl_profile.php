@@ -4,6 +4,21 @@
 
 	function draw_profile($username, $profile_pic, $bio, $points) {?>
 	<section id="profile" class="profile">
+		<?php
+			draw_aside_profile($username, $profile_pic, $bio, $points);
+		?>
+		<?php
+			$stories = getStories([]);
+			draw_story_cards($stories);
+		?>
+	</section>
+<?php } ?>
+
+<?php 
+	include_once('../includes/session.php');
+	include_once('../database/db_user.php');
+
+	function draw_aside_profile($username, $profile_pic, $bio, $points) {?>
 		<aside id="profile-info" class="aside">
 			<img class="aside-img" style="background: url('<?=$profile_pic?>') no-repeat center bottom; background-size: 50%;" alt="profile picture">
 			<h1 class="aside-header-text"><?=$username?></h1>
@@ -15,9 +30,4 @@
 				</footer>
 			<?php } ?>
 		</aside>
-		<?php
-			$stories = getStories(0);
-			draw_story_cards($stories);
-		?>
-	</section>
 <?php } ?>

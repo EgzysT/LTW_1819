@@ -44,7 +44,7 @@
 
         <footer>
             <div>
-                <a class="read-more" href="#">Read more</a>
+                <a class="read-more" href="./story.php?id=<?=$story->id?>">Read more</a>
             </div>
             <ul>
                 <li><p><?=$story->points?> Points</p>
@@ -65,23 +65,24 @@
  *  - content (title and some text of the body),
  *  - the number of points and comments.
  */?>
-    <article class="full-story-card">
+
+    <section class="full-story-card">
         <div class="sc-aside">
             <p class="arrow-up"> <i class="fas fa-arrow-alt-circle-up"></i> </p>
             <p><?=$story->points?></p>
             <p class="arrow-down"> <i class="fas fa-arrow-alt-circle-down"></i> </p>
         </div>
 
-        <div class="story-card">
+        <article class="story-card">
 
             <header>
                 <div class="info-left">
                     <img class="author-avatar" src="../assets/main_aside.jpg">
-                    <p class="author-name"><?=$story->author_name?></p>
+                    <a href="./profile.php?user=<?=$story->author_name?>" class="author-name"><?=$story->author_name?></a>
                     <p class="date"><?=$story->date?></p>
                 </div>
                 <div class="info-right">
-                    <p class="sc_channel"><?=$story->channel?></p>
+                    <a href="./channel.php?name=<?=$story->channel?>" class="sc_channel">#<?=$story->channel?></a>
                 </div>
             </header>
 
@@ -89,8 +90,8 @@
                 <h2 class="title"><?=$story->title?></h2>
                 <p class="content"><?=$story->content?></p>
             </div>
-        </div>
+        </article>
 
-    </article>
+    </section>
 
 <?php } ?>

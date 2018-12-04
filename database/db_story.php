@@ -67,11 +67,28 @@
   /**
    * Returns the story with the given id.
    */
-  function getStory($id) {
+  function getStory($post_id) {
     $db = Database::instance()->db();
-    //$stmt = $db->prepare('SELECT * FROM user WHERE username = ?');
-    //$stmt->execute(array($username));
-    //$user = $stmt->fetch();
+    $stmt = $db->prepare('SELECT 
+    post.id,
+    story.title, 
+    post.content, 
+    post.upvotes_count, 
+    post.downvotes_count, 
+    (post.upvotes_count - post.downvotes_count) as points,
+    channel.name as channel, 
+    user.username as author_name, 
+    post.posted_at as timestamp,
+    (SELECT count(*) FROM comment WHERE post.id = comment.post_id) as comments
+    FROM story, post, channel, user WHERE post.id= ?');
+    $stmt->execute(array($post_id));
+    $story = $stmt->fetch(PDO::FETCH_OBJ);
+
+    $story->posted_ago = time_ago($story->timestamp);
+    $story->date = date("H:i:s m-d-y", $story->timestamp);
+
+
+    return $story;
   }
 
   /* Helper Stuff */
