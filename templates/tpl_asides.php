@@ -55,7 +55,7 @@ function draw_subscriptions_aside($subscribed_channels) {
             <?php
             foreach($subscribed_channels as $channel) { ?>
                 <li>
-                    <i class="fas fa-bookmark"></i>&nbsp; <a href="http://localhost:8080/ltw/pages/channel.php?name=<?=$channel->name?>"><?=$channel->name?></a>
+                    <i class="fas fa-bookmark"></i>&nbsp; <a href="./channel.php?name=<?=$channel->name?>"><?=$channel->name?></a>
                     <div class="channel-background" style="background: url('<?=$channel->image?>') no-repeat center center; background-size: 105%"></div> 
                 </li>
             <?php } ?>
