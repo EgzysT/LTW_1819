@@ -721,6 +721,7 @@ body > .container { /* Make room for the absolute placed footer */
 	max-height: 5.1em;
     text-overflow: ellipsis;
 	overflow: hidden;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 87%,rgb(234, 234, 234) 100%);
 } 
 
 .sm-story-card ul {
