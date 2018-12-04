@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.1.1 on Sat Dec 1 00:20:41 2018
+-- File generated with SQLiteStudio v3.1.1 on Tue Dec 4 11:28:40 2018
 --
 -- Text encoding used: System
 --
@@ -13,40 +13,54 @@ CREATE TABLE channel (
     id                   INTEGER PRIMARY KEY,
     name                 VARCHAR NOT NULL,
     subscription_counter INTEGER NOT NULL
-                                 DEFAULT (1) 
+                                 DEFAULT (1),
+    description          VARCHAR NOT NULL,
+    image                VARCHAR
 );
 
 INSERT INTO channel (
                         id,
                         name,
-                        subscription_counter
-                    )
-                    VALUES (
-                        0,
-                        'funny',
-                        0
-                    );
-
-INSERT INTO channel (
-                        id,
-                        name,
-                        subscription_counter
+                        subscription_counter,
+                        description,
+                        image
                     )
                     VALUES (
                         1,
                         'science',
-                        0
+                        9,
+                        'Want to stay in touch with the latest science trends? Then grab a chair and read some stories.',
+                        '../assets/channels/science.jpg'
                     );
 
 INSERT INTO channel (
                         id,
                         name,
-                        subscription_counter
+                        subscription_counter,
+                        description,
+                        image
                     )
                     VALUES (
                         2,
                         'news',
-                        0
+                        1,
+                        'This  is the place for meaningful stories about the latest world events.',
+                        '../assets/channels/news.jpg'
+                    );
+
+INSERT INTO channel (
+                        id,
+                        name,
+                        subscription_counter,
+                        description,
+                        image
+                    )
+                    VALUES (
+                        3,
+                        'funny',
+                        14,
+                        'Funny place for funny people. Tell us your best joke.',
+                        '../assets/channels/funny.jpg'
                     );
 
 
@@ -74,6 +88,23 @@ CREATE TABLE post (
                              DEFAULT (0) 
 );
 
+INSERT INTO post (
+                     id,
+                     content,
+                     posted_at,
+                     user_id,
+                     upvotes_count,
+                     downvotes_count
+                 )
+                 VALUES (
+                     1,
+                     'abc',
+                     2,
+                     1,
+                     0,
+                     0
+                 );
+
 
 -- Table: story
 DROP TABLE IF EXISTS story;
@@ -84,6 +115,17 @@ CREATE TABLE story (
     channel_id         REFERENCES channel,
     title      VARCHAR NOT NULL
 );
+
+INSERT INTO story (
+                      post_id,
+                      channel_id,
+                      title
+                  )
+                  VALUES (
+                      1,
+                      1,
+                      'uma historia na vila'
+                  );
 
 
 -- Table: subscription
@@ -97,6 +139,24 @@ CREATE TABLE subscription (
         channel_id
     )
 );
+
+INSERT INTO subscription (
+                             user_id,
+                             channel_id
+                         )
+                         VALUES (
+                             1,
+                             2
+                         );
+
+INSERT INTO subscription (
+                             user_id,
+                             channel_id
+                         )
+                         VALUES (
+                             1,
+                             1
+                         );
 
 
 -- Table: user
@@ -114,6 +174,25 @@ CREATE TABLE user (
     points      INTEGER NOT NULL
                         DEFAULT (0) 
 );
+
+INSERT INTO user (
+                     id,
+                     email,
+                     username,
+                     password,
+                     profile_pic,
+                     bio,
+                     points
+                 )
+                 VALUES (
+                     1,
+                     'teste',
+                     'teste',
+                     '$2y$12$jbSNo4oy63wlNv1/l5/Z0eOtoIotb42dKzFngH8fekX3Sxzohru.i',
+                     NULL,
+                     NULL,
+                     0
+                 );
 
 
 -- Table: vote

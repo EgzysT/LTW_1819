@@ -377,7 +377,7 @@ Log in and Sign up
 /* Body Footer */
 
 body > footer {
-	position:absolute; 
+	position: absolute; 
 	bottom:0;
 	font-size: 0.8em;
 	padding: 0.3em 0em 0.3em 0em;
@@ -394,6 +394,9 @@ body > footer > i {
 	color: red;
 }
 
+body > .container { /* Make room for the absolute placed footer */
+	margin-bottom: 0.8em;
+}
 
 
 /* Channel page content body */
@@ -403,6 +406,7 @@ body > footer > i {
 	grid-template-columns: 1fr;
 	grid-template-areas: "aside" /* Default for small screens */
 						 "stories";
+	grid-gap: 0;
 }
 
 .profile {
@@ -411,44 +415,36 @@ body > footer > i {
 	grid-template-columns: 1fr;
 	grid-template-areas: "aside" /* Default for small screens */
 						 "stories";
+	grid-gap: 0;
 }
 
-@media (min-width: 600px) {
-	.channel {
+@media (min-width: 700px) {
+	.channel, .profile {
 		grid-template-columns: 4fr 2fr;
 		grid-template-areas: "stories aside";
-	}
-	.profile {
-		grid-template-columns: 4fr 2fr;
-		grid-template-areas: "stories aside";
+		grid-gap: 1em;
 	}
 }
 
 @media (min-width: 800px) {
-	.channel {
+	.channel, .profile {
 		grid-template-columns: 5fr 2fr;
 		grid-template-areas: "stories aside";
-	}
-	.profile {
-		grid-template-columns: 4fr 2fr;
-		grid-template-areas: "stories aside";
+		grid-gap: 1.25em;
 	}
 }
 
 @media (min-width: 1200px) {
-	.channel {
+	.channel, .profile {
 		grid-template-columns: 6fr 2fr;
 		grid-template-areas: "stories aside";
-	}
-	.profile {
-		grid-template-columns: 4fr 2fr;
-		grid-template-areas: "stories aside";
+		grid-gap: 1.5em;
 	}
 }
 
 #stories {
 	grid-area: stories;
-	margin: 1.5em;
+	margin-top: 1.5em;
 }
 
 /**
@@ -473,7 +469,6 @@ body > footer > i {
 }
 
 .aside-img {
-    background-size: 50%;
     border-radius: 50%;
     width: 200%;
     height: 400px;
@@ -668,6 +663,14 @@ body > footer > i {
 	grid-column: 50;
 	text-align:right;
 	padding-right: 15px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.story-card .info-right a { /* Link to channel */
+	color: var(--main-color);
+    text-shadow: 1px 1px 1px #71717170;
 }
 
 .sm-story-card .body {
@@ -764,4 +767,41 @@ body > footer > i {
 
 .full-story-card .points {
 	float:left;
+}
+
+#edit-profile-section {
+	background-color: var(--panel-color);
+	box-shadow: 0 1px 6px 0 #000;
+}
+#edit-profile-section > h1{
+	color: var(--main-color);
+	padding: 0.5em 1em;
+	margin-bottom: 0;
+	font-size: 2em;
+	box-shadow: 0 0px 2px 0 #888;
+}
+#edit-profile-form {
+	display: block;
+}
+#edit-profile-form > input {
+	display: inline-block;
+	margin: 0.5em 1em;
+}
+#edit-profile-form > textarea {
+	display: block;
+	margin: 0.5em 1em;
+}
+#edit-profile-form > h3{
+	padding: 1.5em 0 0.5em 1em;
+	margin: 0;
+	font-size: 1.25em;
+}
+#edit-profile-form > img {
+	padding: 0.0em 1em;
+	font-size: 1.25em;
+}
+#edit-profile-form > p {
+	display: block;
+	padding: 0.0em 1em;
+	font-size: 1em;
 }
