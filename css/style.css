@@ -403,6 +403,7 @@ body > footer > i {
 	grid-template-columns: 1fr;
 	grid-template-areas: "aside" /* Default for small screens */
 						 "stories";
+	grid-gap: 0;
 }
 
 .profile {
@@ -411,44 +412,36 @@ body > footer > i {
 	grid-template-columns: 1fr;
 	grid-template-areas: "aside" /* Default for small screens */
 						 "stories";
+	grid-gap: 0;
 }
 
-@media (min-width: 600px) {
-	.channel {
+@media (min-width: 700px) {
+	.channel, .profile {
 		grid-template-columns: 4fr 2fr;
 		grid-template-areas: "stories aside";
-	}
-	.profile {
-		grid-template-columns: 4fr 2fr;
-		grid-template-areas: "stories aside";
+		grid-gap: 1em;
 	}
 }
 
 @media (min-width: 800px) {
-	.channel {
+	.channel, .profile {
 		grid-template-columns: 5fr 2fr;
 		grid-template-areas: "stories aside";
-	}
-	.profile {
-		grid-template-columns: 4fr 2fr;
-		grid-template-areas: "stories aside";
+		grid-gap: 1.25em;
 	}
 }
 
 @media (min-width: 1200px) {
-	.channel {
+	.channel, .profile {
 		grid-template-columns: 6fr 2fr;
 		grid-template-areas: "stories aside";
-	}
-	.profile {
-		grid-template-columns: 4fr 2fr;
-		grid-template-areas: "stories aside";
+		grid-gap: 1.5em;
 	}
 }
 
 #stories {
 	grid-area: stories;
-	margin: 1.5em;
+	margin-top: 1.5em;
 }
 
 /**
@@ -688,3 +681,4 @@ body > footer > i {
 .story-card li {
 	display: inline-block;
 	padding-right: 50px;
+}
