@@ -39,21 +39,24 @@ function draw_channel_aside($current_channel, $is_subscribed) {
                 <button class="button button-blue button-block"> Search </button>
             </div> 
         </footer>
+        <footer>
+            
+        </footer>
     </aside>
 
 <?php }
-function draw_subscriptions_aside($subscribed_channels) {
+function draw_channels_aside($channels, $header_text) {
 /**
  * Draws the aside for a specific channel.
  */ ?>
     
     <aside class="aside">
         <header>
-            <h4>Subscriptions</h4>
+            <h4><?=$header_text?></h4>
         </header>
         <ul class="subscribed-channels">
             <?php
-            foreach($subscribed_channels as $channel) { ?>
+            foreach($channels as $channel) { ?>
                 <li>
                     <i class="fas fa-bookmark"></i>&nbsp; <a href="./channel.php?name=<?=$channel->name?>"><?=$channel->name?></a>
                     <div class="channel-background" style="background: url('<?=$channel->image?>') no-repeat center center; background-size: 105%"></div> 

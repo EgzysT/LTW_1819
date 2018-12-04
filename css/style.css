@@ -297,12 +297,12 @@ Log in and Sign up
 	margin: 0;
 }
 
-#auth form {
+form {
 	padding: 1em;
 	background-color: var(--panel-color);
 }
 
-#auth form input {
+form input {
 	display: block;
 	width: 100%;
 	margin: 1em 0em;
@@ -311,12 +311,12 @@ Log in and Sign up
 	border-bottom: 1px solid var(--light-color);
 }
 
-#auth form input:last-of-type {
+form input:last-of-type {
 	display: inline-block;
 	width: 30%;
 }
 
-#auth form p {
+form p {
 	display: block;
 	float: right;
 	color: var(--dark-color);
@@ -711,6 +711,7 @@ body > .container { /* Make room for the absolute placed footer */
 	font-family: var(--serif-font);
 	font-size: 2em;
 	margin: 0.5em 0.2em 0;
+	color: var(--dark-color);
 }
 
 .sm-story-card .body p {

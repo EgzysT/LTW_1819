@@ -51,4 +51,20 @@
 
     $stmt->execute(array($channel_name, $username));
   };
+
+  /**
+   * Subscribe user to channel.
+   */
+  function get_all_channels() {
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare('SELECT channel.id, channel.name, channel.image
+    FROM channel
+    ORDER BY channel.name');
+
+    $stmt->execute();
+
+    $subscribed_channels = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $subscribed_channels;
+  };
 ?>
