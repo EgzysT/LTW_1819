@@ -32,7 +32,7 @@ if (signupForm) {
                 if(response === 'ok') { 
                     ajaxSuccessBox.style.display = 'flex';
                     // Redirect user after 0.5s.
-                    setTimeout(function(){ window.location.replace("./main"); }, 500);
+                    setTimeout(function(){ window.location.replace("./main.php"); }, 500);
                 }
                 else { // Error.
                     ajaxFailBox.style.display = 'flex';

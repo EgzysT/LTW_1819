@@ -671,8 +671,9 @@ body > footer > i {
 }
 
 .story-card .info-right {
-	grid-column: 40;
+	grid-column: 50;
 	text-align:right;
+	padding-right: 15px;
 }
 
 .story-card .body {
@@ -693,3 +694,4 @@ body > footer > i {
 .story-card li {
 	display: inline-block;
 	padding-right: 50px;
+}
