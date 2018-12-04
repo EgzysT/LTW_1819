@@ -17,7 +17,7 @@
 
 <?php function draw_small_story_card($story) { 
 /**
- * Draws the card for the story passed as an argument.
+ * Draws a small card for the story passed as an argument.
  * A card is simply a block that contains:
  *  - the author of the story (name and avatar),
  *  - the channel it was posted on,
@@ -29,7 +29,7 @@
         <header>
             <img class="author-avatar" src="../assets/main_aside.jpg">
             <div class="info-left">
-                <p class="author-name"><?=$story->author_name?></p>
+                <a href="./profile.php?user=<?=$story->author_name?>" class="author-name"><?=$story->author_name?></a>
                 <p class="date" title="<?=$story->date?>"><?=$story->posted_ago?></p>
             </div>
             <div class="info-right">
@@ -40,10 +40,12 @@
         <div class="body">
             <h2 class="title"><?=$story->title?></h2>
             <p class="content"><?=$story->content?></p>
-            <a class="read-more" href="#">Read more</a>
         </div>
 
         <footer>
+            <div>
+                <a class="read-more" href="#">Read more</a>
+            </div>
             <ul>
                 <li><p><?=$story->points?> Points</p>
                 <li><p><?=$story->comments?> Comments</li>
@@ -55,7 +57,7 @@
 
 <?php function draw_full_story_card($story) { 
 /**
- * Draws the card for the story passed as an argument.
+ * Draws a big card for the story passed as an argument.
  * A card is simply a block that contains:
  *  - the author of the story (name and avatar),
  *  - the channel it was posted on,

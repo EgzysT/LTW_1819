@@ -426,7 +426,7 @@ body > .container { /* Make room for the absolute placed footer */
 	}
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1000px) {
 	.channel, .profile {
 		grid-template-columns: 5fr 2fr;
 		grid-template-areas: "stories aside";
@@ -641,10 +641,10 @@ body > .container { /* Make room for the absolute placed footer */
 }
 
 .sm-story-card .author-avatar {
-	width: 70px;
-	height: 70px;
+	width: 45px;
+	height: 45px;
 	border-radius: 50%;
-	padding: 10px;
+	padding: 0.5em;
 	grid-column: 1;
 	grid-row: 1/2;
 }
@@ -657,6 +657,21 @@ body > .container { /* Make room for the absolute placed footer */
 
 .sm-story-card .info-left {
 	grid-column: 2;
+	display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    flex-direction: column;
+}
+
+.sm-story-card .info-left  > *{
+	margin: 0;	
+}
+
+.sm-story-card .info-left a { /* Link to author profile */
+	color: var(--main-color);
+	text-shadow: 1px 1px 1px #71717170;
+	font-size: 1.2em;
+	margin-bottom: -0.3em;
 }
 
 .sm-story-card .info-right {
@@ -668,7 +683,7 @@ body > .container { /* Make room for the absolute placed footer */
     align-items: center;
 }
 
-.story-card .info-right a { /* Link to channel */
+.sm-story-card .info-right a { /* Link to channel */
 	color: var(--main-color);
     text-shadow: 1px 1px 1px #71717170;
 }
@@ -679,18 +694,37 @@ body > .container { /* Make room for the absolute placed footer */
 	text-align: justify;
 }
 
-.sm-story-card .body a {
-	color: var(--dark-color);
+.sm-story-card .body h2 {
+	font-family: var(--serif-font);
+	font-size: 2em;
+	margin: 0.5em 0.2em 0;
 }
 
+.sm-story-card .body p {
+	color: var(--dark-color);
+	line-height: 150%;
+} 
+
 .sm-story-card ul {
-	display: inline;
-	padding-left: 20px;
+	margin: 0;
+}
+
+.sm-story-card footer {
+	display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.sm-story-card footer a {
+	color: var(--dark-color);
+	margin: 1em;
+	display: inline-block;
+	font-weight: bold;
 }
 
 .sm-story-card li {
 	display: inline-block;
-	padding-right: 50px;
+	margin: 0 1em 0 0;
 }
 
 .full-story-card {
