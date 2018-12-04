@@ -33,7 +33,7 @@
                 <p class="date"><?=$story->date?></p>
             </div>
             <div class="info-right">
-                <p class="channel"><?=$story->channel?></p>
+                <p class="sc_channel"><?=$story->channel?></p>
             </div>
         </header>
 
