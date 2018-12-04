@@ -33,19 +33,20 @@
 
       <section class="aside-container">
         <?php 
-          if($username) { 
+          if($username) { // See if user is subscribed to current page channel.
             $is_subscribed = false;
             $subscribed_channels = getSubscribedChannels($username);
-            if($username) { // See if user is subscribed to current page channel.
-              foreach($subscribed_channels as $subscribed_channel) 
-                if($subscribed_channel->name === $current_page_channel->name)
-                  $is_subscribed = true;
-            }
+            foreach($subscribed_channels as $subscribed_channel) 
+              if($subscribed_channel->name === $current_page_channel->name)
+                $is_subscribed = true;
+            
             draw_channel_aside($current_page_channel, $is_subscribed);
-            draw_subscriptions_aside($subscribed_channels);
+            draw_channels_aside($subscribed_channels, 'Subscriptions');
           }
           else {
-            draw_channel_aside($current_page_channel, null);
+            draw_channel_aside($current_page_channel, false);
+            $channels = get_all_channels();
+            draw_channels_aside($channels, 'All Channels');
           }
           ?>
       </section>
