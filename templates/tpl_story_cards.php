@@ -30,10 +30,10 @@
             <img class="author-avatar" src="../assets/main_aside.jpg">
             <div class="info-left">
                 <p class="author-name"><?=$story->author_name?></p>
-                <p class="date"><?=$story->date?></p>
+                <p class="date" title="<?=$story->date?>"><?=$story->posted_ago?></p>
             </div>
             <div class="info-right">
-                <p class="sc_channel"><?=$story->channel?></p>
+                <a href="./channel.php?name=<?=$story->channel?>" class="sc_channel">#<?=$story->channel?></a>
             </div>
         </header>
 

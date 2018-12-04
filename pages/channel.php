@@ -27,7 +27,7 @@
   <section class="channel">
     
     <?php  
-      $stories = getStories(0);
+      $stories = getStories(['channel' => $current_page_channel->name]);
       draw_story_cards($stories); 
       ?> 
 

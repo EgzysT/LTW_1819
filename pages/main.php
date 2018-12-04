@@ -14,7 +14,7 @@
   <section class="channel">
     
     <?php  
-      $stories = getStories(0);
+      $stories = $username ? getStories(['subscribed_by' => $username]) : getStories([]);
       draw_story_cards($stories); 
       ?> 
 
