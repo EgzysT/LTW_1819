@@ -9,11 +9,18 @@
         <p class="aside-body-text">Stories worth reading about life and technology. Crafted with pen and passion by our community.</p>
         <footer>
             <div>
-                <button class="button button-blue button-block"> Search </button>
+                <button class="button button-blue button-block" id="search-button"> Search </button>
             </div>
         </footer>
     </aside>
 
+    <aside class="aside rotate-180Y" id="search-aside">
+        <header>
+            <h4>Search</h4>
+        </header>
+        <h3 class="aside-header-text">Blueit</h3>
+        <p class="aside-body-text">Stories worth reading about life and technology. Crafted with pen and passion by our community.</p>
+    </aside>
 <?php }
 
 function draw_channel_aside($current_channel, $is_subscribed) {
@@ -28,15 +35,15 @@ function draw_channel_aside($current_channel, $is_subscribed) {
         <footer>
             <?php if($_SESSION['username']){ ?>
             <div>
-                <button class="button button-green button-block button-channel-subscription <?php if($is_subscribed){ ?>button-180Y-rotate<?php } ?>" id="subscribe"> Subscribe </button>
-                <button class="button button-red button-block button-channel-subscription <?php if(!$is_subscribed){ ?>button-180Y-rotate<?php } ?>" id="unsubscribe"> Unsubscribe </button>
+                <button class="button button-green button-block button-channel-subscription <?php if($is_subscribed){ ?>rotate-180Y<?php } ?>" id="subscribe"> Subscribe </button>
+                <button class="button button-red button-block button-channel-subscription <?php if(!$is_subscribed){ ?>rotate-180Y<?php } ?>" id="unsubscribe"> Unsubscribe </button>
             </div> 
             <div>
                 <button class="button button-orange button-block"> Tell us your story </button>
             </div> 
             <?php } ?>
             <div>
-                <button class="button button-blue button-block"> Search </button>
+                <button class="button button-blue button-block" id="search-button"> Search </button>
             </div> 
         </footer>
         <footer>

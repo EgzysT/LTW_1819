@@ -96,8 +96,8 @@ if(asideChannel) {
     let unsubscribeButton = asideChannel.querySelector('#unsubscribe');
     let channel_name = asideChannel.querySelector('#channel_name').textContent;
     let toggleRotation = () => {
-        subscribeButton.classList.toggle('button-180Y-rotate');
-        unsubscribeButton.classList.toggle('button-180Y-rotate');
+        subscribeButton.classList.toggle('rotate-180Y');
+        unsubscribeButton.classList.toggle('rotate-180Y');
     }
     // User subscribes.
     subscribeButton.onclick = () => {
@@ -115,6 +115,16 @@ if(asideChannel) {
     }
 }
 
+/* Search aside animation + Search handler */
+let asideWithSearchBtn = document.querySelector('.aside.with-subscribe, .aside#main-aside');
+if(asideWithSearchBtn) {
+    let searchButton = asideWithSearchBtn.querySelector('#search-button');
+    let searchAside = document.querySelector('#search-aside');
+    searchButton.onclick = () => {
+        asideWithSearchBtn.classList.toggle('rotate-180Y');
+        searchAside.classList.toggle('rotate-180Y');
+    };
+}
 
 /* Helper functions */
 function makeHTTPRequest(url, type, params, callback) {

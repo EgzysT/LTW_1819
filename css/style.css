@@ -171,7 +171,7 @@ h2 {
 	backface-visibility: hidden;
 }
 
-.button-180Y-rotate {
+.rotate-180Y {
 	transform: rotateY(180deg);
 }
 
@@ -466,6 +466,11 @@ body > .container { /* Make room for the absolute placed footer */
 	Aside information
 
 */
+
+.aside-container {
+	position: relative;
+}
+
 .aside {
 	display: inline-table; /* CSS trick to make the bottom padding collapse. */
 	grid-area: aside;
@@ -476,6 +481,8 @@ body > .container { /* Make room for the absolute placed footer */
 	position: relative;
 	border-radius: 2px;
 	width: 100%;
+	transition: 0.35s ease-in all;
+	backface-visibility: hidden;
 }
 
 .aside:last-of-type() {
@@ -621,12 +628,21 @@ body > .container { /* Make room for the absolute placed footer */
 	margin-top: -0.4em;
 }
 
+.aside.with-subscribe > footer > div:last-of-type {
+	margin-bottom: 1.2em;
+}
+
 #main-aside footer {
 	margin-bottom: -0.4em;
 }
 
 #main-aside footer p {
 	font-weight: normal;
+}
+
+#search-aside {
+	position: absolute;
+    top: 0;
 }
 
 .channel-background {
@@ -734,7 +750,8 @@ body > .container { /* Make room for the absolute placed footer */
 .story-card footer {
 	display: flex;
     align-content: center;
-    justify-content: space-between;
+	justify-content: space-between;
+	margin-top: -1em;
 }
 
 .story-card footer a {
