@@ -45,6 +45,9 @@
 	font-family: var(--serif-font);
 
 	background-color: var(--bg-color);
+
+	--medium-shadow-color: rgba(0, 0, 0, 0.65);
+	--dark-shadow-color: rgba(0, 0, 0, 1);
 }
 	
 /**
@@ -188,7 +191,7 @@ body > header, .panel header {
 }
 
 body > header {
-	box-shadow: 0 1px 6px 0 #000;
+	box-shadow: 0 1px 6px 0 var(--dark-shadow-color);
 }
 
 body > header > .container {
@@ -294,12 +297,12 @@ Log in and Sign up
 	margin: 0;
 }
 
-#auth form {
+form {
 	padding: 1em;
 	background-color: var(--panel-color);
 }
 
-#auth form input {
+form input {
 	display: block;
 	width: 100%;
 	margin: 1em 0em;
@@ -308,12 +311,12 @@ Log in and Sign up
 	border-bottom: 1px solid var(--light-color);
 }
 
-#auth form input:last-of-type {
+form input:last-of-type {
 	display: inline-block;
 	width: 30%;
 }
 
-#auth form p {
+form p {
 	display: block;
 	float: right;
 	color: var(--dark-color);
@@ -454,6 +457,7 @@ body > .container { /* Make room for the absolute placed footer */
 #stories {
 	grid-area: stories;
 	margin-top: 1.5em;
+	margin-bottom: 1.5em;
 }
 
 /**
@@ -466,7 +470,7 @@ body > .container { /* Make room for the absolute placed footer */
 	grid-area: aside;
 	margin-top: 1.5em;
 	background-color: var(--panel-color);
-	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.65);
+	box-shadow: 0px 0px 2px 0px var(--medium-shadow-color);
 	overflow: hidden;
 	position: relative;
 	border-radius: 2px;
@@ -568,13 +572,14 @@ body > .container { /* Make room for the absolute placed footer */
 
 #profile-info {
 	background-color: var(--panel-color);
-	box-shadow: 0 1px 6px 0 #000;
+	box-shadow: 0px 0px 2px 0px var(--medium-shadow-color);
 }
 #profile-info > img {
 	display: block;
 	margin: 1em 1em 0em 1em;
-	box-shadow: 0 3px 10px 0 #000;
+	box-shadow: 0 3px 10px 0 var(--medium-shadow-color);
 }
+
 #profile-info > h1 {
 	display: block;
 	font-size: 2em;
@@ -640,13 +645,13 @@ body > .container { /* Make room for the absolute placed footer */
 	width: 100%;
 	border-radius: 2px;
 	background-color: var(--panel-color);
-	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.65);
+	box-shadow: 0px 0px 2px 0px var(--medium-shadow-color);
 }
 
 .story-card > header {
 	display: grid;
 	padding: 5px;
-	box-shadow: 0px 0.5px 0px 0px rgba(90, 90, 90, 0.65);
+	box-shadow: 0px 0.5px 0px 0px var(--medium-shadow-color);
 }
 
 .story-card .author-avatar {
@@ -707,20 +712,22 @@ body > .container { /* Make room for the absolute placed footer */
 	font-family: var(--serif-font);
 	font-size: 2em;
 	margin: 0.5em 0.2em 0;
+	color: var(--dark-color);
 }
 
 .story-card .body .sm-content {
 	color: var(--dark-color);
-	line-height: 150%;
 	text-align: justify;
 	line-height: 1.5em;
-	height: 3em;
+	max-height: 5.1em;
     text-overflow: ellipsis;
 	overflow: hidden;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 87%,rgb(234, 234, 234) 100%);
 } 
 
 .story-card ul {
 	margin: 0;
+	padding-top: 0.5em;
 }
 
 .story-card footer {
@@ -730,15 +737,18 @@ body > .container { /* Make room for the absolute placed footer */
 }
 
 .story-card footer a {
-	color: var(--dark-color);
-	margin: 1em;
-	display: inline-block;
-	font-weight: bold;
+	color: var(--main-color);
+    margin: 1em;
+    display: inline-block;
+    font-weight: bold;
+    font-family: var(--footer-font);
+    font-size: 1.2em;
 }
 
 .story-card li {
 	display: inline-block;
 	margin: 0 1em 0 0;
+	height: 100%;
 }
 
 
@@ -783,6 +793,10 @@ body > .container { /* Make room for the absolute placed footer */
 }
 
 .full-story-card .story-card {
+	/* width: 100%;
+	border-radius: 2px;
+	background-color: var(--panel-color);
+	box-shadow: 0px 0px 2px 0px var(--medium-shadow-color); */
 	grid-column: 2;
 }
 
@@ -802,7 +816,7 @@ body > .container { /* Make room for the absolute placed footer */
 
 #edit-profile-section {
 	background-color: var(--panel-color);
-	box-shadow: 0 1px 6px 0 #000;
+	box-shadow: 0 1px 6px 0 var(--dark-shadow-color);
 }
 #edit-profile-section > h1{
 	color: var(--main-color);
