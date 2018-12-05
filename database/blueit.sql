@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.1.1 on Tue Dec 4 11:28:40 2018
+-- File generated with SQLiteStudio v3.1.1 on Wed Dec 5 22:49:42 2018
 --
 -- Text encoding used: System
 --
@@ -28,7 +28,7 @@ INSERT INTO channel (
                     VALUES (
                         1,
                         'science',
-                        9,
+                        15,
                         'Want to stay in touch with the latest science trends? Then grab a chair and read some stories.',
                         '../assets/channels/science.jpg'
                     );
@@ -43,7 +43,7 @@ INSERT INTO channel (
                     VALUES (
                         2,
                         'news',
-                        1,
+                        5,
                         'This  is the place for meaningful stories about the latest world events.',
                         '../assets/channels/news.jpg'
                     );
@@ -58,7 +58,7 @@ INSERT INTO channel (
                     VALUES (
                         3,
                         'funny',
-                        14,
+                        15,
                         'Funny place for funny people. Tell us your best joke.',
                         '../assets/channels/funny.jpg'
                     );
@@ -98,8 +98,10 @@ INSERT INTO post (
                  )
                  VALUES (
                      1,
-                     'abc',
-                     2,
+                     'O Lorem Ipsum é um texto modelo da indústria tipográfica e de impressão. O Lorem Ipsum tem vindo a ser o texto padrão usado por estas indústrias desde o ano de 1500, quando uma misturou os caracteres de um texto para criar um espécime de livro. Este texto não só sobreviveu 5 séculos, mas também o salto para a tipografia electrónica, mantendo-se essencialmente inalterada. Foi popularizada nos anos 60 com a disponibilização das folhas de Letraset, que continham passagens com Lorem Ipsum, e mais recentemente com os programas de publicação como o Aldus PageMaker que incluem versões do Lorem Ipsum.
+
+',
+                     1543925303,
                      1,
                      0,
                      0
@@ -124,7 +126,7 @@ INSERT INTO story (
                   VALUES (
                       1,
                       1,
-                      'uma historia na vila'
+                      'Uma historia numa dada vila'
                   );
 
 
@@ -147,6 +149,15 @@ INSERT INTO subscription (
                          VALUES (
                              1,
                              2
+                         );
+
+INSERT INTO subscription (
+                             user_id,
+                             channel_id
+                         )
+                         VALUES (
+                             1,
+                             3
                          );
 
 INSERT INTO subscription (
@@ -189,8 +200,8 @@ INSERT INTO user (
                      'teste',
                      'teste',
                      '$2y$12$jbSNo4oy63wlNv1/l5/Z0eOtoIotb42dKzFngH8fekX3Sxzohru.i',
-                     NULL,
-                     NULL,
+                     '''../assets/profile_pics/0.jpg''',
+                     'aiai',
                      0
                  );
 
@@ -211,20 +222,63 @@ CREATE TABLE vote (
 );
 
 
+-- Trigger: delete_downvote
+DROP TRIGGER IF EXISTS delete_downvote;
+CREATE TRIGGER delete_downvote
+        BEFORE DELETE
+            ON vote
+          WHEN old.vote_type = 'd'
+BEGIN
+    UPDATE post
+       SET downvotes_count = post.downvotes_count + 1
+     WHERE id = old.post_id;
+    UPDATE user
+       SET points = user.points - 1
+     WHERE id = (
+                    SELECT user_id
+                      FROM post
+                     WHERE id = old.post_id
+                );
+END;
+
+
+-- Trigger: delete_upvote
+DROP TRIGGER IF EXISTS delete_upvote;
+CREATE TRIGGER delete_upvote
+        BEFORE DELETE
+            ON vote
+          WHEN old.vote_type = 'u'
+BEGIN
+    UPDATE post
+       SET upvotes_count = post.upvotes_count - 1
+     WHERE id = old.post_id;
+    UPDATE user
+       SET points = user.points - 1
+     WHERE id = (
+                    SELECT user_id
+                      FROM post
+                     WHERE id = old.post_id
+                );
+END;
+
+
 -- Trigger: insert_downvote
 DROP TRIGGER IF EXISTS insert_downvote;
 CREATE TRIGGER insert_downvote
-        BEFORE DELETE
+         AFTER INSERT
             ON vote
           WHEN new.vote_type = 'd'
 BEGIN
     UPDATE post
-       SET downvotes_count = post.downvotes_count + 1
-     WHERE post.id = old.post_id;
+       SET upvotes_count = post.upvotes_count - 1
+     WHERE id = new.post_id;
     UPDATE user
        SET points = user.points - 1
-     WHERE old.post_id = post.id AND 
-           post.user_id = user.id;
+     WHERE id = (
+                    SELECT user_id
+                      FROM post
+                     WHERE id = new.post_id
+                );
 END;
 
 
@@ -237,11 +291,14 @@ CREATE TRIGGER insert_upvote
 BEGIN
     UPDATE post
        SET upvotes_count = post.upvotes_count + 1
-     WHERE post.id = new.post_id;
+     WHERE id = new.post_id;
     UPDATE user
        SET points = user.points + 1
-     WHERE new.post_id = post.id AND 
-           post.user_id = user.id;
+     WHERE id = (
+                    SELECT user_id
+                      FROM post
+                     WHERE id = new.post_id
+                );
 END;
 
 
@@ -280,11 +337,14 @@ BEGIN
     UPDATE post
        SET upvotes_count = post.upvotes_count - 1,
            downvotes_count = post.downvotes_count + 1
-     WHERE post.id = new.post_id;
+     WHERE id = new.post_id;
     UPDATE user
        SET points = user.points - 2
-     WHERE new.post_id = post.id AND 
-           post.user_id = user.id;
+     WHERE id = (
+                    SELECT user_id
+                      FROM post
+                     WHERE id = new.post_id
+                );
 END;
 
 
@@ -299,11 +359,14 @@ BEGIN
     UPDATE post
        SET upvotes_count = post.upvotes_count + 1,
            downvotes_count = post.downvotes_count - 1
-     WHERE post.id = new.post_id;
+     WHERE id = new.post_id;
     UPDATE user
        SET points = user.points + 2
-     WHERE new.post_id = post.id AND 
-           post.user_id = user.id;
+     WHERE id = (
+                    SELECT user_id
+                      FROM post
+                     WHERE id = new.post_id
+                );
 END;
 
 
