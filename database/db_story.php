@@ -81,7 +81,7 @@
     user.username as author_name, 
     user.profile_pic as profile_pic,
     post.posted_at as timestamp,
-    (SELECT count(*) FROM comment WHERE post.id = comment.post_id) as comments
+    (SELECT count(*) FROM comment WHERE post.id = comment.parent_post) as comments
     FROM story, post, channel, user WHERE post.id= ?');
     $stmt->execute(array($post_id));
     $story = $stmt->fetch(PDO::FETCH_OBJ);
@@ -92,6 +92,30 @@
 
     return $story;
   }
+
+  function getComment($story_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT 
+    post.id,
+    post.content, 
+    post.upvotes_count, 
+    post.downvotes_count, 
+    (post.upvotes_count - post.downvotes_count) as points,
+    user.username as author_name, 
+    user.profile_pic as profile_pic,
+    post.posted_at as timestamp
+    FROM comment, post, channel, user WHERE post.id= comment.post_id AND comment.parent_post=?');
+    $stmt->execute(array($story_id));
+    $comment = $stmt->fetch(PDO::FETCH_OBJ);
+    print_r(array($comment));
+
+    $comment->posted_ago = time_ago($comment->timestamp);
+    $comment->date = date("H:i:s m-d-y", $comment->timestamp);
+
+
+    return $comment;
+  }
+
 
   /* Helper Stuff */
 

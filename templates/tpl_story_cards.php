@@ -17,15 +17,15 @@
 
 <?php function draw_small_story_card($story) { 
 
-/**
- * Draws a small card for the story passed as an argument.
- * A card is simply a block that contains:
- *  - the author of the story (name and avatar),
- *  - the channel it was posted on,
- *  - the date it was created,
- *  - content (title and some text of the body),
- *  - the number of points and comments.
- */?>
+    /**
+     * Draws a small card for the story passed as an argument.
+     * A card is simply a block that contains:
+     *  - the author of the story (name and avatar),
+     *  - the channel it was posted on,
+     *  - the date it was created,
+     *  - content (title and some text of the body),
+     *  - the number of points and comments.
+     */?>
     <article class="story-card">
         <header>
             <img class="author-avatar" src=<?=$story->profile_pic?> >
@@ -57,15 +57,15 @@
 <?php } ?>
 
 <?php function draw_full_story_card($story) { 
-/**
- * Draws a big card for the story passed as an argument.
- * A card is simply a block that contains:
- *  - the author of the story (name and avatar),
- *  - the channel it was posted on,
- *  - the date it was created,
- *  - content (title and some text of the body),
- *  - the number of points and comments.
- */?>
+    /**
+     * Draws a big card for the story passed as an argument.
+     * A card is simply a block that contains:
+     *  - the author of the story (name and avatar),
+     *  - the channel it was posted on,
+     *  - the date it was created,
+     *  - content (title and some text of the body),
+     *  - the number of points and comments.
+     */?>
 
     <section class="full-story-card">
 
@@ -95,5 +95,39 @@
         </article>
 
     </section>
+
+<?php } ?>
+
+<?php function draw_comment($comment) { 
+    /**
+     * Draws a big card for the story passed as an argument.
+     * A card is simply a block that contains:
+     *  - the author of the story (name and avatar),
+     *  - the channel it was posted on,
+     *  - the date it was created,
+     *  - content (title and some text of the body),
+     *  - the number of points and comments.
+     */?>
+
+    <article class="comment">
+
+        <header>
+            <img class="author-avatar" src=<?=$comment->profile_pic?> >
+            <div class="info-left">
+                <a href="./profile.php?user=<?=$comment->author_name?>" class="author-name"><?=$comment->author_name?></a>
+                <p class="date" title="<?=$comment->date?>"><?=$comment->posted_ago?></p>
+            </div>
+        </header>
+
+        <div class="body">
+            <p class="lg-content"><?=$comment->content?></p>
+        </div>
+
+            <div class="sc-aside">
+            <p class="arrow-up"> <i class="fas fa-arrow-alt-circle-up"></i> </p>
+            <p id="points"><?=$comment->points?></p>
+            <p class="arrow-down"> <i class="fas fa-arrow-alt-circle-down"></i> </p>
+        </div>
+    </article>
 
 <?php } ?>
