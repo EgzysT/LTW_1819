@@ -16,6 +16,8 @@
 <?php } ?>
 
 <?php function draw_small_story_card($story) { 
+
+    $profile = getUserProfile($story->author_name);
 /**
  * Draws a small card for the story passed as an argument.
  * A card is simply a block that contains:
@@ -25,9 +27,9 @@
  *  - content (title and some text of the body),
  *  - the number of points and comments.
  */?>
-    <article class="sm-story-card">
+    <article class="story-card">
         <header>
-            <img class="author-avatar" src="../assets/main_aside.jpg">
+            <img class="author-avatar" src=<?=$profile->profile_pic?> >
             <div class="info-left">
                 <a href="./profile.php?user=<?=$story->author_name?>" class="author-name"><?=$story->author_name?></a>
                 <p class="date" title="<?=$story->date?>"><?=$story->posted_ago?></p>
@@ -39,7 +41,7 @@
 
         <div class="body">
             <h2 class="title"><?=$story->title?></h2>
-            <p class="content"><?=$story->content?></p>
+            <p class="sm-content"><?=$story->content?></p>
         </div>
 
         <footer>
@@ -56,6 +58,8 @@
 <?php } ?>
 
 <?php function draw_full_story_card($story) { 
+
+    $profile = getUserProfile($story->author_name);
 /**
  * Draws a big card for the story passed as an argument.
  * A card is simply a block that contains:
@@ -76,10 +80,10 @@
         <article class="story-card">
 
             <header>
+                <img class="author-avatar" src=<?=$profile->profile_pic?> >
                 <div class="info-left">
-                    <img class="author-avatar" src="../assets/main_aside.jpg">
                     <a href="./profile.php?user=<?=$story->author_name?>" class="author-name"><?=$story->author_name?></a>
-                    <p class="date"><?=$story->date?></p>
+                    <p class="date" title="<?=$story->date?>"><?=$story->posted_ago?></p>
                 </div>
                 <div class="info-right">
                     <a href="./channel.php?name=<?=$story->channel?>" class="sc_channel">#<?=$story->channel?></a>
@@ -88,7 +92,7 @@
 
             <div class="body">
                 <h2 class="title"><?=$story->title?></h2>
-                <p class="content"><?=$story->content?></p>
+                <p class="lg-content"><?=$story->content?></p>
             </div>
         </article>
 
