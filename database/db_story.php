@@ -19,6 +19,7 @@
     (post.upvotes_count - post.downvotes_count) as points,
     channel.name as channel, 
     user.username as author_name, 
+    user.profile_pic as profile_pic,
     post.posted_at as timestamp,
     (SELECT count(*) FROM comment WHERE post.id = comment.post_id) as comments
     FROM story, post, channel, user WHERE ';
@@ -78,6 +79,7 @@
     (post.upvotes_count - post.downvotes_count) as points,
     channel.name as channel, 
     user.username as author_name, 
+    user.profile_pic as profile_pic,
     post.posted_at as timestamp,
     (SELECT count(*) FROM comment WHERE post.id = comment.post_id) as comments
     FROM story, post, channel, user WHERE post.id= ?');

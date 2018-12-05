@@ -17,7 +17,6 @@
 
 <?php function draw_small_story_card($story) { 
 
-    $profile = getUserProfile($story->author_name);
 /**
  * Draws a small card for the story passed as an argument.
  * A card is simply a block that contains:
@@ -29,7 +28,7 @@
  */?>
     <article class="story-card">
         <header>
-            <img class="author-avatar" src=<?=$profile->profile_pic?> >
+            <img class="author-avatar" src=<?=$story->profile_pic?> >
             <div class="info-left">
                 <a href="./profile.php?user=<?=$story->author_name?>" class="author-name"><?=$story->author_name?></a>
                 <p class="date" title="<?=$story->date?>"><?=$story->posted_ago?></p>
@@ -58,8 +57,6 @@
 <?php } ?>
 
 <?php function draw_full_story_card($story) { 
-
-    $profile = getUserProfile($story->author_name);
 /**
  * Draws a big card for the story passed as an argument.
  * A card is simply a block that contains:
@@ -75,7 +72,7 @@
         <article class="story-card">
 
             <header>
-                <img class="author-avatar" src=<?=$profile->profile_pic?> >
+                <img class="author-avatar" src=<?=$story->profile_pic?> >
                 <div class="info-left">
                     <a href="./profile.php?user=<?=$story->author_name?>" class="author-name"><?=$story->author_name?></a>
                     <p class="date" title="<?=$story->date?>"><?=$story->posted_ago?></p>
