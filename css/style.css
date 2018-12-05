@@ -749,7 +749,8 @@ body > .container { /* Make room for the absolute placed footer */
 .story-card footer {
 	display: flex;
     align-content: center;
-    justify-content: space-between;
+	justify-content: space-between;
+	margin-top: -1em;
 }
 
 .story-card footer a {
