@@ -104,7 +104,7 @@
     user.username as author_name, 
     user.profile_pic as profile_pic,
     post.posted_at as timestamp
-    FROM comment, post, channel, user WHERE post.id= comment.post_id AND comment.parent_post=?');
+    FROM comment, post, channel, user WHERE post.id= comment.post_id AND comment.parent_post= ?');
     $stmt->execute(array($story_id));
     $comment = $stmt->fetch(PDO::FETCH_OBJ);
     print_r(array($comment));
