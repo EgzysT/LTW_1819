@@ -445,6 +445,7 @@ body > .container { /* Make room for the absolute placed footer */
 #stories {
 	grid-area: stories;
 	margin-top: 1.5em;
+	margin-bottom: 1.5em;
 }
 
 /**
@@ -707,6 +708,7 @@ body > .container { /* Make room for the absolute placed footer */
 
 .sm-story-card ul {
 	margin: 0;
+	padding-left: 0;
 }
 
 .sm-story-card footer {
