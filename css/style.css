@@ -636,20 +636,20 @@ body > .container { /* Make room for the absolute placed footer */
 	Post compressed view
 */
 
-.sm-story-card {
+.story-card {
 	width: 100%;
 	border-radius: 2px;
 	background-color: var(--panel-color);
 	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.65);
 }
 
-.sm-story-card > header {
+.story-card > header {
 	display: grid;
 	padding: 5px;
 	box-shadow: 0px 0.5px 0px 0px rgba(90, 90, 90, 0.65);
 }
 
-.sm-story-card .author-avatar {
+.story-card .author-avatar {
 	width: 45px;
 	height: 45px;
 	border-radius: 50%;
@@ -658,13 +658,13 @@ body > .container { /* Make room for the absolute placed footer */
 	grid-row: 1/2;
 }
 
-.sm-story-card .date {
+.story-card .date {
 	font-size: 0.8em;
 	color: var(--grey-color);
 	margin: 0;
 }
 
-.sm-story-card .info-left {
+.story-card .info-left {
 	grid-column: 2;
 	display: flex;
     justify-content: space-evenly;
@@ -672,18 +672,18 @@ body > .container { /* Make room for the absolute placed footer */
     flex-direction: column;
 }
 
-.sm-story-card .info-left  > *{
+.story-card .info-left  > *{
 	margin: 0;	
 }
 
-.sm-story-card .info-left a { /* Link to author profile */
+.story-card .info-left a { /* Link to author profile */
 	color: var(--main-color);
 	text-shadow: 1px 1px 1px #71717170;
 	font-size: 1.2em;
 	margin-bottom: -0.3em;
 }
 
-.sm-story-card .info-right {
+.story-card .info-right {
 	grid-column: 50;
 	text-align:right;
 	padding-right: 15px;
@@ -692,24 +692,24 @@ body > .container { /* Make room for the absolute placed footer */
     align-items: center;
 }
 
-.sm-story-card .info-right a { /* Link to channel */
+.story-card .info-right a { /* Link to channel */
 	color: var(--main-color);
     text-shadow: 1px 1px 1px #71717170;
 }
 
-.sm-story-card .body {
+.story-card .body {
 	padding-right: 20px;
 	padding-left: 20px;
 	text-align: justify;
 }
 
-.sm-story-card .body h2 {
+.story-card .body h2 {
 	font-family: var(--serif-font);
 	font-size: 2em;
 	margin: 0.5em 0.2em 0;
 }
 
-.sm-story-card .body p {
+.story-card .body .sm-content {
 	color: var(--dark-color);
 	line-height: 150%;
 	text-align: justify;
@@ -719,24 +719,24 @@ body > .container { /* Make room for the absolute placed footer */
 	overflow: hidden;
 } 
 
-.sm-story-card ul {
+.story-card ul {
 	margin: 0;
 }
 
-.sm-story-card footer {
+.story-card footer {
 	display: flex;
     align-content: center;
     justify-content: space-between;
 }
 
-.sm-story-card footer a {
+.story-card footer a {
 	color: var(--dark-color);
 	margin: 1em;
 	display: inline-block;
 	font-weight: bold;
 }
 
-.sm-story-card li {
+.story-card li {
 	display: inline-block;
 	margin: 0 1em 0 0;
 }
@@ -783,60 +783,11 @@ body > .container { /* Make room for the absolute placed footer */
 }
 
 .full-story-card .story-card {
-	width: 100%;
-	border-radius: 2px;
-	background-color: var(--panel-color);
-	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.65);
 	grid-column: 2;
 }
 
-.full-story-card header * {
-	padding: 0.5em;
-	vertical-align: middle;
-	display: inline-block;
-}
-
-.full-story-card .author-avatar {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-}
-
-.full-story-card .date {
-	font-size: 0.8em;
-	color: var(--grey-color);
-}
-
-.full-story-card .info-right {
-	float: right;
-	padding-right: 1em;
-	color: var(--main-color);
-    text-shadow: 1px 1px 1px #71717170;
-}
-
-.full-story-card .info-right a { /* Link to channel */
-	color: var(--main-color);
-    text-shadow: 1px 1px 1px #71717170;
-}
-
-.full-story-card .info-left a { /* Link to author profile */
-	color: var(--main-color);
-	text-shadow: 1px 1px 1px #71717170;
-	font-size: 1.2em;
-	margin-bottom: -0.3em;
-}
-
-
-.full-story-card .body {
-	padding-right: 20px;
-	padding-left: 20px;
+.full-story-card .body .lg-content{
 	text-align: justify;
-}
-
-.full-story-card .body h2 {
-	font-family: var(--serif-font);
-	font-size: 2em;
-	margin: 0.5em 0.2em 0;
 }
 
 .full-story-card .points {

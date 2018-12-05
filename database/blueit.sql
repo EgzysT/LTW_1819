@@ -169,8 +169,8 @@ CREATE TABLE user (
     username    VARCHAR UNIQUE
                         NOT NULL,
     password    VARCHAR NOT NULL,
-    profile_pic VARCHAR,
-    bio         VARCHAR,
+    profile_pic VARCHAR DEFAULT ('../assets/profile_pics/0.jpg'),
+    bio         VARCHAR DEFAULT ('This misterious stranger has no bio yet! :o'),
     points      INTEGER NOT NULL
                         DEFAULT (0) 
 );
