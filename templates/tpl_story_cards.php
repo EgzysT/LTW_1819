@@ -92,7 +92,7 @@
 
              <div class="sc-aside">
                 <p class="arrow-up"> <i class="fas fa-arrow-alt-circle-up"></i> </p>
-                <p><?=$story->points?></p>
+                <p id="points"><?=$story->points?></p>
                 <p class="arrow-down"> <i class="fas fa-arrow-alt-circle-down"></i> </p>
             </div>
         </article>

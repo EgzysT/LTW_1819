@@ -801,15 +801,43 @@ body > .container { /* Make room for the absolute placed footer */
 
 .full-story-card .sc-aside i {
 	opacity: 0.7;
+	transition: 0.1s linear all;
+	cursor: pointer;
 }
 
-.full-story-card .sc-aside .arrow-up:hover i {
+.full-story-card .sc-aside .arrow-up:hover div, .full-story-card .sc-aside .arrow-up i.selected {
 	color: var(--success-text-color);
+	text-shadow: 0px 0px 1px var(--success-text-color);
+	transform: scale(1.05);
 }
 
-.full-story-card .sc-aside .arrow-down:hover i {
+.full-story-card .sc-aside .arrow-down:hover div, .full-story-card .sc-aside .arrow-down i.selected {
 	color: var(--error-text-color);
+	text-shadow: 0px 0px 1px var(--error-text-color);
+	transform: scale(1.05);
 }
+
+.animate-up {
+	animation: upvote 0.5s;
+}
+
+.animate-down {
+	animation: downvote 0.5s;
+}
+
+@keyframes upvote {
+    0% { transform: translateY(0) scale(1.05); }
+    50% { transform: translateY(-0.5em); }
+    100% { transform: translateY(0) scale(1.05); }
+}
+
+@keyframes downvote {
+    0% { transform: translateY(0) scale(1.05); }
+    50% { transform: translateY(0.5em); }
+    100% { transform: translateY(0) scale(1.05); }
+}
+
+
 
 .full-story-card .story-card header, .full-story-card .story-card body {
 	grid-column: 2;
@@ -830,7 +858,7 @@ body > .container { /* Make room for the absolute placed footer */
 		margin-top: 1.5em;
 		grid-column: 1;
 		position: absolute;
-		left: -4em;
+		left: -3em;
 	}
 
 	.full-story-card .sc-aside p {

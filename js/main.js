@@ -126,6 +126,53 @@ if(asideWithSearchBtn) {
     };
 }
 
+/* Upvote/ Downvote Ajax */
+let storyAside = document.querySelector('.full-story-card .sc-aside');
+if(storyAside) {
+    let upButton = storyAside.querySelector('.arrow-up i');
+    let downvoteButton = storyAside.querySelector('.arrow-down i');
+    let points = storyAside.querySelector('#points');
+
+    upButton.onclick = () => {
+        if(upButton.classList.contains('selected')) {
+            upButton.classList.remove('animate-up');
+            upButton.classList.remove('selected');
+            points.textContent--;
+        }
+        else { 
+            upButton.classList.add('animate-up');
+            upButton.classList.add('selected');
+
+            if(!downvoteButton.classList.contains('selected'))
+                points.textContent++;
+            else
+                points.textContent = Number(points.textContent) + 2;
+
+            downvoteButton.classList.remove('selected');
+            downvoteButton.classList.remove('animate-down');
+        }
+    }
+    downvoteButton.onclick = () => {
+        if(downvoteButton.classList.contains('selected')) {
+            downvoteButton.classList.remove('animate-down');
+            downvoteButton.classList.remove('selected');
+            points.textContent++;
+        }
+        else { 
+            downvoteButton.classList.add('animate-down');
+            downvoteButton.classList.add('selected');
+
+            if(!upButton.classList.contains('selected'))
+                points.textContent--;
+            else
+                points.textContent = Number(points.textContent) - 2;
+
+            upButton.classList.remove('selected');
+            upButton.classList.remove('animate-up');
+        }
+    }
+}
+
 /* Helper functions */
 function makeHTTPRequest(url, type, params, callback) {
     let request = new XMLHttpRequest();
