@@ -33,8 +33,6 @@
   function getSubscribedChannels($username) {
     $db = Database::instance()->db();
 
-    $options = ['cost' => 12];
-
     $stmt = $db->prepare('SELECT channel.id, channel.name, channel.image
     FROM user, subscription, channel
     WHERE user.username = ? AND subscription.user_id = user.id AND subscription.channel_id = channel.id

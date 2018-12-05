@@ -5,6 +5,7 @@
   include_once('../templates/tpl_asides.php');
   include_once('../database/db_story.php');
   include_once('../database/db_user.php');
+  include_once('../database/db_channel.php');
 
   $page_title = 'Bluedit';
   $username = $_SESSION['username'];
@@ -25,7 +26,11 @@
         
         if($username) { 
           $subscribed_channels = getSubscribedChannels($username);
-          draw_subscriptions_aside($subscribed_channels);
+          draw_channels_aside($subscribed_channels, 'Subscriptions');
+        }
+        else {
+          $channels = get_all_channels();
+          draw_channels_aside($channels, 'All Channels');
         }
       ?>
     </section>
