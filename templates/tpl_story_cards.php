@@ -71,11 +71,6 @@
  */?>
 
     <section class="full-story-card">
-        <div class="sc-aside">
-            <p class="arrow-up"> <i class="fas fa-arrow-alt-circle-up"></i> </p>
-            <p><?=$story->points?></p>
-            <p class="arrow-down"> <i class="fas fa-arrow-alt-circle-down"></i> </p>
-        </div>
 
         <article class="story-card">
 
@@ -93,6 +88,12 @@
             <div class="body">
                 <h2 class="title"><?=$story->title?></h2>
                 <p class="lg-content"><?=$story->content?></p>
+            </div>
+
+             <div class="sc-aside">
+                <p class="arrow-up"> <i class="fas fa-arrow-alt-circle-up"></i> </p>
+                <p><?=$story->points?></p>
+                <p class="arrow-down"> <i class="fas fa-arrow-alt-circle-down"></i> </p>
             </div>
         </article>
 
