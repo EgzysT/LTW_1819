@@ -435,7 +435,7 @@ body > .container { /* Make room for the absolute placed footer */
 	.channel, .profile, .one-story {
 		grid-template-columns: 4fr 2fr;
 		grid-template-areas: "stories aside";
-		grid-gap: 1em;
+		grid-column-gap: 1em;
 	}
 }
 
@@ -443,7 +443,7 @@ body > .container { /* Make room for the absolute placed footer */
 	.channel, .profile, .one-story {
 		grid-template-columns: 5fr 2fr;
 		grid-template-areas: "stories aside";
-		grid-gap: 1.25em;
+		grid-column-gap: 1.25em;
 	}
 }
 
@@ -451,7 +451,7 @@ body > .container { /* Make room for the absolute placed footer */
 	.channel, .profile, .one-story {
 		grid-template-columns: 6fr 2fr;
 		grid-template-areas: "stories aside";
-		grid-gap: 1.5em;
+		grid-column-gap: 1.5em;
 	}
 }
 
@@ -663,7 +663,6 @@ body > .container { /* Make room for the absolute placed footer */
 	border-radius: 2px;
 	background-color: var(--panel-color);
 	box-shadow: 0px 0px 2px 0px var(--medium-shadow-color);
-	margin-bottom: 1em;
 }
 
 .card > header {
@@ -802,19 +801,19 @@ body > .container { /* Make room for the absolute placed footer */
 	float: right;
 }
 
-.sc-aside i {
+#full-story .sc-aside i {
 	opacity: 0.7;
 	transition: 0.1s linear all;
 	cursor: pointer;
 }
 
-.sc-aside .arrow-up:hover, .sc-aside .arrow-up i.selected {
+#full-story .sc-aside .arrow-up:hover, #full-story .sc-aside .arrow-up i.selected {
 	color: var(--success-text-color);
 	text-shadow: 0px 0px 1px var(--success-text-color);
 	transform: scale(1.05);
 }
 
-.sc-aside .arrow-down:hover, .sc-aside .arrow-down i.selected {
+#full-story .sc-aside .arrow-down:hover, #full-story .sc-aside .arrow-down i.selected {
 	color: var(--error-text-color);
 	text-shadow: 0px 0px 1px var(--error-text-color);
 	transform: scale(1.05);
@@ -881,10 +880,11 @@ body > .container { /* Make room for the absolute placed footer */
 #comment{
 	display: grid;
 	margin: 1em 0em;
-	border-left: 3px solid var(--main-color);
 	background-color: #F5F5F5;
+	border-left: 3px solid var(--main-color);
 	box-shadow: 0 0 3px 0 #CCC;
 }
+
 
 #comment .subcomments #comment {
 	border-left: 3px solid var(--orange-color);
@@ -905,7 +905,7 @@ body > .container { /* Make room for the absolute placed footer */
 	font-size: 1.2em;
 }
 
-#comment > header * {
+#comment > header > * {
 	display: inline-block;
 	margin-left: 1em;
 	vertical-align: middle;
@@ -926,16 +926,18 @@ body > .container { /* Make room for the absolute placed footer */
 	margin-left: 1em;
 }
 
-#comment .sc-aside {
-	margin-left: 0.3em;
-
+#comment header .reply > * {
+	display: inline-block;
+	color: var(--grey-color);
+	font-size: 0.8em;
+	margin-left:0.2em;
 }
 
-#comment .sc-aside * {
+#comment .arrows * {
+	display: inline-block;
 	margin: 0.2em;
 	font-size: 1.1em;
 	vertical-align: bottom;
-
 }
 
 #comment .lg-content {
@@ -944,7 +946,7 @@ body > .container { /* Make room for the absolute placed footer */
 }
 
 .subcomments #comment {
-	margin-left: 1em;
+	margin-left: 0.5em;
 }
 
 

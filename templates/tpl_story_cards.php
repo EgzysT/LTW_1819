@@ -96,7 +96,7 @@
 
 <?php function draw_comments($comments) { 
     /**
-     * Draws a section (comments) containing several comments
+     * Draws a section (comments) containingall the comments passed as argument
      */?>
 
     <section id="comments">
@@ -127,12 +127,14 @@
             <a href="./profile.php?user=<?=$main_comment->author_name?>" class="author-name"><?=$main_comment->author_name?></a>
             <p class="date" title="<?=$main_comment->date?>"><?=$main_comment->posted_ago?></p>
             <p class="points"><?=$main_comment->points?> points</p>
-            <p class="reply"> <i class="far fa-comment-alt"></i> points</p>
-            <i class="far fa-comment-alt"></i>
+            <div class="reply">
+                <i class="far fa-comment-alt"></i>
+                <p>reply</p>
+            </div>
 
-            <div class="sc-aside">
-                <p class="arrow-up"> <i class="fas fa-arrow-alt-circle-up"></i> </p>
-                <p class="arrow-down"> <i class="fas fa-arrow-alt-circle-down"></i> </p>
+            <div class="arrows">
+                <p class="arrow-up"><i class="fas fa-arrow-alt-circle-up"></i></p>
+                <p class="arrow-down"><i class="fas fa-arrow-alt-circle-down"></i></p>
             </div>
         </header>
 
