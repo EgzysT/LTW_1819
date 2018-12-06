@@ -119,6 +119,20 @@
     return $comments;
   }
 
+  /**
+   * Inserts a comment
+   */
+  function insertComment($parent_post, $content, $username) {
+    $db = Database::instance()->db();
+    
+    $stmt = $db->prepare('INSERT INTO post (content, user_id) VALUES (?, ?)');
+    $stmt->execute(array($content, $username));
+    $last_id = $db->lastInsertId();
+
+    $stmt = $db->prepare('INSERT INTO comment VALUES (?, ?)');
+    $stmt->execute(array($last_id, $parent_post));
+  
+  }
 
   /* Helper Stuff */
 

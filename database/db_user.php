@@ -47,7 +47,7 @@
   function getUserProfile($username) {
     $db = Database::instance()->db();
 
-    $stmt = $db->prepare('SELECT user.profile_pic, user.bio, user.points FROM user WHERE username = ?');
+    $stmt = $db->prepare('SELECT user.id, user.profile_pic, user.bio, user.points FROM user WHERE username = ?');
     $stmt->execute(array($username));
 
     $user_profile = $stmt->fetch(PDO::FETCH_OBJ);

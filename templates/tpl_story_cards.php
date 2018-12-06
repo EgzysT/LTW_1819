@@ -94,22 +94,19 @@
 
 <?php } ?>
 
-<?php function draw_comments($comments) { 
+<?php function draw_comments($comments, $parent_post) { 
     /**
      * Draws a section (comments) containingall the comments passed as argument
      */?>
 
     <section id="comments">
-
-    <?php 
-        foreach($comments as $comment)
-            draw_comment($comment);
-    ?>
-
-</section>
-
+        <?php 
+            draw_comment_form($parent_post);
+            foreach($comments as $comment)
+                draw_comment($comment);
+        ?>
+    </section>
 <?php } ?>
-
 
 <?php function draw_comment($main_comment) { 
     /**
@@ -149,5 +146,15 @@
             ?>
         </div>
     </article>
+
+<?php } ?>
+
+<?php function draw_comment_form($parent_post) { 
+    ?>
+
+    <form method="post" data-id="<?=$parent_post?>" action="../actions/action_comment.php" class="comment-form" >
+        <input class="content" type="text" name="content" placeholder="What are your thoughts?" required>
+        <input class="button button-blue button-block" type="submit" value="Comment" >
+    </form>
 
 <?php } ?>

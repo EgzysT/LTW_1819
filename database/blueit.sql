@@ -89,7 +89,8 @@ DROP TABLE IF EXISTS post;
 CREATE TABLE post (
     id              INTEGER  PRIMARY KEY,
     content         VARCHAR  NOT NULL,
-    posted_at       DATETIME NOT NULL,
+    posted_at       DATETIME NOT NULL
+                             DEFAULT (CURRENT_TIMESTAMP),
     user_id         INTEGER  REFERENCES user,
     upvotes_count   INTEGER  NOT NULL
                              DEFAULT (0),
@@ -107,7 +108,7 @@ INSERT INTO post (
                  )
                  VALUES (
                      1,
-                     'O Lorem Ipsum é um texto modelo da indústria tipográfica e de impressão. O Lorem Ipsum tem vindo a ser o texto padrão usado por estas indústrias desde o ano de 1500, quando uma misturou os caracteres de um texto para criar um espécime de livro. Este texto não só sobreviveu 5 séculos, mas também o salto para a tipografia electrónica, mantendo-se essencialmente inalterada. Foi popularizada nos anos 60 com a disponibilização das folhas de Letraset, que continham passagens com Lorem Ipsum, e mais recentemente com os programas de publicação como o Aldus PageMaker que incluem versões do Lorem Ipsum.
+                     'O Lorem Ipsum ï¿½ um texto modelo da indï¿½stria tipogrï¿½fica e de impressï¿½o. O Lorem Ipsum tem vindo a ser o texto padrï¿½o usado por estas indï¿½strias desde o ano de 1500, quando uma misturou os caracteres de um texto para criar um espï¿½cime de livro. Este texto nï¿½o sï¿½ sobreviveu 5 sï¿½culos, mas tambï¿½m o salto para a tipografia electrï¿½nica, mantendo-se essencialmente inalterada. Foi popularizada nos anos 60 com a disponibilizaï¿½ï¿½o das folhas de Letraset, que continham passagens com Lorem Ipsum, e mais recentemente com os programas de publicaï¿½ï¿½o como o Aldus PageMaker que incluem versï¿½es do Lorem Ipsum.
 
 ',
                      1543925303,

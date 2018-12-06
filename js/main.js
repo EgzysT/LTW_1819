@@ -187,6 +187,31 @@ if(storyAside) {
     }
 }
 
+/* Comment Ajax */
+let commentForm = document.querySelector('#comments form');
+let comments = document.querySelectorAll('#comment');
+if(commentForm) {
+    let contentField = commentForm.querySelector('input[name="content"]');
+    console.log(commentForm.getAttribute('data-id'));
+
+    commentForm.onsubmit = (e) => {
+        e.preventDefault();
+        // Ajax request
+        makeHTTPRequest('../actions/action_comment.php', 
+            'post', 
+            {   
+                content: contentField.value, 
+                post: commentForm.getAttribute('data-id')
+            }, 
+            () => {
+                commentForm.reset();
+                comments.prepend("Some prepended text.");
+            }
+        );
+    }
+}
+
+
 /* Helper functions */
 function makeHTTPRequest(url, type, params, callback) {
     let request = new XMLHttpRequest();

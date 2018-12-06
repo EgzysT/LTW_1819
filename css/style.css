@@ -854,8 +854,6 @@ body > .container { /* Make room for the absolute placed footer */
 }
 
 
-
-
 @media (min-width: 800px) {
 	#full-story .sc-aside {
 		margin-top: 1.5em;
@@ -947,6 +945,39 @@ body > .container { /* Make room for the absolute placed footer */
 
 .subcomments #comment {
 	margin-left: 0.5em;
+}
+
+/**
+
+	Comment form
+
+*/
+.comment-form {
+	margin: 1em 0em;
+	background-color: #FAFAFA;
+	box-shadow: 0 0 3px 0 #CCC;
+}
+
+.comment-form .content {
+	text-indent: 1em;
+	margin-top: 0em;
+	border: 0;
+	background-color: #F8F8F8;
+	min-height: 5em;
+}
+
+.comment-form input[type='text'] {
+	font-size: 0.9em;
+}
+
+.comment-form input[type='text']::-webkit-input-placeholder {
+	font-size: 0.9em;
+}
+
+.comment-form .button {
+	position: relative;
+	right: -70%;
+	margin: 0em; 
 }
 
 
