@@ -90,7 +90,7 @@ CREATE TABLE post (
     id              INTEGER  PRIMARY KEY,
     content         VARCHAR  NOT NULL,
     posted_at       DATETIME NOT NULL
-                             DEFAULT (CURRENT_TIMESTAMP),
+                             DEFAULT (strftime('%s', 'now')),
     user_id         INTEGER  REFERENCES user,
     upvotes_count   INTEGER  NOT NULL
                              DEFAULT (0),
