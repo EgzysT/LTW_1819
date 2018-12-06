@@ -24,7 +24,7 @@
     (SELECT count(*) FROM comment WHERE post.id = comment.post_id) as comments
     FROM story, post, channel, user WHERE ';
   
-    $query = $query.'story.channel_id = channel.id AND story.post_id = post.id AND user.id = post.user_id ';
+    $query = $query.'story.channel_id = channel.id AND story.post_id = post.id AND user.id = post.user_id AND post.content != "[deleted]" ';
 
     if(array_key_exists('subscribed_by', $options)) {
       $query = $query.'AND channel.id in (SELECT subscription.channel_id FROM subscription, user U WHERE subscription.user_id = U.id AND U.username = :subscribed_by) ';

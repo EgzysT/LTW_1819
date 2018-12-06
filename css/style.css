@@ -663,6 +663,7 @@ body > .container { /* Make room for the absolute placed footer */
 	border-radius: 2px;
 	background-color: var(--panel-color);
 	box-shadow: 0px 0px 2px 0px var(--medium-shadow-color);
+	margin-bottom: 1em;
 }
 
 .story-card > header {
