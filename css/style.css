@@ -828,13 +828,13 @@ body > .container { /* Make room for the absolute placed footer */
 
 @keyframes upvote {
     0% { transform: translateY(0) scale(1.05); }
-    50% { transform: translateY(-0.5em); }
+    50% { transform: translateY(-0.3em); }
     100% { transform: translateY(0) scale(1.05); }
 }
 
 @keyframes downvote {
     0% { transform: translateY(0) scale(1.05); }
-    50% { transform: translateY(0.5em); }
+    50% { transform: translateY(0.3em); }
     100% { transform: translateY(0) scale(1.05); }
 }
 

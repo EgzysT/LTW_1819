@@ -56,7 +56,7 @@
 
 <?php } ?>
 
-<?php function draw_full_story_card($story) { 
+<?php function draw_full_story_card($story, $vote_type) { 
     /**
      * Draws a big card for the story passed as an argument.
      * A card is simply a block that contains:
@@ -88,9 +88,9 @@
             </div>
 
              <div class="sc-aside">
-                <p class="arrow-up" data-id="<?=$story->id?>"> <i class="fas fa-arrow-alt-circle-up"></i> </p>
+                <p class="arrow-up"> <i data-id="<?=$story->id?>" class="fas fa-arrow-alt-circle-up <?php if($vote_type === 'u') echo 'selected'; ?>"></i> </p>
                 <p id="points"><?=$story->points?></p>
-                <p class="arrow-down" data-id="<?=$story->id?>"> <i class="fas fa-arrow-alt-circle-down"></i> </p>
+                <p class="arrow-down"> <i data-id="<?=$story->id?>" class="fas fa-arrow-alt-circle-down <?php if($vote_type === 'd') echo 'selected'; ?>"></i> </p>
             </div>
         </article>
 
