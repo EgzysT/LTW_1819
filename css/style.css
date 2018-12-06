@@ -318,7 +318,7 @@ form input:last-of-type {
 
 form p {
 	display: block;
-	float: right;
+	/* float: right; */
 	color: var(--dark-color);
 	margin-top: 1.3em;
 }
@@ -984,6 +984,7 @@ body > .container { /* Make room for the absolute placed footer */
 	font-size: 1.25em;
 }
 #edit-profile-form > img {
+	display: block;
 	padding: 0.0em 1em;
 	font-size: 1.25em;
 }

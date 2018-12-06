@@ -53,4 +53,21 @@
     $user_profile = $stmt->fetch(PDO::FETCH_OBJ);
     return $user_profile;
   }
+
+  function updateUserBio($username, $newBio) {
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare('UPDATE user SET bio = ? WHERE username = ?');
+    $stmt->execute(array($newBio, $username));
+
+    $user_profile = $stmt->fetch(PDO::FETCH_OBJ);
+  }
+  function updateUserPicPath($username, $newPicPath) {
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare('UPDATE user SET profile_pic = ? WHERE username = ?');
+    $stmt->execute(array($newPicPath, $username));
+
+    $user_profile = $stmt->fetch(PDO::FETCH_OBJ);
+  }
 ?>
