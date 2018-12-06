@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.1.1 on Thu Dec 6 00:02:54 2018
+-- File generated with SQLiteStudio v3.1.1 on Thu Dec 6 13:23:22 2018
 --
 -- Text encoding used: System
 --
@@ -70,7 +70,7 @@ DROP TABLE IF EXISTS comment;
 CREATE TABLE comment (
     post_id     INTEGER PRIMARY KEY
                         REFERENCES post,
-    parent_post INTEGER REFERENCES post
+    parent_post         REFERENCES post
 );
 
 INSERT INTO comment (
@@ -107,7 +107,7 @@ INSERT INTO post (
                  )
                  VALUES (
                      1,
-                     'O Lorem Ipsum ï¿½ um texto modelo da indï¿½stria tipogrï¿½fica e de impressï¿½o. O Lorem Ipsum tem vindo a ser o texto padrï¿½o usado por estas indï¿½strias desde o ano de 1500, quando uma misturou os caracteres de um texto para criar um espï¿½cime de livro. Este texto nï¿½o sï¿½ sobreviveu 5 sï¿½culos, mas tambï¿½m o salto para a tipografia electrï¿½nica, mantendo-se essencialmente inalterada. Foi popularizada nos anos 60 com a disponibilizaï¿½ï¿½o das folhas de Letraset, que continham passagens com Lorem Ipsum, e mais recentemente com os programas de publicaï¿½ï¿½o como o Aldus PageMaker que incluem versï¿½es do Lorem Ipsum.
+                     'O Lorem Ipsum é um texto modelo da indústria tipográfica e de impressão. O Lorem Ipsum tem vindo a ser o texto padrão usado por estas indústrias desde o ano de 1500, quando uma misturou os caracteres de um texto para criar um espécime de livro. Este texto não só sobreviveu 5 séculos, mas também o salto para a tipografia electrónica, mantendo-se essencialmente inalterada. Foi popularizada nos anos 60 com a disponibilização das folhas de Letraset, que continham passagens com Lorem Ipsum, e mais recentemente com os programas de publicação como o Aldus PageMaker que incluem versões do Lorem Ipsum.
 
 ',
                      1543925303,
@@ -276,6 +276,19 @@ CREATE TABLE vote (
 );
 
 
+-- Trigger: delete_comment
+DROP TRIGGER IF EXISTS delete_comment;
+CREATE TRIGGER delete_comment
+        BEFORE DELETE
+            ON comment
+BEGIN
+    UPDATE post
+       SET content = '[deleted]'
+     WHERE id = old.post_id;
+    SELECT RAISE(IGNORE);
+END;
+
+
 -- Trigger: delete_downvote
 DROP TRIGGER IF EXISTS delete_downvote;
 CREATE TRIGGER delete_downvote
@@ -293,6 +306,22 @@ BEGIN
                       FROM post
                      WHERE id = old.post_id
                 );
+END;
+
+
+-- Trigger: delete_story
+DROP TRIGGER IF EXISTS delete_story;
+CREATE TRIGGER delete_story
+        BEFORE DELETE
+            ON story
+BEGIN
+    UPDATE post
+       SET content = '[deleted]'
+     WHERE id = old.post_id;
+    UPDATE story
+       SET title = '[deleted]'
+     WHERE post_id = old.post_id;
+    SELECT RAISE(IGNORE);
 END;
 
 
@@ -324,7 +353,7 @@ CREATE TRIGGER insert_downvote
           WHEN new.vote_type = 'd'
 BEGIN
     UPDATE post
-       SET upvotes_count = post.upvotes_count - 1
+       SET downvotes_count = post.downvotes_count + 1
      WHERE id = new.post_id;
     UPDATE user
        SET points = user.points - 1
