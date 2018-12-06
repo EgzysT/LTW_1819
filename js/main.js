@@ -127,13 +127,20 @@ if(asideWithSearchBtn) {
 }
 
 /* Upvote/ Downvote Ajax */
-let storyAside = document.querySelector('.full-story-card .sc-aside');
+let storyAside = document.querySelector('.sc-aside');
 if(storyAside) {
     let upvoteButton = storyAside.querySelector('.arrow-up i');
     let downvoteButton = storyAside.querySelector('.arrow-down i');
     let points = storyAside.querySelector('#points');
 
+    let clear_vote = () => {
+        makeHTTPRequest('../actions/action_points.php', 
+        'post', 
+        {action: 'clear_vote', post: upvoteButton.getAttribute('data-id'), csrf: csrf}, () => { });    
+    }
+
     upvoteButton.onclick = () => {
+        clear_vote();
         if(upvoteButton.classList.contains('selected')) {
             upvoteButton.classList.remove('animate-up');
             upvoteButton.classList.remove('selected');
@@ -152,10 +159,11 @@ if(storyAside) {
             downvoteButton.classList.remove('animate-down');
             makeHTTPRequest('../actions/action_points.php', 
             'post', 
-            {action: 'upvote', post: upvoteButton['data-id'], csrf: csrf}, (response) => { alert(response); });
+            {action: 'upvote', post: upvoteButton.getAttribute('data-id'), csrf: csrf}, () => { });
         }
     }
     downvoteButton.onclick = () => {
+        clear_vote();
         if(downvoteButton.classList.contains('selected')) {
             downvoteButton.classList.remove('animate-down');
             downvoteButton.classList.remove('selected');
@@ -174,7 +182,7 @@ if(storyAside) {
             upvoteButton.classList.remove('animate-up');
             makeHTTPRequest('../actions/action_points.php', 
             'post', 
-            {action: 'downvote', post: downvoteButton['data-id'], csrf: csrf}, (response) => { alert(response); });
+            {action: 'downvote', post: downvoteButton.getAttribute('data-id'), csrf: csrf}, () => { });
         }
     }
 }

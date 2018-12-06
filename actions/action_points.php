@@ -3,7 +3,7 @@
    * Handles upvoting/downvoting of comments and stories.
    */
   include_once('../includes/session.php');
-  include_once('../database/db_channel.php');
+  include_once('../database/db_post.php');
 
   $username = $_SESSION['username'];
   if(!$username)
@@ -18,11 +18,13 @@
 
   //Handle action.
   if($action === 'upvote') {
-    echo 'upvote';
-  } else if($action === 'downvote') { 
-    echo 'downvote';
+    upvote($username, $post);
+  } else if ($action === 'downvote') {
+    downvote($username, $post);
+  } else if ($action === 'clear_vote') {
+    clear_vote($username, $post);
   } else {
-    die(0);
+    die('Invalid Action');
   }
 
 ?>
