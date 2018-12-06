@@ -93,27 +93,27 @@
     return $story;
   }
 
-  function getComment($story_id) {
+  function getComments($post_id) {
     $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT 
-    post.id,
+    post.id as id,
     post.content, 
     post.upvotes_count, 
     post.downvotes_count, 
     (post.upvotes_count - post.downvotes_count) as points,
     user.username as author_name, 
-    user.profile_pic as profile_pic,
     post.posted_at as timestamp
-    FROM comment, post, channel, user WHERE post.id= comment.post_id AND comment.parent_post= ?');
-    $stmt->execute(array($story_id));
-    $comment = $stmt->fetch(PDO::FETCH_OBJ);
-    print_r(array($comment));
+    FROM comment, post, channel, user WHERE post.id= comment.post_id AND comment.parent_post= ?  Group by post.id');
+    $stmt->execute(array($post_id));
+    $comments = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-    $comment->posted_ago = time_ago($comment->timestamp);
-    $comment->date = date("H:i:s m-d-y", $comment->timestamp);
+    foreach($comments as $comment) {
+      $comment->posted_ago = time_ago($comment->timestamp);
+      $comment->date = date("H:i:s m-d-y", $comment->timestamp);
+      $comment->comments = getComments($comment->id);
+    }
 
-
-    return $comment;
+    return $comments;
   }
 
 

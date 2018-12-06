@@ -15,7 +15,7 @@
 
   $story_id = $_GET['id'];
   $current_story = getStory($story_id);
-  $comment = getComment($story_id);
+  $comments = getComments($story_id);
 
   $page_title = 'Bluedit';
 
@@ -35,7 +35,7 @@
       <?php
           draw_aside_profile($username, $profile_pic, $bio, $points);
           draw_full_story_card($current_story);
-          draw_comment($comment);
+          draw_comments($comments);
       ?>
 	  </section>
 

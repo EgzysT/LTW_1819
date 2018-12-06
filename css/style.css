@@ -30,13 +30,13 @@
 	--button-blue-color: #014b96;
 	--button-blue-color-hover: #003e7d;
 
-	--button-red-color: #dc3545;
+	--red-color: #dc3545;
 	--button-red-color-hover: #c82333;
 
-	--button-green-color: #28a745;
+	--green-color: #28a745;
 	--button-green-color-hover: #218838;
 
-	--button-orange-color: #d68906;
+	--orange-color: #d68906;
 	--button-orange-color-hover: #B27000;
 
 	--serif-font: 'Merriweather';
@@ -139,7 +139,7 @@ h2 {
 
 .button-red {
 	color: white;
-	background-color: var(--button-red-color);
+	background-color: var(--red-color);
 }
 
 .button-red:hover {
@@ -148,7 +148,7 @@ h2 {
 
 .button-orange {
 	color: white;
-	background-color: var(--button-orange-color);
+	background-color: var(--orange-color);
 }
 
 .button-orange:hover {
@@ -157,7 +157,7 @@ h2 {
 
 .button-green {
 	color: white;
-	background-color: var(--button-green-color);
+	background-color: var(--green-color);
 }
 
 .button-green:hover {
@@ -658,20 +658,20 @@ body > .container { /* Make room for the absolute placed footer */
 	Post compressed view
 */
 
-.story-card {
+.card {
 	width: 100%;
 	border-radius: 2px;
 	background-color: var(--panel-color);
 	box-shadow: 0px 0px 2px 0px var(--medium-shadow-color);
 }
 
-.story-card > header {
+.card > header {
 	display: grid;
 	padding: 5px;
 	box-shadow: 0px 0.5px 0px 0px var(--medium-shadow-color);
 }
 
-.story-card .author-avatar {
+.card .author-avatar {
 	width: 45px;
 	height: 45px;
 	border-radius: 50%;
@@ -680,13 +680,13 @@ body > .container { /* Make room for the absolute placed footer */
 	grid-row: 1/2;
 }
 
-.story-card .date {
+.card .date {
 	font-size: 0.8em;
 	color: var(--grey-color);
 	margin: 0;
 }
 
-.story-card .info-left {
+.card .info-left {
 	grid-column: 2;
 	display: flex;
     justify-content: space-evenly;
@@ -694,18 +694,18 @@ body > .container { /* Make room for the absolute placed footer */
     flex-direction: column;
 }
 
-.story-card .info-left  > *{
+.card .info-left  > *{
 	margin: 0;	
 }
 
-.story-card .info-left a { /* Link to author profile */
+.card .info-left a { /* Link to author profile */
 	color: var(--main-color);
 	text-shadow: 1px 1px 1px #71717170;
 	font-size: 1.2em;
 	margin-bottom: -0.3em;
 }
 
-.story-card .info-right {
+.card .info-right {
 	grid-column: 50;
 	text-align:right;
 	padding-right: 15px;
@@ -714,25 +714,25 @@ body > .container { /* Make room for the absolute placed footer */
     align-items: center;
 }
 
-.story-card .info-right a { /* Link to channel */
+.card .info-right a { /* Link to channel */
 	color: var(--main-color);
     text-shadow: 1px 1px 1px #71717170;
 }
 
-.story-card .body {
+.card .body {
 	padding-right: 20px;
 	padding-left: 20px;
 	text-align: justify;
 }
 
-.story-card .body h2 {
+.card .body h2 {
 	font-family: var(--serif-font);
 	font-size: 2em;
 	margin: 0.5em 0.2em 0;
 	color: var(--dark-color);
 }
 
-.story-card .body .sm-content {
+.card .body .sm-content {
 	color: var(--dark-color);
 	text-align: justify;
 	line-height: 1.5em;
@@ -742,19 +742,19 @@ body > .container { /* Make room for the absolute placed footer */
 	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 87%,rgb(234, 234, 234) 100%);
 } 
 
-.story-card ul {
+.card ul {
 	margin: 0;
 	padding-top: 0.5em;
 }
 
-.story-card footer {
+.card footer {
 	display: flex;
     align-content: center;
 	justify-content: space-between;
 	margin-top: -1em;
 }
 
-.story-card footer a {
+.card footer a {
 	color: var(--main-color);
     margin: 1em;
     display: inline-block;
@@ -763,7 +763,7 @@ body > .container { /* Make room for the absolute placed footer */
     font-size: 1.2em;
 }
 
-.story-card li {
+.card li {
 	display: inline-block;
 	margin: 0 1em 0 0;
 	height: 100%;
@@ -777,42 +777,43 @@ body > .container { /* Make room for the absolute placed footer */
 
 */
 
-.full-story-card {
+#full-story{
 	grid-area: stories;
 	display: grid;
 	margin-top: 1.5em;
 	position:relative;
 }
 
-.full-story-card .sc-aside {
+#full-story .sc-aside {
 	float: right;
 	margin-right: 1em;
 	margin-bottom: 0.2em;
 }
 
-.full-story-card .sc-aside p {
+#full-story .sc-aside p {
 	color: var(--main-color);
 	text-align: center;
 	vertical-align: middle;
 	display: inline-block;
 	font-size: 1.7em;
 	margin: 0em 0.2em 0.2em;
-	width: 2em;
+	width: 1em;
+	float: right;
 }
 
-.full-story-card .sc-aside i {
+#full-story .sc-aside i {
 	opacity: 0.7;
 	transition: 0.1s linear all;
 	cursor: pointer;
 }
 
-.full-story-card .sc-aside .arrow-up:hover div, .full-story-card .sc-aside .arrow-up i.selected {
+#full-story .sc-aside .arrow-up:hover, #full-story .sc-aside .arrow-up i.selected {
 	color: var(--success-text-color);
 	text-shadow: 0px 0px 1px var(--success-text-color);
 	transform: scale(1.05);
 }
 
-.full-story-card .sc-aside .arrow-down:hover div, .full-story-card .sc-aside .arrow-down i.selected {
+#full-story .sc-aside .arrow-down:hover, #full-story .sc-aside .arrow-down i.selected {
 	color: var(--error-text-color);
 	text-shadow: 0px 0px 1px var(--error-text-color);
 	transform: scale(1.05);
@@ -838,35 +839,113 @@ body > .container { /* Make room for the absolute placed footer */
     100% { transform: translateY(0) scale(1.05); }
 }
 
-
-
-.full-story-card .story-card header, .full-story-card .story-card body {
+#full-story .sc-aside {
 	grid-column: 2;
 }
 
-.full-story-card .body .lg-content{
+#full-story header, #full-story .body {
+	grid-column: 2;
+}
+
+#full-story .body .lg-content, #comment .body .lg-content{
 	color: var(--dark-color);
 	text-align: justify;
 	line-height: 1.5em;
 }
 
-.full-story-card .points {
-	float:left;
-}
+
+
 
 @media (min-width: 800px) {
-	.full-story-card .sc-aside {
+	#full-story .sc-aside {
 		margin-top: 1.5em;
 		grid-column: 1;
 		position: absolute;
-		left: -4em;
+		left: -3em;
 	}
 
-	.full-story-card .sc-aside p {
+	#full-story .sc-aside p {
 		display: block;
 		margin: 0em 0.2em 0.2em;
+		float: none;
 	}
 }
+
+/**
+
+	Comment
+
+*/
+
+#comment{
+	display: grid;
+	margin: 1em 0em;
+	border-left: 3px solid var(--main-color);
+	background-color: #F5F5F5;
+	box-shadow: 0 0 3px 0 #CCC;
+}
+
+#comment .subcomments #comment {
+	border-left: 3px solid var(--orange-color);
+}
+
+#comment .subcomments #comment .subcomments #comment {
+	border-left: 3px solid var(--green-color);
+}
+
+#comment .subcomments #comment .subcomments #comment .subcomments #comment {
+	border-left: 3px solid var(--red-color);
+}
+
+ #comment > header a {
+	display: inline-block;
+	color: var(--main-color);
+	text-shadow: 1px 1px 1px #71717170;
+	font-size: 1.2em;
+}
+
+#comment > header * {
+	display: inline-block;
+	margin-left: 1em;
+	vertical-align: middle;
+}
+
+#comment > header:first-child {
+	margin-left: 0;
+}
+
+#comment > * {
+	margin: 0em 1em;
+}
+
+#comment > header p {
+	font-size: 0.8em;
+	color: var(--grey-color);
+	margin: 0;
+	margin-left: 1em;
+}
+
+#comment .sc-aside {
+	margin-left: 0.3em;
+
+}
+
+#comment .sc-aside * {
+	margin: 0.2em;
+	font-size: 1.1em;
+	vertical-align: bottom;
+
+}
+
+#comment .lg-content {
+	margin-block-start: 0.4em;
+	margin-block-end: 0.4em;
+}
+
+.subcomments #comment {
+	margin-left: 1em;
+}
+
 
 /**
 
