@@ -85,10 +85,10 @@
             <p class="lg-content"><?=$story->content?></p>
         </div>
 
-        <div class="sc-aside">
-            <p class="arrow-up" data-id="<?=$story->id?>"> <i class="fas fa-arrow-alt-circle-up"></i> </p>
+            <div class="sc-aside">
+            <p class="arrow-up"> <i data-id="<?=$story->id?>" class="fas fa-arrow-alt-circle-up <?php if($vote_type === 'u') echo 'selected'; ?>"></i> </p>
             <p id="points"><?=$story->points?></p>
-            <p class="arrow-down" data-id="<?=$story->id?>"> <i class="fas fa-arrow-alt-circle-down"></i> </p>
+            <p class="arrow-down"> <i data-id="<?=$story->id?>" class="fas fa-arrow-alt-circle-down <?php if($vote_type === 'd') echo 'selected'; ?>"></i> </p>
         </div>
     </article>
 

@@ -40,7 +40,7 @@
   	<section id="one-story" class="one-story">
       <?php
           draw_aside_profile($username, $profile_pic, $bio, $points);
-          draw_full_story_card($current_story);
+          draw_full_story_card($current_story, $vote_type);
           draw_comments($comments);
       ?>
 	  </section>
