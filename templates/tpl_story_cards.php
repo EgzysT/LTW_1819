@@ -56,7 +56,7 @@
 
 <?php } ?>
 
-<?php function draw_full_story_card($story) { 
+<?php function draw_full_story_card($story, $vote_type) { 
     /**
      * Draws a big card for the story passed as an argument.
      * A card is simply a block that contains:

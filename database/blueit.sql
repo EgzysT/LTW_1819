@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.1.1 on Wed Dec 5 22:49:42 2018
+-- File generated with SQLiteStudio v3.1.1 on Thu Dec 6 00:02:54 2018
 --
 -- Text encoding used: System
 --
@@ -73,6 +73,15 @@ CREATE TABLE comment (
     parent_post INTEGER REFERENCES post
 );
 
+INSERT INTO comment (
+                        post_id,
+                        parent_post
+                    )
+                    VALUES (
+                        2,
+                        1
+                    );
+
 
 -- Table: post
 DROP TABLE IF EXISTS post;
@@ -107,6 +116,40 @@ INSERT INTO post (
                      0
                  );
 
+INSERT INTO post (
+                     id,
+                     content,
+                     posted_at,
+                     user_id,
+                     upvotes_count,
+                     downvotes_count
+                 )
+                 VALUES (
+                     2,
+                     '[deleted]',
+                     1543925303,
+                     1,
+                     0,
+                     0
+                 );
+
+INSERT INTO post (
+                     id,
+                     content,
+                     posted_at,
+                     user_id,
+                     upvotes_count,
+                     downvotes_count
+                 )
+                 VALUES (
+                     3,
+                     '[deleted]',
+                     1543925303,
+                     1,
+                     0,
+                     0
+                 );
+
 
 -- Table: story
 DROP TABLE IF EXISTS story;
@@ -127,6 +170,17 @@ INSERT INTO story (
                       1,
                       1,
                       'Uma historia numa dada vila'
+                  );
+
+INSERT INTO story (
+                      post_id,
+                      channel_id,
+                      title
+                  )
+                  VALUES (
+                      3,
+                      1,
+                      '[deleted]'
                   );
 
 
@@ -230,10 +284,10 @@ CREATE TRIGGER delete_downvote
           WHEN old.vote_type = 'd'
 BEGIN
     UPDATE post
-       SET downvotes_count = post.downvotes_count + 1
+       SET downvotes_count = post.downvotes_count - 1
      WHERE id = old.post_id;
     UPDATE user
-       SET points = user.points - 1
+       SET points = user.points + 1
      WHERE id = (
                     SELECT user_id
                       FROM post
@@ -310,7 +364,7 @@ CREATE TRIGGER subscribe
 BEGIN
     UPDATE channel
        SET subscription_counter = channel.subscription_counter + 1
-     WHERE new.channel_id = channel.id;
+     WHERE new.channel_id = id;
 END;
 
 
@@ -321,8 +375,8 @@ CREATE TRIGGER unsubscribe
             ON subscription
 BEGIN
     UPDATE channel
-       SET subscription_counter = channel.subscription_counter + 1
-     WHERE old.channel_id = channel.id;
+       SET subscription_counter = channel.subscription_counter - 1
+     WHERE old.channel_id = id;
 END;
 
 

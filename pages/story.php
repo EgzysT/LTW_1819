@@ -10,6 +10,7 @@
   include_once('../templates/tpl_profile.php');
   include_once('../database/db_story.php');
   include_once('../database/db_user.php');
+  include_once('../database/db_post.php');
 
   $username = $_SESSION['username'];
 
@@ -27,6 +28,11 @@
   $profile_pic = $profile->profile_pic; 
   $bio = $profile->bio; 
   $points = $profile->points; 
+
+  // See if user already upvoted / downvoted.
+  $vote_type = NULL;
+  if($username)
+    $vote_type = get_vote($username, $current_story->id);
 
 
   draw_header($username, $page_title);  ?>
