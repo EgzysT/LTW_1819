@@ -129,19 +129,19 @@ if(asideWithSearchBtn) {
 /* Upvote/ Downvote Ajax */
 let storyAside = document.querySelector('.full-story-card .sc-aside');
 if(storyAside) {
-    let upButton = storyAside.querySelector('.arrow-up i');
+    let upvoteButton = storyAside.querySelector('.arrow-up i');
     let downvoteButton = storyAside.querySelector('.arrow-down i');
     let points = storyAside.querySelector('#points');
 
-    upButton.onclick = () => {
-        if(upButton.classList.contains('selected')) {
-            upButton.classList.remove('animate-up');
-            upButton.classList.remove('selected');
+    upvoteButton.onclick = () => {
+        if(upvoteButton.classList.contains('selected')) {
+            upvoteButton.classList.remove('animate-up');
+            upvoteButton.classList.remove('selected');
             points.textContent--;
         }
         else { 
-            upButton.classList.add('animate-up');
-            upButton.classList.add('selected');
+            upvoteButton.classList.add('animate-up');
+            upvoteButton.classList.add('selected');
 
             if(!downvoteButton.classList.contains('selected'))
                 points.textContent++;
@@ -150,6 +150,9 @@ if(storyAside) {
 
             downvoteButton.classList.remove('selected');
             downvoteButton.classList.remove('animate-down');
+            makeHTTPRequest('../actions/action_points.php', 
+            'post', 
+            {action: 'upvote', post: upvoteButton['data-id'], csrf: csrf}, (response) => { alert(response); });
         }
     }
     downvoteButton.onclick = () => {
@@ -162,13 +165,16 @@ if(storyAside) {
             downvoteButton.classList.add('animate-down');
             downvoteButton.classList.add('selected');
 
-            if(!upButton.classList.contains('selected'))
+            if(!upvoteButton.classList.contains('selected'))
                 points.textContent--;
             else
                 points.textContent = Number(points.textContent) - 2;
 
-            upButton.classList.remove('selected');
-            upButton.classList.remove('animate-up');
+            upvoteButton.classList.remove('selected');
+            upvoteButton.classList.remove('animate-up');
+            makeHTTPRequest('../actions/action_points.php', 
+            'post', 
+            {action: 'downvote', post: downvoteButton['data-id'], csrf: csrf}, (response) => { alert(response); });
         }
     }
 }
