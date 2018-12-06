@@ -802,19 +802,19 @@ body > .container { /* Make room for the absolute placed footer */
 	float: right;
 }
 
-#full-story .sc-aside i {
+.sc-aside i {
 	opacity: 0.7;
 	transition: 0.1s linear all;
 	cursor: pointer;
 }
 
-#full-story .sc-aside .arrow-up:hover, #full-story .sc-aside .arrow-up i.selected {
+.sc-aside .arrow-up:hover, .sc-aside .arrow-up i.selected {
 	color: var(--success-text-color);
 	text-shadow: 0px 0px 1px var(--success-text-color);
 	transform: scale(1.05);
 }
 
-#full-story .sc-aside .arrow-down:hover, #full-story .sc-aside .arrow-down i.selected {
+.sc-aside .arrow-down:hover, .sc-aside .arrow-down i.selected {
 	color: var(--error-text-color);
 	text-shadow: 0px 0px 1px var(--error-text-color);
 	transform: scale(1.05);

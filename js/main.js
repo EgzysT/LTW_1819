@@ -127,7 +127,7 @@ if(asideWithSearchBtn) {
 }
 
 /* Upvote/ Downvote Ajax */
-let storyAside = document.querySelector('.full-story-card .sc-aside');
+let storyAside = document.querySelector('.sc-aside');
 if(storyAside) {
     let upvoteButton = storyAside.querySelector('.arrow-up i');
     let downvoteButton = storyAside.querySelector('.arrow-down i');
