@@ -93,6 +93,9 @@
     return $story;
   }
 
+  /**
+   * Returns all the comments of a story
+   */
   function getComments($post_id) {
     $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT 

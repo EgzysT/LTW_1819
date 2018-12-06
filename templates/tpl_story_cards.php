@@ -96,13 +96,7 @@
 
 <?php function draw_comments($comments) { 
     /**
-     * Draws a big card for the story passed as an argument.
-     * A card is simply a block that contains:
-     *  - the author of the story (name and avatar),
-     *  - the channel it was posted on,
-     *  - the date it was created,
-     *  - content (title and some text of the body),
-     *  - the number of points and comments.
+     * Draws a section (comments) containing several comments
      */?>
 
     <section id="comments">
@@ -121,11 +115,10 @@
     /**
      * Draws a big card for the story passed as an argument.
      * A card is simply a block that contains:
-     *  - the author of the story (name and avatar),
-     *  - the channel it was posted on,
+     *  - the author's name of the comment
      *  - the date it was created,
-     *  - content (title and some text of the body),
-     *  - the number of points and comments.
+     *  - content
+     *  - the number of points
      */?>
 
     <article id="comment">
@@ -134,6 +127,8 @@
             <a href="./profile.php?user=<?=$main_comment->author_name?>" class="author-name"><?=$main_comment->author_name?></a>
             <p class="date" title="<?=$main_comment->date?>"><?=$main_comment->posted_ago?></p>
             <p class="points"><?=$main_comment->points?> points</p>
+            <p class="reply"> <i class="far fa-comment-alt"></i> points</p>
+            <i class="far fa-comment-alt"></i>
 
             <div class="sc-aside">
                 <p class="arrow-up"> <i class="fas fa-arrow-alt-circle-up"></i> </p>
