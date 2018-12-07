@@ -207,6 +207,7 @@ if (commentForm) {
             (new_comment) => {
                 commentForm.reset();
 
+                // amkes sure the user is loged in
                 if (new_comment == 'fail')
                     window.location.replace("./main.php");
                 else
@@ -251,36 +252,13 @@ function createComment(new_comment_str) {
     points.innerText = "" + new_comment[points_index] + " points";
 
 
-    //creates font awesome i for reply
-    let reply_fa = document.createElement('i');
-    reply_fa.setAttribute('class', 'far fa-comment-alt');
+    // gets the rely already defined in other elements
+    let reply = document.getElementById("reply");
 
-    // creates reply
-    let reply = document.createElement('div');
-    reply.setAttribute('class', 'reply');
-    reply.innerHTML = ""+ reply_fa.outerHTML + "<p> reply</p>";
+    // gets the arrows already defined in other elements
+    let arrows = document.getElementById("arrows");
 
-    // create arrow up
-    let arrow_up_fa = document.createElement('i');
-    arrow_up_fa.setAttribute('class', 'fas fa-arrow-alt-circle-up');
-
-    let arrow_up = document.createElement('p');
-    arrow_up.setAttribute('class', 'arrow-up');
-    arrow_up.innerHTML = arrow_up_fa.outerHTML;
-
-    // create arrow down
-    let arrow_down_fa = document.createElement('i');
-    arrow_down_fa.setAttribute('class', 'fas fa-arrow-alt-circle-down');
-
-    let arrow_down = document.createElement('p');
-    arrow_down.setAttribute('class', 'arrow-down');
-    arrow_down.innerHTML = arrow_down_fa.outerHTML;
-
-    let arrows = document.createElement('div');
-    arrows.setAttribute('class', 'arrows');
-    arrows.innerHTML = arrow_up.outerHTML + arrow_down.outerHTML;
-
-    // creates the arrows div
+    // creates the header
     let header = document.createElement('header');
     header.innerHTML = user.outerHTML + date.outerHTML 
                     + points.outerHTML + reply.outerHTML

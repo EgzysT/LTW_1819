@@ -3,6 +3,7 @@
   if(!isset($_GET['id']))
     die(header('Location: ./main.php'));
 
+
   include_once('../includes/session.php');
   include_once('../templates/tpl_common.php');
   include_once('../templates/tpl_story_cards.php');
@@ -31,8 +32,16 @@
 
   // See if user already upvoted / downvoted.
   $vote_type = NULL;
+  
   if($username)
     $vote_type = get_vote($username, $current_story->id);
+
+
+  // checks if the user is loged in to know if it should print the comment form
+  if($_SESSION['username'])
+    $loged_in = true;
+  else
+    $loged_in = false;
 
 
   draw_header($username, $page_title);  ?>
@@ -41,7 +50,7 @@
       <?php
           draw_aside_profile($username, $profile_pic, $bio, $points);
           draw_full_story_card($current_story, $vote_type);
-          draw_comments($comments, $story_id);
+          draw_comments($comments, $story_id, $loged_in);
       ?>
 	  </section>
 

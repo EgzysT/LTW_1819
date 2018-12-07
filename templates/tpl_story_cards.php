@@ -94,14 +94,18 @@
 
 <?php } ?>
 
-<?php function draw_comments($comments, $parent_post) { 
+<?php function draw_comments($comments, $parent_post, $loged_in) { 
     /**
      * Draws a section (comments) containingall the comments passed as argument
      */?>
 
     <section id="comments">
         <?php 
-            draw_comment_form($parent_post);
+
+            // if the user is loged in draws the comment form
+            if ($loged_in) 
+                draw_comment_form($parent_post);
+
             foreach($comments as $comment)
                 draw_comment($comment);
         ?>
@@ -124,12 +128,12 @@
             <a href="./profile.php?user=<?=$main_comment->author_name?>" class="author-name"><?=$main_comment->author_name?></a>
             <p class="date" title="<?=$main_comment->date?>"><?=$main_comment->posted_ago?></p>
             <p class="points"><?=$main_comment->points?> points</p>
-            <div class="reply">
+            <div id="reply" class="reply">
                 <i class="far fa-comment-alt"></i>
                 <p>reply</p>
             </div>
 
-            <div class="arrows">
+            <div id="arrows" class="arrows">
                 <p class="arrow-up"><i class="fas fa-arrow-alt-circle-up"></i></p>
                 <p class="arrow-down"><i class="fas fa-arrow-alt-circle-down"></i></p>
             </div>
