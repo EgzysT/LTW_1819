@@ -192,8 +192,8 @@ let commentForm = document.querySelector('#comments form');
 let comments = document.querySelectorAll('#comment');
 if(commentForm) {
     let contentField = commentForm.querySelector('input[name="content"]');
+    let comment_el = document.getElementById("comments");
     console.log(commentForm.getAttribute('data-id'));
-
     commentForm.onsubmit = (e) => {
         e.preventDefault();
         // Ajax request
@@ -203,14 +203,96 @@ if(commentForm) {
                 content: contentField.value, 
                 post: commentForm.getAttribute('data-id')
             }, 
-            () => {
+            (new_comment) => {
                 commentForm.reset();
-                comments.prepend("Some prepended text.");
+                comment_el.insertBefore(createComment(new_comment), comments[0]);
+
             }
         );
     }
 }
 
+/**
+ * Creates the html to temporarily add the new comment (until the page is refreshed)
+ * @param {String} new_comment_str The values of the new comment divided by |
+ */
+function createComment(new_comment_str) {
+    // info in each index value
+    let content_index = 1, points_index = 4, author_name = 5, posted_ago = 7, time = 8;
+
+    // splits received string to an array
+    let new_comment = new_comment_str.split("|");
+    
+    // creates the user
+    let user = document.createElement('a');
+    user.setAttribute('class', 'author-name');
+    user.setAttribute('href', './profile.php?user=' + new_comment[author_name]);
+    user.innerText = "" + new_comment[author_name];
+
+    // creates the date
+    let date = document.createElement('p');
+    date.setAttribute('class', 'date');
+    date.setAttribute('title', '' + new_comment[time]);
+    date.innerText = "" + new_comment[posted_ago];
+
+    // creates the points
+    let points = document.createElement('p');
+    points.setAttribute('class', 'points');
+    points.innerText = "" + new_comment[points_index] + " points";
+
+
+    //creates font awesome i for reply
+    let reply_fa = document.createElement('i');
+    reply_fa.setAttribute('class', 'far fa-comment-alt');
+
+    // creates reply
+    let reply = document.createElement('div');
+    reply.setAttribute('class', 'reply');
+    reply.innerHTML = ""+ reply_fa.outerHTML + "<p>reply</p>";
+
+    // create arrow up
+    let arrow_up_fa = document.createElement('i');
+    arrow_up_fa.setAttribute('class', 'fas fa-arrow-alt-circle-up');
+
+    let arrow_up = document.createElement('p');
+    arrow_up.setAttribute('class', 'arrow-up');
+    arrow_up.innerHTML = arrow_up_fa.outerHTML;
+
+    // create arrow down
+    let arrow_down_fa = document.createElement('i');
+    arrow_down_fa.setAttribute('class', 'fas fa-arrow-alt-circle-down');
+
+    let arrow_down = document.createElement('p');
+    arrow_down.setAttribute('class', 'arrow-down');
+    arrow_down.innerHTML = arrow_down_fa.outerHTML;
+
+    let arrows = document.createElement('div');
+    arrows.setAttribute('class', 'arrows');
+    arrows.innerHTML = arrow_up.outerHTML + arrow_down.outerHTML;
+
+    // creates the arrows div
+    let header = document.createElement('header');
+    header.innerHTML = user.outerHTML + date.outerHTML 
+                    + points.outerHTML + reply.outerHTML
+                    + arrows.outerHTML;
+
+    // creates the content
+    let content = document.createElement('p');
+    content.setAttribute('class', 'lg-content');
+    content.innerText = "" + new_comment[content_index];
+
+    //creates the body
+    let body = document.createElement('div');
+    body.setAttribute('class', 'body');
+    body.innerHTML = content.outerHTML;
+
+    let new_comment_html = document.createElement('article');
+    new_comment_html.setAttribute('id', 'comment');
+    new_comment_html.innerHTML = header.outerHTML + body.outerHTML;
+
+    return new_comment_html;
+
+}
 
 /* Helper functions */
 function makeHTTPRequest(url, type, params, callback) {

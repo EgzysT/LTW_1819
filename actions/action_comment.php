@@ -18,6 +18,9 @@
   $profile = getUserProfile($username);
   $user_id = $profile->id;
 
-  $comment_id = insertComment($parent_post, $content, $user_id);
-  $comments = getComments($parent_post);
+  $comment = insertComment($parent_post, $content, $user_id);
+
+  // turns the values stored in $comment into a string in which the values are separated by |
+  $string = implode("|", get_object_vars($comment));
+  print_r($string);
 ?>

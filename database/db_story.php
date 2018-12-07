@@ -131,6 +131,24 @@
 
     $stmt = $db->prepare('INSERT INTO comment VALUES (?, ?)');
     $stmt->execute(array($last_id, $parent_post));
+
+    $stmt = $db->prepare('SELECT 
+    post.id as id,
+    post.content, 
+    post.upvotes_count, 
+    post.downvotes_count, 
+    (post.upvotes_count - post.downvotes_count) as points,
+    user.username as author_name, 
+    post.posted_at as timestamp
+    FROM comment, post, channel, user WHERE post.id= comment.post_id AND comment.post_id= ?  Group by post.id');
+    $stmt->execute(array($last_id));
+    $comment = $stmt->fetch(PDO::FETCH_OBJ);
+
+    $comment->posted_ago = time_ago($comment->timestamp);
+    $comment->date = date("H:i:s m-d-y", $comment->timestamp);
+
+    return $comment;
+
   
   }
 
