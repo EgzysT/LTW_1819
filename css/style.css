@@ -1050,6 +1050,7 @@ body > .container {
 #comment-warning {
 	background-color: var(--error-bg-color);
 	border: 1px solid var(--error-text-color);
+	border-radius: 5px;
 	text-align: center;
 	color: var(--error-text-color);
 	margin-top: 1em;
