@@ -1,6 +1,6 @@
 <?php
   /**
-   * Checks if the log in credentials exists, setting messages in case they're not valid
+   * Adds a comment to a post returning the comment added
    */
   include_once('../includes/session.php');
   include_once('../database/db_story.php');

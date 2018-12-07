@@ -222,15 +222,17 @@ if(storyAside) {
     }
 }
 
-/* Comment Ajax */
+/* Comment form Ajax */
 let commentForm = document.querySelector('#comments form');
 let comments = document.querySelectorAll('#comment');
-if (commentForm) {
+if (commentForm && comments) {
 
     let contentField = commentForm.querySelector('input[name="content"]');
     let comment_el = document.getElementById("comments");
 
+    // main comment form - the one that appears after the story
     commentForm.onsubmit = (e) => {
+
         e.preventDefault();
         // Ajax request
         makeHTTPRequest('../actions/action_comment.php', 
@@ -250,6 +252,71 @@ if (commentForm) {
             }
         );
     }
+
+    // reply forms and buttons
+    for (let comment of comments) {
+        addReplyFormEvents(comment);
+    }
+}
+
+function addReplyFormEvents (comment) {
+    // the current form is the first form of the array
+    let curr_reply_div = comment.querySelectorAll('#reply-form')[0];
+    let replyForm = curr_reply_div.querySelector('#comment-form');
+    let warningForm = comment.querySelectorAll('#comment-warning')[0];
+
+    let contentField_reply = replyForm.querySelector('input[name="content"]');
+    let subcomment_div = comment.querySelector('.subcomments');
+    let subcomments = comment.querySelectorAll('#comment');
+
+    // when clicking the reply form appears
+    comment.querySelector('#reply').onclick = () => {
+        makeHTTPRequest('../actions/action_session.php', 
+            'post', 
+            {   }, 
+            (is_user_set) => {
+                
+                if (curr_reply_div.style.display == 'block')
+                    curr_reply_div.style.display = 'none';
+                
+                else if (warningForm.style.display == 'block')
+                    warningForm.style.display = 'none';
+                
+                else if (is_user_set == 'ok')
+                    curr_reply_div.style.display = 'block';
+                
+                else 
+                    warningForm.style.display = 'block';
+                
+            }
+        );
+
+        
+    }
+
+    // add the comment after submission
+    replyForm.onsubmit = (e) => {
+        e.preventDefault();
+        makeHTTPRequest('../actions/action_comment.php', 
+        'post', 
+        {   
+            content: contentField_reply.value, 
+            post: replyForm.getAttribute('data-id')
+        }, 
+        (new_comment) => {
+            // resets the form to its initials values
+            replyForm.reset();
+            // hides the form
+            curr_reply_div.style.display = 'none';
+
+            // makes sure the user is loged in
+            if (new_comment == 'fail')
+                window.location.replace("./main.php");
+            else
+                subcomment_div.insertBefore(createComment(new_comment), subcomments[0]);
+        }
+    );
+    }
 }
 
 /**
@@ -258,7 +325,7 @@ if (commentForm) {
  */
 function createComment(new_comment_str) {
     // info in each index value
-    let content_index = 1, points_index = 4, author_name = 5, posted_ago = 7, time = 8;
+    let id_index = 0, content_index = 1, points_index = 4, author_name = 5, posted_ago = 7, time = 8;
 
     // tests if the string is valid
     if(new_comment_str == "" || !new_comment_str)
@@ -266,7 +333,6 @@ function createComment(new_comment_str) {
         
     // splits received string to an array
     let new_comment = new_comment_str.split("|");
-
 
     
     // creates the user
@@ -286,15 +352,40 @@ function createComment(new_comment_str) {
     points.setAttribute('class', 'points');
     points.innerText = "" + new_comment[points_index] + " points";
 
+    //creates font awesome i for reply		    
+    let reply_fa = document.createElement('i');		     
+    reply_fa.setAttribute('class', 'far fa-comment-alt');		
+       
+    // creates reply		     
+    let reply = document.createElement('div');		   
+    reply.setAttribute('id', 'reply');		
+    reply.setAttribute('data-id', '' + new_comment[id_index]);
+    reply.innerHTML = ""+ reply_fa.outerHTML + "<p> reply</p>";		
+       
+    // create arrow up		    
+    let arrow_up_fa = document.createElement('i');		
+    arrow_up_fa.setAttribute('class', 'fas fa-arrow-alt-circle-up');		
+       
+    let arrow_up = document.createElement('p');		
+    arrow_up.setAttribute('class', 'arrow-up');		
+    arrow_up.innerHTML = arrow_up_fa.outerHTML;		
+       
+    // create arrow down		
+    let arrow_down_fa = document.createElement('i');		
+    arrow_down_fa.setAttribute('class', 'fas fa-arrow-alt-circle-down');		
+       
+    let arrow_down = document.createElement('p');		
+    arrow_down.setAttribute('class', 'arrow-down');		
+    arrow_down.innerHTML = arrow_down_fa.outerHTML;		
+       
+    // creates arrows
+    let arrows = document.createElement('div');		
+    arrows.setAttribute('class', 'arrows');		
+    arrows.innerHTML = arrow_up.outerHTML + arrow_down.outerHTML;
 
-    // gets the rely already defined in other elements
-    let reply = document.getElementById("reply");
-
-    // gets the arrows already defined in other elements
-    let arrows = document.getElementById("arrows");
 
     // creates the header
-    let header = document.createElement('header');
+    let header = document.createElement('header').cloneNode();
     header.innerHTML = user.outerHTML + date.outerHTML 
                     + points.outerHTML + reply.outerHTML
                     + arrows.outerHTML;
@@ -309,13 +400,38 @@ function createComment(new_comment_str) {
     body.setAttribute('class', 'body');
     body.innerHTML = content.outerHTML;
 
+
+    //creates the input content class
+    let reply_form = document.createElement('div');
+    reply_form.setAttribute('id', 'reply-form');
+
+    let comment_form = document.getElementById('comment-form').cloneNode(true);
+    comment_form.setAttribute('data-id', '' + new_comment[id_index]);
+
+    reply_form.innerHTML = commentForm.outerHTML;
+
+    // creates the comment warning
+    let comment_warning = document.getElementById('comment-warning').cloneNode(true);
+
+    //creates subcomments div
+    let subcomments = document.createElement('div');
+    subcomments.setAttribute('class', 'subcomments');
+
+    // creates the comment
     let new_comment_html = document.createElement('article');
     new_comment_html.setAttribute('id', 'comment');
-    new_comment_html.innerHTML = header.outerHTML + body.outerHTML;
+    new_comment_html.innerHTML = header.outerHTML + body.outerHTML 
+                                + reply_form.outerHTML + subcomments.outerHTML
+                                + comment_warning.outerHTML;
+
+
+    addReplyFormEvents(new_comment_html);
 
     return new_comment_html;
 
 }
+
+
 
 /* Helper functions */
 function makeHTTPRequest(url, type, params, callback) {
