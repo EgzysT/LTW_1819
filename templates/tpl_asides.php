@@ -10,16 +10,32 @@
         <footer>
             <div>
                 <button class="button button-blue button-block" id="search-button"> Search </button>
+                <?php if($_SESSION['username']){ ?>
+                <button class="button button-orange button-block"  id="create-channel-button"> Create Channel </button>
+                <?php } ?>
             </div>
         </footer>
     </aside>
 
-    <aside class="aside rotate-180Y" id="search-aside">
+    <aside class="aside rotate-180Y no-display hidden" id="search-aside">
         <header>
             <h4>Search</h4>
         </header>
         <h3 class="aside-header-text">Blueit</h3>
         <p class="aside-body-text">Stories worth reading about life and technology. Crafted with pen and passion by our community.</p>
+    </aside>
+
+    <aside class="aside rotate-180Y no-display hidden" id="create-channel-aside">
+        <header class="orange-header">
+            <h4>Create Channel</h4>
+        </header>
+        <form method="post" action="#" id="create-channel-form">
+            <div id="channel-upload-image"> </div>
+            <input type="text" name="channel_name" placeholder="channel name" required>
+            <input type="text" name="channel_description" placeholder="channel description" required>
+            <input type="submit" value="Create" class="button button-blue button-block">
+            <button class="button button-red button-block cancel-button">Cancel</button>
+        </form>
     </aside>
 <?php }
 
