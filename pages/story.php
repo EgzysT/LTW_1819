@@ -39,9 +39,9 @@
 
   // checks if the user is loged in to know if it should print the comment form
   if($_SESSION['username'])
-    $loged_in = true;
+    $logged_in = true;
   else
-    $loged_in = false;
+    $logged_in = false;
 
 
   draw_header($username, $page_title);  ?>
@@ -50,7 +50,7 @@
       <?php
           draw_aside_profile($username, $profile_pic, $bio, $points);
           draw_full_story_card($current_story, $vote_type);
-          draw_comments($comments, $story_id, $loged_in);
+          draw_comments($comments, $story_id, $logged_in);
       ?>
 	  </section>
 

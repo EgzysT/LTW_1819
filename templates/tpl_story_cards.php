@@ -94,7 +94,7 @@
 
 <?php } ?>
 
-<?php function draw_comments($comments, $parent_post, $loged_in) { 
+<?php function draw_comments($comments, $parent_post, $logged_in) { 
     /**
      * Draws a section (comments) containingall the comments passed as argument
      */?>
@@ -103,8 +103,10 @@
         <?php 
 
             // if the user is loged in draws the comment form
-            if ($loged_in) 
+            if ($logged_in)
                 draw_comment_form($parent_post);
+            else 
+                draw_warning();
 
             foreach($comments as $comment)
                 draw_comment($comment);
@@ -128,7 +130,7 @@
             <a href="./profile.php?user=<?=$main_comment->author_name?>" class="author-name"><?=$main_comment->author_name?></a>
             <p class="date" title="<?=$main_comment->date?>"><?=$main_comment->posted_ago?></p>
             <p class="points"><?=$main_comment->points?> points</p>
-            <div id="reply" class="reply">
+            <div id="reply" data-id="<?=$main_comment->id?>">
                 <i class="far fa-comment-alt"></i>
                 <p>reply</p>
             </div>
@@ -143,12 +145,21 @@
             <p class="lg-content"><?=$main_comment->content?></p>
         </div>
 
+        <div id="reply-form" >
+            <?php
+                draw_comment_form($main_comment->id);
+            ?>
+        </div>
+        
+        <?php draw_warning(); ?>
+
         <div class="subcomments">
             <?php 
                 foreach($main_comment->comments as $comment)
                     draw_comment($comment);
             ?>
         </div>
+
     </article>
 
 <?php } ?>
@@ -156,9 +167,18 @@
 <?php function draw_comment_form($parent_post) { 
     ?>
 
-    <form method="post" data-id="<?=$parent_post?>" action="../actions/action_comment.php" class="comment-form" >
-        <input class="content" type="text" name="content" placeholder="What are your thoughts?" required>
+    <form method="post" data-id="<?=$parent_post?>" action="../actions/action_comment.php" id="comment-form" >
+        <input class="content" type="text-area" name="content" placeholder="What are your thoughts?" required>
         <input class="button button-blue button-block" type="submit" value="Comment" >
     </form>
+
+<?php } ?>
+
+<?php function draw_warning() { 
+    ?>
+
+    <div id="comment-warning">
+        <p>Log in to add a comment</p>
+    </div>
 
 <?php } ?>
