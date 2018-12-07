@@ -48,6 +48,8 @@
 
 	--medium-shadow-color: rgba(0, 0, 0, 0.65);
 	--dark-shadow-color: rgba(0, 0, 0, 1);
+
+	padding-bottom: 1.1em; /* Make room for the page footer */
 }
 	
 /**
@@ -311,7 +313,7 @@ form input {
 	border-bottom: 1px solid var(--light-color);
 }
 
-form input:last-of-type {
+#auth form input:last-of-type {
 	display: inline-block;
 	width: 30%;
 }
@@ -391,13 +393,14 @@ body > footer {
 	color: var(--panel-color);
 	background-color: var(--main-color);
 	box-shadow: 0 1px 6px 0 #000;
+	height: 1.1em;
 }
 
 body > footer > i {
 	color: red;
 }
 
-body > .container { /* Make room for the absolute placed footer */
+body > .container {
 	margin-bottom: 0.8em;
 }
 
@@ -562,6 +565,11 @@ body > .container { /* Make room for the absolute placed footer */
 }
 
 
+.aside > header.orange-header {
+	background-color: var(--orange-color);
+}
+
+
 .aside > header > h4 {
 	margin: 0;
 }
@@ -570,6 +578,7 @@ body > .container { /* Make room for the absolute placed footer */
 	border-top: 1px solid rgba(0,0,0,.125);
 	padding: 0 1em 0;
 	margin: -0.4em auto -0.2em auto; /* remove bottom margin for last element */
+	z-index: 2;
 }
 
 .aside > footer button {
@@ -632,6 +641,10 @@ body > .container { /* Make room for the absolute placed footer */
 	margin-bottom: 1.2em;
 }
 
+#main-aside {
+	backface-visibility: hidden;
+}
+
 #main-aside footer {
 	margin-bottom: -0.4em;
 }
@@ -640,9 +653,41 @@ body > .container { /* Make room for the absolute placed footer */
 	font-weight: normal;
 }
 
+#main-aside button:first-of-type {
+	margin-bottom: 0.5em;
+}
+
+#main-aside button:not(:first-of-type) {
+	margin-top: 0.5em;
+}
+
+#main-aside button:last-of-type {
+	margin-bottom: 1em;
+}
+
 #search-aside {
 	position: absolute;
     top: 0;
+}
+
+#create-channel-aside {
+	position: absolute;
+	top: 0;
+	margin-bottom: 0;
+}
+
+#create-channel-aside input[type="submit"], #create-channel-aside button {
+	margin: 0.4em 0 0.2em;
+}
+
+#create-channel-aside #channel-upload-image {
+	width: 100%;
+	height: 7.1em;
+	background-color: grey;
+}
+
+#create-channel-aside form {
+	padding: 1em 1em 0.5em 1em;
 }
 
 .channel-background {
@@ -745,6 +790,7 @@ body > .container { /* Make room for the absolute placed footer */
 .card ul {
 	margin: 0;
 	padding-top: 0.5em;
+	padding-left: 0;
 }
 
 .card footer {
@@ -1056,4 +1102,12 @@ body > .container { /* Make room for the absolute placed footer */
 	display: block;
 	padding: 0.0em 1em;
 	font-size: 1em;
+}
+
+.hidden {
+	display: hidden;
+}
+
+.no-display {
+	display: none;
 }

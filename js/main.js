@@ -115,15 +115,43 @@ if(asideChannel) {
     }
 }
 
-/* Search aside animation + Search handler */
+/* Main aside JS - Search and Create Channel */
 let asideWithSearchBtn = document.querySelector('.aside.with-subscribe, .aside#main-aside');
 if(asideWithSearchBtn) {
+    let adjustHeights = () => {
+        createChannelAside.classList.remove('no-display');
+        searchAside.classList.remove('no-display');
+        createChannelAside.style.height = asideWithSearchBtn.offsetHeight + "px";
+        searchAside.style.height = asideWithSearchBtn.offsetHeight + "px";
+    };
+    // Search handling
     let searchButton = asideWithSearchBtn.querySelector('#search-button');
     let searchAside = document.querySelector('#search-aside');
     searchButton.onclick = () => {
+        adjustHeights();
         asideWithSearchBtn.classList.toggle('rotate-180Y');
+        searchAside.classList.remove('hidden');
         searchAside.classList.toggle('rotate-180Y');
     };
+    // Create channel handling
+    let createChannelAside = document.querySelector('#create-channel-aside');
+    let createChannelButton = asideWithSearchBtn.querySelector('#create-channel-button');
+    createChannelButton.onclick = () => {
+        adjustHeights();
+        asideWithSearchBtn.classList.toggle('rotate-180Y');
+        createChannelAside.classList.remove('hidden');
+        createChannelAside.classList.toggle('rotate-180Y');
+    };
+        // Handle cancel button.
+    createChannelAside.querySelector('.cancel-button').onclick = () => {
+        asideWithSearchBtn.classList.toggle('rotate-180Y');
+        createChannelAside.classList.toggle('rotate-180Y');
+        return false;
+    };
+        // Prevent form submission.
+    createChannelAside.querySelector('form').onsubmit = (e) => {
+        e.preventDefault();
+    }
 }
 
 /* Upvote/ Downvote Ajax */
