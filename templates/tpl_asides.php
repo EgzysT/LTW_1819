@@ -30,10 +30,18 @@
             <h4>Create Channel</h4>
         </header>
         <form method="post" action="#" id="create-channel-form">
-            <div id="channel-upload-image"> </div>
+            <div id="channel-upload-image">
+            <label class="custom-file-upload">
+                <input type="file"/>
+                <span class="fa-stack fa-2x">
+                    <i class="far fa-square fa-stack-2x"></i>
+                    <i class="fas fa-upload fa-stack-1x"></i>
+                </span>
+            </label>
+            </div>
             <input type="text" name="channel_name" placeholder="channel name" required>
             <input type="text" name="channel_description" placeholder="channel description" required>
-            <input type="submit" value="Create" class="button button-blue button-block">
+            <input type="submit" value="Create Channel" class="button button-blue button-block">
             <button class="button button-red button-block cancel-button">Cancel</button>
         </form>
     </aside>
