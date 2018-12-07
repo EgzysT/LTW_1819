@@ -50,6 +50,7 @@
 	--dark-shadow-color: rgba(0, 0, 0, 1);
 
 	padding-bottom: 1.1em; /* Make room for the page footer */
+	box-sizing: border-box;
 }
 	
 /**
