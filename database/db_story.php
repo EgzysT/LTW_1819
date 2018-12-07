@@ -120,7 +120,7 @@
   }
 
   /**
-   * Inserts a comment
+   * Inserts a comment returning the comment just inserted
    */
   function insertComment($parent_post, $content, $username) {
     $db = Database::instance()->db();

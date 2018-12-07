@@ -8,19 +8,20 @@
 
   // Verify if user is logged in
   if(!$_SESSION['username'])
-  die(header('Location: ../pages/main.php'));
+    echo('fail');
+  else {
+    $content = $_POST['content'];
+    $parent_post = $_POST['post'];
+    
+    $username = $_SESSION['username'];
 
-  $content = $_POST['content'];
-  $parent_post = $_POST['post'];
-  
-  $username = $_SESSION['username'];
+    $profile = getUserProfile($username);
+    $user_id = $profile->id;
 
-  $profile = getUserProfile($username);
-  $user_id = $profile->id;
+    $comment = insertComment($parent_post, $content, $user_id);
 
-  $comment = insertComment($parent_post, $content, $user_id);
-
-  // turns the values stored in $comment into a string in which the values are separated by |
-  $string = implode("|", get_object_vars($comment));
-  print_r($string);
+    // turns the values stored in $comment into a string in which the values are separated by |
+    $string = implode("|", get_object_vars($comment));
+    echo($string);
+  }
 ?>

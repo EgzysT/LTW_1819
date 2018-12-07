@@ -190,10 +190,11 @@ if(storyAside) {
 /* Comment Ajax */
 let commentForm = document.querySelector('#comments form');
 let comments = document.querySelectorAll('#comment');
-if(commentForm) {
+if (commentForm) {
+
     let contentField = commentForm.querySelector('input[name="content"]');
     let comment_el = document.getElementById("comments");
-    console.log(commentForm.getAttribute('data-id'));
+
     commentForm.onsubmit = (e) => {
         e.preventDefault();
         // Ajax request
@@ -205,8 +206,11 @@ if(commentForm) {
             }, 
             (new_comment) => {
                 commentForm.reset();
-                comment_el.insertBefore(createComment(new_comment), comments[0]);
 
+                if (new_comment == 'fail')
+                    window.location.replace("./main.php");
+                else
+                    comment_el.insertBefore(createComment(new_comment), comments[0]);
             }
         );
     }
@@ -220,8 +224,14 @@ function createComment(new_comment_str) {
     // info in each index value
     let content_index = 1, points_index = 4, author_name = 5, posted_ago = 7, time = 8;
 
+    // tests if the string is valid
+    if(new_comment_str == "" || !new_comment_str)
+        return;
+        
     // splits received string to an array
     let new_comment = new_comment_str.split("|");
+
+
     
     // creates the user
     let user = document.createElement('a');
@@ -248,7 +258,7 @@ function createComment(new_comment_str) {
     // creates reply
     let reply = document.createElement('div');
     reply.setAttribute('class', 'reply');
-    reply.innerHTML = ""+ reply_fa.outerHTML + "<p>reply</p>";
+    reply.innerHTML = ""+ reply_fa.outerHTML + "<p> reply</p>";
 
     // create arrow up
     let arrow_up_fa = document.createElement('i');
