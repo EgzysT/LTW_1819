@@ -163,7 +163,7 @@
     $comment = $stmt->fetch(PDO::FETCH_OBJ);
 
     $comment->posted_ago = time_ago($comment->timestamp);
-    $comment->date = date("H:i:s m-d-y", $comment->timestamp);
+    $comment->date = date("H:i:s d-m-y", $comment->timestamp);
 
     return $comment;
 
@@ -182,8 +182,6 @@
       $TIMEBEFORE_HOUR = '{num} hour ago';
       $TIMEBEFORE_HOURS = '{num} hours ago';
       $TIMEBEFORE_YESTERDAY = 'yesterday';
-      $TIMEBEFORE_FORMAT = '%e %b';
-      $TIMEBEFORE_FORMAT_YEAR = '%e %b, %Y';
 
       $out    = ''; // what we will print out
       $now    = time(); // current time
@@ -202,7 +200,7 @@
           return $TIMEBEFORE_YESTERDAY;
 
       else // falling back on a usual date format as it happened later than yesterday
-          return strftime( date( 'Y', $time ) == date( 'Y' ) ? $TIMEBEFORE_FORMAT : $TIMEBEFORE_FORMAT_YEAR, $time );
+        return date("d-m-y", $time);
   }
 
 ?>
