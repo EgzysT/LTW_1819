@@ -996,6 +996,13 @@ body > .container {
 	margin-left: 1em;
 }
 
+#comment > header .points {
+	width: 2em;
+	text-align: right;
+	margin-right: -1em;
+	margin-left: 0;
+}
+
 #comment header #reply {
 	cursor: pointer;
 }
@@ -1012,6 +1019,7 @@ body > .container {
 	margin: 0.2em;
 	font-size: 1.1em;
 	vertical-align: bottom;
+	cursor: pointer;
 }
 
 #comment header .arrows .arrow-up:hover, #comment header .arrows .arrow-up i.selected {
