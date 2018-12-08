@@ -124,6 +124,7 @@ if(asideWithSearchBtn) {
         createChannelAside.style.height = asideWithSearchBtn.offsetHeight + "px";
         searchAside.style.height = asideWithSearchBtn.offsetHeight + "px";
     };
+                            /* SEARCH ASIDE */
     // Search handling
     let searchButton = asideWithSearchBtn.querySelector('#search-button');
     let searchAside = document.querySelector('#search-aside');
@@ -133,6 +134,7 @@ if(asideWithSearchBtn) {
         searchAside.classList.remove('hidden');
         searchAside.classList.toggle('rotate-180Y');
     };
+                           /* CREATE CHANNEL ASIDE */
     // Create channel handling
     let createChannelAside = document.querySelector('#create-channel-aside');
     let createChannelButton = asideWithSearchBtn.querySelector('#create-channel-button');
@@ -142,13 +144,18 @@ if(asideWithSearchBtn) {
         createChannelAside.classList.remove('hidden');
         createChannelAside.classList.toggle('rotate-180Y');
     };
-        // Handle cancel button.
+    // Handle cancel button.
     createChannelAside.querySelector('.cancel-button').onclick = () => {
         asideWithSearchBtn.classList.toggle('rotate-180Y');
         createChannelAside.classList.toggle('rotate-180Y');
         return false;
     };
-        // Prevent form submission.
+    // Handle image upload preview
+    let previewDiv = createChannelAside.querySelector('#channel-upload-image');
+    createChannelAside.querySelector('input[type="file"]').onchange = (e) => {
+        previewDiv.style.background = `url('${URL.createObjectURL(event.target.files[0])}') center/cover`;
+    };
+    // Prevent form submission.
     createChannelAside.querySelector('form').onsubmit = (e) => {
         e.preventDefault();
     }
