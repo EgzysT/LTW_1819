@@ -996,13 +996,6 @@ body > .container {
 	margin-left: 1em;
 }
 
-#comment > header .points {
-	width: 2em;
-	text-align: right;
-	margin-right: -1em;
-	margin-left: 0;
-}
-
 #comment header #reply {
 	cursor: pointer;
 }
@@ -1019,7 +1012,6 @@ body > .container {
 	margin: 0.2em;
 	font-size: 1.1em;
 	vertical-align: bottom;
-	cursor: pointer;
 }
 
 #comment header .arrows .arrow-up:hover, #comment header .arrows .arrow-up i.selected {
@@ -1130,12 +1122,23 @@ body > .container {
 	display: block;
 }
 #edit-profile-form > input {
-	display: inline-block;
+	display: block;
 	margin: 0.5em 1em;
 }
 #edit-profile-form > textarea {
 	display: block;
 	margin: 0.5em 1em;
+	resize: none;
+	outline: none;
+	overflow: auto;
+	border-radius: 5px;
+	border: 1px solid #bbb;
+}
+#edit-profile-form > textarea:focus {
+	border: 2px solid #369;
+}
+#edit-profile-form > textarea label {
+	font-family: var(--serif-font), serif;
 }
 #edit-profile-form > h3{
 	padding: 1.5em 0 0.5em 1em;
@@ -1145,12 +1148,27 @@ body > .container {
 #edit-profile-form > img {
 	display: block;
 	padding: 0.0em 1em;
-	font-size: 1.25em;
+	max-width: 256px;
+	height: auto;
+
+	/* Just so it doesn't blur if pictures get streched beyond their size (removes anti-aliasing) */
+	image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+	image-rendering: -moz-crisp-edges;          /* Firefox                        */
+	image-rendering: -o-crisp-edges;            /* Opera                          */
+	image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+	image-rendering: pixelated; /* Chrome */
+	image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+	-ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
 }
 #edit-profile-form > p {
 	display: block;
 	padding: 0.0em 1em;
 	font-size: 1em;
+}
+#edit-profile-form > input[type=submit] {
+	display: block;
+	margin: 3em 1em 1em 1em;
+	width: 50%
 }
 
 .hidden {
