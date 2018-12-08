@@ -59,7 +59,6 @@
 
     foreach($stories as $story) {
       $story->posted_ago = time_ago($story->timestamp);
-      die($story->posted_ago);
       $story->date = date("H:i:s d-m-y", $story->timestamp);
     }
 
