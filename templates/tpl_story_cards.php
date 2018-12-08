@@ -86,15 +86,15 @@
         </div>
 
             <div class="sc-aside">
-            <p class="arrow-up"> <i data-id="<?=$story->id?>" class="fas fa-arrow-alt-circle-up <?php if($vote_type === 'u') echo 'selected'; ?>"></i> </p>
-            <p id="points"><?=$story->points?></p>
-            <p class="arrow-down"> <i data-id="<?=$story->id?>" class="fas fa-arrow-alt-circle-down <?php if($vote_type === 'd') echo 'selected'; ?>"></i> </p>
-        </div>
+                <p class="arrow-up"> <i data-id="<?=$story->id?>" class="fas fa-arrow-alt-circle-up <?php if($vote_type === 'u') echo 'selected'; ?>"></i> </p>
+                <p id="points"><?=$story->points?></p>
+                <p class="arrow-down"> <i data-id="<?=$story->id?>" class="fas fa-arrow-alt-circle-down <?php if($vote_type === 'd') echo 'selected'; ?>"></i> </p>
+            </div>
     </article>
 
 <?php } ?>
 
-<?php function draw_comments($comments, $parent_post, $logged_in) { 
+<?php function draw_comments($comments, $parent_post) { 
     /**
      * Draws a section (comments) containingall the comments passed as argument
      */?>
@@ -103,10 +103,8 @@
         <?php 
 
             // if the user is loged in draws the comment form
-            if ($logged_in)
+            if($_SESSION['username'])
                 draw_comment_form($parent_post);
-            else 
-                draw_warning();
 
             foreach($comments as $comment)
                 draw_comment($comment);
@@ -114,7 +112,7 @@
     </section>
 <?php } ?>
 
-<?php function draw_comment($main_comment) { 
+<?php function draw_comment($comment) { 
     /**
      * Draws a big card for the story passed as an argument.
      * A card is simply a block that contains:
@@ -127,27 +125,31 @@
     <article id="comment">
 
         <header>
-            <a href="./profile.php?user=<?=$main_comment->author_name?>" class="author-name"><?=$main_comment->author_name?></a>
-            <p class="date" title="<?=$main_comment->date?>"><?=$main_comment->posted_ago?></p>
-            <p class="points"><?=$main_comment->points?> points</p>
-            <div id="reply" data-id="<?=$main_comment->id?>">
+            <a href="./profile.php?user=<?=$comment->author_name?>" class="author-name"><?=$comment->author_name?></a>
+            <p class="date" title="<?=$comment->date?>"><?=$comment->posted_ago?></p>
+            <p class="points"><?=$comment->points?></p>
+            <p>points</p>
+
+            <?php if($_SESSION['username']){ ?>
+            <div id="reply" data-id="<?=$comment->id?>">
                 <i class="far fa-comment-alt"></i>
                 <p>reply</p>
             </div>
+            <?php } ?>
 
             <div id="arrows" class="arrows">
-                <p class="arrow-up"><i class="fas fa-arrow-alt-circle-up"></i></p>
-                <p class="arrow-down"><i class="fas fa-arrow-alt-circle-down"></i></p>
+                <p class="arrow-up"> <i data-id="<?=$comment->id?>" class="fas fa-arrow-alt-circle-up <?php if($comment->vote_type === 'u') echo 'selected'; ?>"></i> </p>
+                <p class="arrow-down"> <i data-id="<?=$comment->id?>" class="fas fa-arrow-alt-circle-down <?php if($comment->vote_type === 'd') echo 'selected'; ?>"></i> </p>
             </div>
         </header>
 
         <div class="body">
-            <p class="lg-content"><?=$main_comment->content?></p>
+            <p class="lg-content"><?=$comment->content?></p>
         </div>
 
         <div id="reply-form" >
             <?php
-                draw_comment_form($main_comment->id);
+                draw_comment_form($comment->id);
             ?>
         </div>
         
@@ -155,8 +157,8 @@
 
         <div class="subcomments">
             <?php 
-                foreach($main_comment->comments as $comment)
-                    draw_comment($comment);
+                foreach($comment->comments as $subcomment)
+                    draw_comment($subcomment);
             ?>
         </div>
 

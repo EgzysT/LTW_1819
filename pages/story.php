@@ -3,7 +3,6 @@
   if(!isset($_GET['id']))
     die(header('Location: ./main.php'));
 
-
   include_once('../includes/session.php');
   include_once('../templates/tpl_common.php');
   include_once('../templates/tpl_story_cards.php');
@@ -17,7 +16,7 @@
 
   $story_id = $_GET['id'];
   $current_story = getStory($story_id);
-  $comments = getComments($story_id);
+  $comments = getComments($story_id, $username);
 
   $page_title = 'Bluedit';
 

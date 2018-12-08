@@ -154,13 +154,36 @@ if(asideWithSearchBtn) {
     }
 }
 
-/* Upvote/ Downvote Ajax */
+/* Upvote/ Downvote for stories Ajax */
 let storyAside = document.querySelector('.sc-aside');
 if(storyAside) {
     let upvoteButton = storyAside.querySelector('.arrow-up i');
     let downvoteButton = storyAside.querySelector('.arrow-down i');
     let points = storyAside.querySelector('#points');
 
+    addVotesEvents(downvoteButton, upvoteButton, points);
+}
+
+/* Upvote/ Downvote for comments Ajax */
+let comments = document.querySelectorAll('#comment');
+if(comments) {
+
+    for (let comment of comments) {
+        let upvoteButton = comment.querySelector('.arrow-up i');
+        let downvoteButton = comment.querySelector('.arrow-down i');
+        let points = comment.querySelector('.points');
+
+        addVotesEvents(downvoteButton, upvoteButton, points);
+    }
+}
+
+/**
+ * Upvote and Downvote events ajax
+ * @param {HTML} downvoteButton 
+ * @param {HTML} upvoteButton 
+ * @param {HTML} points 
+ */
+function addVotesEvents(downvoteButton, upvoteButton, points) {
     let clear_vote = () => {
         makeHTTPRequest('../actions/action_points.php', 
         'post', 
@@ -217,7 +240,6 @@ if(storyAside) {
 
 /* Comment form Ajax */
 let commentForm = document.querySelector('#comments form');
-let comments = document.querySelectorAll('#comment');
 if (commentForm && comments) {
 
     let contentField = commentForm.querySelector('input[name="content"]');
@@ -252,63 +274,71 @@ if (commentForm && comments) {
     }
 }
 
+// shows the reply forms when reply is clicked and handles submission
 function addReplyFormEvents (comment) {
-    // the current form is the first form of the array
-    let curr_reply_div = comment.querySelectorAll('#reply-form')[0];
-    let replyForm = curr_reply_div.querySelector('#comment-form');
-    let warningForm = comment.querySelectorAll('#comment-warning')[0];
 
-    let contentField_reply = replyForm.querySelector('input[name="content"]');
-    let subcomment_div = comment.querySelector('.subcomments');
-    let subcomments = comment.querySelectorAll('#comment');
+    let reply = comment.querySelector('#reply');
 
-    // when clicking the reply form appears
-    comment.querySelector('#reply').onclick = () => {
-        makeHTTPRequest('../actions/action_session.php', 
+    if (reply) {
+
+        // the current form is the first form of the array
+        let curr_reply_div = comment.querySelectorAll('#reply-form')[0];
+        let replyForm = curr_reply_div.querySelector('#comment-form');
+        // let warningForm = comment.querySelectorAll('#comment-warning')[0];
+
+        let contentField_reply = replyForm.querySelector('input[name="content"]');
+        let subcomment_div = comment.querySelector('.subcomments');
+        let subcomments = comment.querySelectorAll('#comment');
+
+        // when clicking the reply form appears
+        reply.onclick = () => {
+            makeHTTPRequest('../actions/action_session.php', 
+                'post', 
+                {   }, 
+                (is_user_set) => {
+                    
+                    if (curr_reply_div.style.display == 'block')
+                        curr_reply_div.style.display = 'none';
+                    
+                    // else if (warningForm.style.display == 'block')
+                    //     warningForm.style.display = 'none';
+                    
+                    else if (is_user_set == 'ok')
+                        curr_reply_div.style.display = 'block';
+                    
+                    else 
+                        curr_reply_div.style.display = 'none';
+                        // warningForm.style.display = 'block';
+                    
+                }
+            );
+
+            
+        }
+
+        // add the comment after submission
+        replyForm.onsubmit = (e) => {
+            e.preventDefault();
+            makeHTTPRequest('../actions/action_comment.php', 
             'post', 
-            {   }, 
-            (is_user_set) => {
-                
-                if (curr_reply_div.style.display == 'block')
-                    curr_reply_div.style.display = 'none';
-                
-                else if (warningForm.style.display == 'block')
-                    warningForm.style.display = 'none';
-                
-                else if (is_user_set == 'ok')
-                    curr_reply_div.style.display = 'block';
-                
-                else 
-                    warningForm.style.display = 'block';
-                
+            {   
+                content: contentField_reply.value, 
+                post: replyForm.getAttribute('data-id')
+            }, 
+            (new_comment) => {
+                // resets the form to its initials values
+                replyForm.reset();
+                // hides the form
+                curr_reply_div.style.display = 'none';
+
+                // makes sure the user is loged in
+                if (new_comment == 'fail')
+                    window.location.replace("./main.php");
+                else
+                    subcomment_div.insertBefore(createComment(new_comment), subcomments[0]);
             }
         );
-
-        
-    }
-
-    // add the comment after submission
-    replyForm.onsubmit = (e) => {
-        e.preventDefault();
-        makeHTTPRequest('../actions/action_comment.php', 
-        'post', 
-        {   
-            content: contentField_reply.value, 
-            post: replyForm.getAttribute('data-id')
-        }, 
-        (new_comment) => {
-            // resets the form to its initials values
-            replyForm.reset();
-            // hides the form
-            curr_reply_div.style.display = 'none';
-
-            // makes sure the user is loged in
-            if (new_comment == 'fail')
-                window.location.replace("./main.php");
-            else
-                subcomment_div.insertBefore(createComment(new_comment), subcomments[0]);
         }
-    );
     }
 }
 
@@ -343,7 +373,11 @@ function createComment(new_comment_str) {
     // creates the points
     let points = document.createElement('p');
     points.setAttribute('class', 'points');
-    points.innerText = "" + new_comment[points_index] + " points";
+    points.innerText = "" + new_comment[points_index];
+
+    let points_wrd = document.createElement('p');
+    points_wrd.setAttribute('class', 'points');
+    points_wrd.innerText = "points";
 
     //creates font awesome i for reply		    
     let reply_fa = document.createElement('i');		     
@@ -357,10 +391,11 @@ function createComment(new_comment_str) {
        
     // create arrow up		    
     let arrow_up_fa = document.createElement('i');		
+    arrow_up_fa.setAttribute('data-id', '' + new_comment[id_index]);
     arrow_up_fa.setAttribute('class', 'fas fa-arrow-alt-circle-up');		
        
     let arrow_up = document.createElement('p');		
-    arrow_up.setAttribute('class', 'arrow-up');		
+    arrow_up.setAttribute('class', 'arrow-up');
     arrow_up.innerHTML = arrow_up_fa.outerHTML;		
        
     // create arrow down		
@@ -369,6 +404,7 @@ function createComment(new_comment_str) {
        
     let arrow_down = document.createElement('p');		
     arrow_down.setAttribute('class', 'arrow-down');		
+    arrow_down_fa.setAttribute('data-id', '' + new_comment[id_index]);
     arrow_down.innerHTML = arrow_down_fa.outerHTML;		
        
     // creates arrows
@@ -380,8 +416,8 @@ function createComment(new_comment_str) {
     // creates the header
     let header = document.createElement('header').cloneNode();
     header.innerHTML = user.outerHTML + date.outerHTML 
-                    + points.outerHTML + reply.outerHTML
-                    + arrows.outerHTML;
+                    + points.outerHTML + points_wrd.outerHTML
+                    + reply.outerHTML + arrows.outerHTML;
 
     // creates the content
     let content = document.createElement('p');
@@ -404,7 +440,7 @@ function createComment(new_comment_str) {
     reply_form.innerHTML = commentForm.outerHTML;
 
     // creates the comment warning
-    let comment_warning = document.getElementById('comment-warning').cloneNode(true);
+    // let comment_warning = document.getElementById('comment-warning').cloneNode(true);
 
     //creates subcomments div
     let subcomments = document.createElement('div');
@@ -414,11 +450,17 @@ function createComment(new_comment_str) {
     let new_comment_html = document.createElement('article');
     new_comment_html.setAttribute('id', 'comment');
     new_comment_html.innerHTML = header.outerHTML + body.outerHTML 
-                                + reply_form.outerHTML + subcomments.outerHTML
-                                + comment_warning.outerHTML;
+                                + reply_form.outerHTML + subcomments.outerHTML;
+                                // + comment_warning.outerHTML;
 
 
     addReplyFormEvents(new_comment_html);
+
+    let upvoteButton = new_comment_html.querySelector('.arrow-up i');
+    let downvoteButton = new_comment_html.querySelector('.arrow-down i');
+    let points_nr = new_comment_html.querySelector('.points');
+
+    addVotesEvents(downvoteButton, upvoteButton, points_nr);
 
     return new_comment_html;
 

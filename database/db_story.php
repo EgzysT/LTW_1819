@@ -96,7 +96,7 @@
   /**
    * Returns all the comments of a story
    */
-  function getComments($post_id) {
+  function getComments($post_id, $username) {
     $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT 
     post.id as id,
@@ -110,11 +110,29 @@
     $stmt->execute(array($post_id));
     $comments = $stmt->fetchAll(PDO::FETCH_OBJ);
 
+    $stmt->execute(array($post_id));
+    $comments = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    $stmt2 = $db->prepare('SELECT 
+    vote_type FROM vote, user Where user.username = ? AND user.id = vote.user_id AND vote.post_id = ?');
+
+
     foreach($comments as $comment) {
+      $stmt2->execute(array($username, $comment->id));
+      $vote_type = $stmt2->fetch(PDO::FETCH_OBJ);
+
+      if ($vote_type)
+        $comment->vote_type = $vote_type->vote_type;
+
+
       $comment->posted_ago = time_ago($comment->timestamp);
       $comment->date = date("H:i:s m-d-y", $comment->timestamp);
-      $comment->comments = getComments($comment->id);
+
+      $comment->comments = getComments($comment->id, $username);
+
     }
+
+
 
     return $comments;
   }
