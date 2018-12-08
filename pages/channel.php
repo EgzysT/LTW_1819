@@ -7,6 +7,7 @@
   include_once('../templates/tpl_common.php');
   include_once('../templates/tpl_story_cards.php');
   include_once('../templates/tpl_asides.php');
+  include_once('../templates/tpl_modals.php');
   include_once('../database/db_story.php');
   include_once('../database/db_user.php');
   include_once('../database/db_channel.php');
@@ -50,10 +51,11 @@
           }
           ?>
       </section>
+      <?php draw_submit_story_aside($channel_name) ; ?>
   </section>
-
   <?php
 
+  draw_modal_outer_background();
   draw_footer();
 
 ?>
