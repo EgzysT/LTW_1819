@@ -59,7 +59,8 @@
 
     foreach($stories as $story) {
       $story->posted_ago = time_ago($story->timestamp);
-      $story->date = date("H:i:s m-d-y", $story->timestamp);
+      die($story->posted_ago);
+      $story->date = date("H:i:s d-m-y", $story->timestamp);
     }
 
     return $stories;
@@ -182,6 +183,8 @@
       $TIMEBEFORE_HOUR = '{num} hour ago';
       $TIMEBEFORE_HOURS = '{num} hours ago';
       $TIMEBEFORE_YESTERDAY = 'yesterday';
+      $TIMEBEFORE_FORMAT = '%d %b';
+      $TIMEBEFORE_FORMAT_YEAR = '%d %b, %Y';
 
       $out    = ''; // what we will print out
       $now    = time(); // current time
@@ -200,7 +203,7 @@
           return $TIMEBEFORE_YESTERDAY;
 
       else // falling back on a usual date format as it happened later than yesterday
-        return date("d-m-y", $time);
+        return strftime( date( 'Y', $time ) == date( 'Y' ) ? $TIMEBEFORE_FORMAT : $TIMEBEFORE_FORMAT_YEAR, $time );
   }
 
 ?>
