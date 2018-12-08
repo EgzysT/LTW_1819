@@ -67,4 +67,16 @@
     $subscribed_channels = $stmt->fetchAll(PDO::FETCH_OBJ);
     return $subscribed_channels;
   };
+
+  /**
+   * Creates a new channel.
+   */
+  function create_channel($channel_name, $channel_description) {
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare("INSERT INTO channel (image, description, subscription_counter, name)
+    VALUES ('../assets/channels/$channel_name.jpg', '$channel_description.', 0, '$channel_name' )");
+
+    $stmt->execute();
+  }
 ?>

@@ -356,6 +356,7 @@ form p {
 	display: none;
     align-items: center;
 	justify-content: center;
+	z-index: 2;
 }
 
 #ajax-form-failure-fill {
@@ -367,6 +368,7 @@ form p {
 	display: none;
     align-items: center;
 	justify-content: center;
+	z-index: 2;
 }
 
 #ajax-form-success-fill {
@@ -378,6 +380,7 @@ form p {
 	display: none;
     align-items: center;
 	justify-content: center;
+	z-index: 2;
 }
 
 /* Body Footer */

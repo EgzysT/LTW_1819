@@ -137,27 +137,60 @@ if(asideWithSearchBtn) {
                            /* CREATE CHANNEL ASIDE */
     // Create channel handling
     let createChannelAside = document.querySelector('#create-channel-aside');
-    let createChannelButton = asideWithSearchBtn.querySelector('#create-channel-button');
-    createChannelButton.onclick = () => {
-        adjustHeights();
-        asideWithSearchBtn.classList.toggle('rotate-180Y');
-        createChannelAside.classList.remove('hidden');
-        createChannelAside.classList.toggle('rotate-180Y');
-    };
-    // Handle cancel button.
-    createChannelAside.querySelector('.cancel-button').onclick = () => {
-        asideWithSearchBtn.classList.toggle('rotate-180Y');
-        createChannelAside.classList.toggle('rotate-180Y');
-        return false;
-    };
-    // Handle image upload preview
-    let previewDiv = createChannelAside.querySelector('#channel-upload-image');
-    createChannelAside.querySelector('input[type="file"]').onchange = (e) => {
-        previewDiv.style.background = `url('${URL.createObjectURL(event.target.files[0])}') center/cover`;
-    };
-    // Prevent form submission.
-    createChannelAside.querySelector('form').onsubmit = (e) => {
-        e.preventDefault();
+    let createChannelButton = document.querySelector('#create-channel-button');
+    if(createChannelButton) // Not available if user isn't logged in.
+    {
+        createChannelButton.onclick = () => {
+            adjustHeights();
+            asideWithSearchBtn.classList.toggle('rotate-180Y');
+            createChannelAside.classList.remove('hidden');
+            createChannelAside.classList.toggle('rotate-180Y');
+        };
+        // Handle cancel button.
+        createChannelAside.querySelector('.cancel-button').onclick = () => {
+            asideWithSearchBtn.classList.toggle('rotate-180Y');
+            createChannelAside.classList.toggle('rotate-180Y');
+            return false;
+        };
+        // Handle image upload preview
+        let previewDiv = createChannelAside.querySelector('#channel-upload-image');
+        createChannelAside.querySelector('input[type="file"]').onchange = (e) => {
+            previewDiv.style.background = `url('${URL.createObjectURL(event.target.files[0])}') center/cover`;
+        };
+        // Handle form submission.
+        let loginAjaxContainer = document.querySelector('#ajax-form-container');
+        let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
+        let ajaxFailBox = loginAjaxContainer.querySelector('#ajax-form-failure-fill');
+        let ajaxSuccessBox = loginAjaxContainer.querySelector('#ajax-form-success-fill');
+        let createChannelForm = loginAjaxContainer.querySelector('form');
+        createChannelForm.onsubmit = (e) => {
+            e.preventDefault();
+            ajaxRequestBox.style.display = 'flex';
+            // Do special xhr request.
+            let formData = new FormData(createChannelForm);
+            let channel_name = formData.get('channel_name');
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', '../actions/action_create_channel.php', true);
+            xhr.addEventListener("load", function () {
+                let response = this.responseText;
+                console.log(response);
+                if(response !== 'ok') { 
+                    ajaxFailBox.style.display = 'flex';
+                    ajaxFailBox.querySelector('#error-message').innerHTML = response;
+                }
+                else {
+                    ajaxSuccessBox.style.display = 'flex';
+                    // Redirect user after 1s.
+                    setTimeout(function(){window.location.replace(`./channel.php?name=${channel_name}`); }, 1000);
+                }
+                ajaxRequestBox.style.display = 'none';
+            });
+            xhr.send(formData);
+        }
+        // Close failure ajax box button handler.
+        ajaxFailBox.querySelector('button').onclick = () => {
+            ajaxFailBox.style.display = 'none';
+        }
     }
 }
 
@@ -482,7 +515,7 @@ function makeHTTPRequest(url, type, params, callback) {
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     request.addEventListener("load", function () {
         callback(this.responseText);
-    })  
+    });
     request.send(encodeForAjax(params));
 }
 
