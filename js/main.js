@@ -119,9 +119,11 @@ if(asideChannel) {
 let asideWithSearchBtn = document.querySelector('.aside.with-subscribe, .aside#main-aside');
 if(asideWithSearchBtn) {
     let adjustHeights = () => {
-        createChannelAside.classList.remove('no-display');
+        if(createChannelAside) { 
+            createChannelAside.classList.remove('no-display');
+            createChannelAside.style.height = asideWithSearchBtn.offsetHeight + "px";
+        }
         searchAside.classList.remove('no-display');
-        createChannelAside.style.height = asideWithSearchBtn.offsetHeight + "px";
         searchAside.style.height = asideWithSearchBtn.offsetHeight + "px";
     };
                             /* SEARCH ASIDE */

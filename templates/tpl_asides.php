@@ -88,6 +88,13 @@ function draw_channel_aside($current_channel, $is_subscribed) {
             
         </footer>
     </aside>
+    <aside class="aside rotate-180Y no-display hidden" id="search-aside">
+        <header>
+            <h4>Search</h4>
+        </header>
+        <h3 class="aside-header-text">Blueit</h3>
+        <p class="aside-body-text">Stories worth reading about life and technology. Crafted with pen and passion by our community.</p>
+    </aside>
 
 <?php }
 function draw_channels_aside($channels, $header_text) {
