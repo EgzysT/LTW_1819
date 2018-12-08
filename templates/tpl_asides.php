@@ -66,7 +66,7 @@ function draw_channel_aside($current_channel, $is_subscribed) {
  * Draws the aside for a specific channel.
  */ ?>
     
-    <aside class="aside aside-channel <?php if($is_subscribed) echo 'with-subscribe'?>">
+    <aside class="aside aside-channel with-subscribe">
         <div class="aside-img" style="background: url('<?=$current_channel->image?>') no-repeat center bottom; background-size: 50%;"> </div>
         <h3 class="aside-header-text">#<span id="channel_name"><?=$current_channel->name?></span></h3>
         <p class="aside-body-text"><?=$current_channel->description?></p>
