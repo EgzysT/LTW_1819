@@ -8,7 +8,7 @@
 			draw_aside_profile($username, $profile_pic, $bio, $points);
 		?>
 		<?php
-			$stories = getStories([]);
+			$stories = getStories(['author' => $username]);
 			draw_story_cards($stories);
 		?>
 	</section>
