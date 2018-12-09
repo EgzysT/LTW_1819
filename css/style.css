@@ -755,6 +755,7 @@ body > .container {
 #create-channel-aside #channel-upload-image {
 	width: 100%;
 	height: 7.1em;
+	max-height: 13vw;
 	background: grey;
 	display: flex;
     align-content: center;
