@@ -77,7 +77,7 @@ function draw_channel_aside($current_channel, $is_subscribed) {
                 <button class="button button-red button-block button-channel-subscription <?php if(!$is_subscribed){ ?>rotate-180Y<?php } ?>" id="unsubscribe"> Unsubscribe </button>
             </div> 
             <div>
-                <button class="button button-orange button-block"> Tell us your story </button>
+                <a href="./submit_story.php?channel=<?=$current_channel->name?>"><button class="button button-orange button-block"> Tell us your story </button></a>
             </div> 
             <?php } ?>
             <div>

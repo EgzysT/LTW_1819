@@ -51,7 +51,6 @@
           ?>
       </section>
   </section>
-
   <?php
 
   draw_footer();
