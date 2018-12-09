@@ -279,24 +279,35 @@ body > header nav li:last-child {
 
 /**
 
-Log in and Sign up
+Log in, Sign up and submit story form styling
 
 */
 
 #auth {
-	margin: 2em auto;
 	width: 40em;
+}
+
+#submission { 
+	width: 60em;
+}
+
+#submission input { 
+	width: 100%;
+}
+
+.panel {
+	margin: 2em auto;
 	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.35);
 	max-width: 100%
 }
 
-#auth header {
+.panel header {
 	padding: 1em 3.5em;
 	font-size: 1.3em;
 	color: var(--panel-color);
 }
 
-#auth header h2 {
+.panel header h2 {
 	margin: 0;
 }
 
@@ -314,16 +325,68 @@ form input {
 	border-bottom: 1px solid var(--light-color);
 }
 
-#auth form input:last-of-type {
+.panel form input:last-of-type {
 	display: inline-block;
 	width: 30%;
 }
+
+#submission.panel .submit-container {
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+}
+
+#submission.panel .submit-container input {
+	display: block;
+	width: 30%;
+}
+
+#submission.panel .submit-container .channel-name {
+	display: flex;
+    justify-content:center;
+    align-content:center;
+    flex-direction:column;
+}
+
+#submission.panel .submit-container .channel-name a {
+	color: var(--main-color);
+	text-shadow: 1px 1px 1px #71717170;
+	display: flex;
+    justify-content:center;
+    align-content:center;
+    flex-direction:column;
+}
+
+#submit-story-form {
+	padding-bottom: 0;
+}
+
 
 form p {
 	display: block;
 	/* float: right; */
 	color: var(--dark-color);
 	margin-top: 1.3em;
+}
+
+textarea {
+	display: block;
+	width: 98%;
+	padding: 0.6em;
+    line-height: 1.5;
+    color: var(--dark-color);
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: .15em;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	font-family: var(--serif-font);
+}
+
+textarea:focus {
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.1em rgba(0,123,255,.25);
 }
 
 @media (max-width: 500px) {
@@ -333,12 +396,16 @@ form p {
 	}
 }
 
-#auth form p a {
+.panel form p a {
 	/* background-color: var(--light-color); */
 	color: var(--main-color);
 	font-weight: bold;
 	text-decoration: underline;
 	padding: 0.4em;
+}
+
+#submission header {
+	padding-left: 2em;
 }
 
 /* Ajax CSS */
@@ -571,9 +638,6 @@ body > .container {
 }
 
 
-.aside > header.orange-header {
-	background-color: var(--orange-color);
-}
 
 
 .aside > header > h4 {
@@ -919,6 +983,10 @@ body > .container {
 	grid-column: 2;
 }
 
+#full-story header {
+	height: 3.8em;
+}
+
 #full-story header, #full-story .body {
 	grid-column: 2;
 }
@@ -1205,11 +1273,6 @@ body > .container {
 }
 
 
-.modal > header.orange-header {
-	background-color: var(--orange-color);
-}
-
-
 .modal > header > h4 {
 	margin: 0;
 }
@@ -1223,6 +1286,10 @@ body > .container {
 	left: 0;
 	z-index: 2;
  }
+
+header.orange-header {
+	background-color: var(--orange-color);
+}
 
 .hidden {
 	display: hidden;
