@@ -20,7 +20,7 @@
 
 	function draw_aside_profile($username, $profile_pic, $bio, $points) {?>
 		<aside id="profile-info" class="aside">
-			<img class="aside-img" style="background: url(<?=$profile_pic?>) no-repeat center bottom; background-size: 50%;" alt="profile picture">
+			<img src=<?=$profile_pic?> alt="profile picture">
 			<h1 class="aside-header-text"><?=$username?></h1>
 			<p class="aside-body-text">Points: <?=$points?></p>
 			<p class="aside-body-text"><?=$bio?></p>

@@ -29,8 +29,13 @@
 			//check if file is an image
 			$check = getimagesize($_FILES["newProfilePic"]["tmp_name"]);
 			if($check !== false) {
-				echo "File is an image - " . $check["mime"] . ".";
+				echo "File is an image - " . $check["mime"] . ".  \n";
 				$uploadOk = 1;
+				list($width, $height) = getimagesize($_FILES["newProfilePic"]["tmp_name"]);
+				if ($width !== $height) {
+					echo "Image is not square, unable to upload, please select a square image and try again.";
+					$uploadOk = 0;
+				}
 			} else {
 				echo "File is not an image.";
 				$uploadOk = 0;

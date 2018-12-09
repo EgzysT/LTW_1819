@@ -597,14 +597,16 @@ body > .container {
 }
 #profile-info > img {
 	display: block;
-	margin: 1em 1em 0em 1em;
 	box-shadow: 0 3px 10px 0 var(--medium-shadow-color);
+	border-radius: 50%;
+	width: 90%;
+	margin: 1em auto;
 }
 
 #profile-info > h1 {
 	display: block;
 	font-size: 2em;
-	margin-top: 10rem;
+	margin-top: 1rem;
 	text-align: center;
 }
 #profile-info p {
