@@ -17,15 +17,7 @@
         </footer>
     </aside>
 
-    <aside class="aside rotate-180Y no-display hidden" id="search-aside">
-        <header>
-            <h4>Search</h4>
-        </header>
-        <h3 class="aside-header-text">Blueit</h3>
-        <p class="aside-body-text">Stories worth reading about life and technology. Crafted with pen and passion by our community.</p>
-    </aside>
-
-    <aside class="aside rotate-180Y no-display hidden" id="create-channel-aside">
+    <aside class="aside rotate-180Y no-display hidden no-display" id="create-channel-aside">
         <header class="orange-header">
             <h4>Create Channel</h4>
         </header>

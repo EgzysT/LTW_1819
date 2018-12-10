@@ -132,7 +132,10 @@ if(mainAside) {
             adjustHeights();
             mainAside.classList.toggle('rotate-180Y');
             createChannelAside.classList.remove('hidden');
-            createChannelAside.classList.toggle('rotate-180Y');
+            createChannelAside.classList.remove('no-display');
+            setTimeout(() => {
+                createChannelAside.classList.toggle('rotate-180Y');
+            }, 0);
         };
         // Handle cancel button.
         createChannelAside.querySelector('.cancel-button').onclick = () => {
