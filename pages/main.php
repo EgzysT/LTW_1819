@@ -3,6 +3,7 @@
   include_once('../templates/tpl_common.php');
   include_once('../templates/tpl_story_cards.php');
   include_once('../templates/tpl_asides.php');
+  include_once('../templates/tpl_modals.php');
   include_once('../database/db_story.php');
   include_once('../database/db_user.php');
   include_once('../database/db_channel.php');
@@ -45,6 +46,8 @@
 
   <?php
 
+  draw_submit_story_aside();
+  draw_modal_outer_background();
   draw_footer();
 
 ?>

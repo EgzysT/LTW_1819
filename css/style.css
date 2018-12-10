@@ -875,7 +875,6 @@ body > .container {
 .card .body {
 	padding-right: 20px;
 	padding-left: 20px;
-	text-align: justify;
 }
 
 .card .body h2 {
@@ -1262,33 +1261,97 @@ body > .container {
  */
 
  .modal {
-	position: absolute;
+	position: fixed;
 	margin-left: auto;
 	margin-right: auto;
+	padding-left: 2em;
+	padding-right: 2em;
+	width: 45em;
+	max-width: 98%;
 	left: 0;
 	right: 0;
 	top: 50%; 
 	transform: translateY(-50%);
 	z-index: 3;
-	box-shadow: 0px 0px 5px 0px var(--medium-shadow-color);
+	box-shadow: 0px 1px 8px 0px var(--medium-shadow-color);
 	padding: 0;
+    max-height: 100vh;
+    overflow-y: auto;
  }
+
 
  .modal > header {
 	margin: 0;
-	padding: 0.2em;
-
+	padding: 0.4em;
+	padding-left: 0.6em;
 	font-size: 2em;
 
 	color: var(--panel-color);
 	background-color: var(--main-color);
-	text-align: center;
-	font-family: var(--sans-font)
+	text-align: left;
+	font-family: var(--sans-font);
+	position: relative;
+    font-weight: bold;
+}
+
+.modal > header .modal-close {
+	display: block;
+	position: absolute;
+	right: 0.5em;
+}
+
+.modal > header i {
+	transform: translateY(6%); /* Fix icon offset */
+}
+
+.modal .modal-division {
+	margin: 1.5em;
+}
+.modal .modal-division header {
+	border-top: 1px solid rgba(0,0,0,.125);
+	margin-top: 1.5em;
+}
+
+.modal .modal-division header p {
+	padding: 0;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    bottom: 11px;
+	background-color: white;    
+	width: 10em;
+	border: 1px solid rgba(0,0,0,.125);
+    border-radius: 2px;
+    padding-bottom: 0.1em;
+    padding-top: 0.1em;
+}
+
+.modal-search .modal-division:not(:last-of-type) .options {
+	display: flex;
+    justify-content: space-around;
 }
 
 
-.modal > header > h4 {
-	margin: 0;
+.modal-search .modal-division input[type="checkbox"], .modal-search .modal-division input[type="radio"] {
+	display: inline-block;
+	width: auto;
+}
+
+.modal .modal-close {
+	cursor: pointer;
+}
+
+.modal .modal-close i {
+	border: 1px solid white;
+    padding: 0.1em;
+    width: 1em;
+    text-align: center;
+    border-radius: 0.1em;
+    height: 1em;
+}
+
+.modal form button, .modal form input[type="submit"] {
+	margin: 0.4em 0 0.2em;
 }
 
  #modal-outer-background {

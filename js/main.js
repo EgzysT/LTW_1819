@@ -115,26 +115,12 @@ if(asideChannel) {
     }
 }
 
-/* Main aside JS - Search and Create Channel */
-let asideWithSearchBtn = document.querySelector('.aside.with-subscribe, .aside#main-aside');
-if(asideWithSearchBtn) {
+/* Main aside JS - Create Channel */
+let mainAside = document.querySelector('.aside.with-subscribe, .aside#main-aside');
+if(mainAside) {
     let adjustHeights = () => {
-        if(createChannelAside) { 
-            //createChannelAside.classList.remove('no-display');
-            createChannelAside.style.height = asideWithSearchBtn.offsetHeight + "px";
-        }
-        searchAside.classList.remove('no-display');
-        searchAside.style.height = asideWithSearchBtn.offsetHeight + "px";
-    };
-                            /* SEARCH ASIDE */
-    // Search handling
-    let searchButton = asideWithSearchBtn.querySelector('#search-button');
-    let searchAside = document.querySelector('#search-aside');
-    searchButton.onclick = () => {
-        adjustHeights();
-        asideWithSearchBtn.classList.toggle('rotate-180Y');
-        searchAside.classList.remove('hidden');
-        searchAside.classList.toggle('rotate-180Y');
+        if(createChannelAside) 
+            createChannelAside.style.height = mainAside.offsetHeight + "px";
     };
                            /* CREATE CHANNEL ASIDE */
     // Create channel handling
@@ -144,13 +130,13 @@ if(asideWithSearchBtn) {
     {
         createChannelButton.onclick = () => {
             adjustHeights();
-            asideWithSearchBtn.classList.toggle('rotate-180Y');
+            mainAside.classList.toggle('rotate-180Y');
             createChannelAside.classList.remove('hidden');
             createChannelAside.classList.toggle('rotate-180Y');
         };
         // Handle cancel button.
         createChannelAside.querySelector('.cancel-button').onclick = () => {
-            asideWithSearchBtn.classList.toggle('rotate-180Y');
+            mainAside.classList.toggle('rotate-180Y');
             createChannelAside.classList.toggle('rotate-180Y');
             return false;
         };
@@ -240,6 +226,30 @@ if (submitStoryForm) {
     ajaxFailBox.querySelector('button').onclick = () => {
         ajaxFailBox.style.display = 'none';
     }
+}
+
+/* Search Modal */
+let searchModal = document.querySelector('.modal-search');
+if(searchModal) {
+    let searchButton = document.querySelector('#search-button');
+    let cancelButtons = searchModal.querySelectorAll('.modal-close');
+    let outerBackground = document.querySelector('#modal-outer-background');
+
+    let closeModal = (e) => {
+        if(e)
+            e.preventDefault();
+        searchModal.classList.add('no-display');
+        outerBackground.classList.add('no-display');
+    }
+    let openModal = () => {
+        searchModal.classList.remove('no-display');
+        outerBackground.classList.remove('no-display');
+    };
+    
+    for(let cancelButton of cancelButtons) {
+        cancelButton.onclick = closeModal;
+    }
+    searchButton.onclick = openModal;
 }
 
 /* Upvote/ Downvote for stories Ajax */
