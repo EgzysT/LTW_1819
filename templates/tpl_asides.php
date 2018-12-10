@@ -17,7 +17,7 @@
         </footer>
     </aside>
 
-    <aside class="aside rotate-180Y no-display hidden no-display" id="create-channel-aside">
+    <aside class="aside rotate-180Y no-display hidden" id="create-channel-aside">
         <header class="orange-header">
             <h4>Create Channel</h4>
         </header>
