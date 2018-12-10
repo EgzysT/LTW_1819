@@ -196,6 +196,52 @@ if(asideWithSearchBtn) {
     }
 }
 
+/* Story submission functions */
+let submitStoryForm = document.querySelector('#submit-story-form');
+if (submitStoryForm) {
+    /* Handle signup submission trough AJAX */
+    let loginAjaxContainer = document.querySelector('#ajax-form-container');
+    let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
+    let ajaxFailBox = loginAjaxContainer.querySelector('#ajax-form-failure-fill');
+    let ajaxSuccessBox = loginAjaxContainer.querySelector('#ajax-form-success-fill');
+
+    let titleField = submitStoryForm.querySelector('input[name="story_title"]');
+    let textField = submitStoryForm.querySelector('textarea[name="story_text"]');
+    let channelName = submitStoryForm.querySelector('.channel-name a').textContent.substr(1);
+
+    // Submit form handler.
+    submitStoryForm.onsubmit = (e) => {
+        e.preventDefault();
+        ajaxRequestBox.style.display = 'flex';
+        // Ajax request
+        makeHTTPRequest('../actions/action_submission.php', 
+            'post', 
+            {   channel_name: channelName, 
+                story_title: titleField.value, 
+                story_text: textField.value,
+                csrf: csrf
+            }, 
+            (response) => { /* callback */
+                if(response === 'ok') { // Nasty trick to see if a number was returned.
+                    ajaxSuccessBox.style.display = 'flex';
+                    // Redirect user after 1s.
+                    setTimeout(function(){window.location.replace(`./channel.php?name=${channelName}`); }, 1000);
+                }
+                else { // Error.
+                    ajaxFailBox.style.display = 'flex';
+                    ajaxFailBox.querySelector('#error-message').innerHTML = response;
+                }
+                ajaxRequestBox.style.display = 'none';
+            }
+        );
+    }
+
+    // Close failure ajax box button handler.
+    ajaxFailBox.querySelector('button').onclick = () => {
+        ajaxFailBox.style.display = 'none';
+    }
+}
+
 /* Upvote/ Downvote for stories Ajax */
 let storyAside = document.querySelector('.sc-aside');
 if(storyAside) {

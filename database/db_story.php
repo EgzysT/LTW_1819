@@ -82,15 +82,42 @@
     user.profile_pic as profile_pic,
     post.posted_at as timestamp,
     (SELECT count(*) FROM comment WHERE post.id = comment.parent_post) as comments
-    FROM story, post, channel, user WHERE post.id= ?');
+    FROM story, post, channel, user WHERE post.id = ? AND story.post_id = post.id AND post.user_id = user.id AND channel.id = story.channel_id');
     $stmt->execute(array($post_id));
     $story = $stmt->fetch(PDO::FETCH_OBJ);
+
+    if(!$story) {
+      return NULL;
+    }
 
     $story->posted_ago = time_ago($story->timestamp);
     $story->date = date("H:i:s m-d-y", $story->timestamp);
 
 
     return $story;
+  }
+
+  /**
+   * Creates a new story at the given channel.
+   */
+  function createStory($channel_name, $author_username, $story_title, $story_text) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO post (content, user_id)
+    SELECT ?, user.id
+    FROM user 
+    WHERE user.username = ?');
+
+    $stmt->execute(array($story_text, $author_username));
+    $last_id = $db->lastInsertId();
+
+    $stmt = $db->prepare('INSERT INTO story (title, channel_id, post_id) 
+          SELECT ?, channel.id, ?
+          FROM channel
+          WHERE channel.name = ?');
+
+    $stmt->execute(array($story_title, $last_id, $channel_name));
+    
+    return $last_id;
   }
 
   /**
@@ -107,9 +134,6 @@
     user.username as author_name, 
     post.posted_at as timestamp
     FROM comment, post, channel, user WHERE post.id= comment.post_id AND comment.parent_post= ?  Group by post.id');
-    $stmt->execute(array($post_id));
-    $comments = $stmt->fetchAll(PDO::FETCH_OBJ);
-
     $stmt->execute(array($post_id));
     $comments = $stmt->fetchAll(PDO::FETCH_OBJ);
 

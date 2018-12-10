@@ -16,6 +16,10 @@
 
   $story_id = $_GET['id'];
   $current_story = getStory($story_id);
+  
+  if(!$current_story)
+    die(header('Location: ./main.php'));
+
   $comments = getComments($story_id, $username);
 
   $page_title = 'Bluedit';
@@ -34,7 +38,6 @@
   
   if($username)
     $vote_type = get_vote($username, $current_story->id);
-
 
   // checks if the user is loged in to know if it should print the comment form
   if($_SESSION['username'])

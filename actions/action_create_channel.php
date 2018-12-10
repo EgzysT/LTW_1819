@@ -21,7 +21,7 @@
   }
 
   // Handle image stuff;
-  $original_img = imagecreatefromstring(file_get_contents($_FILES['image']['tmp_name']));
+  $original_img = @imagecreatefromstring(file_get_contents($_FILES['image']['tmp_name']));
   if(!$original_img) { 
     die('Image extension not supported.');
   }
