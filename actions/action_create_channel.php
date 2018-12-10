@@ -31,9 +31,17 @@
 
   $small = imagecreatetruecolor(572, 400);
   imagecopyresized($small, $original_img, 0, 0, 0, 0, 572, 400, $width, $height);
-  imagejpeg($small, "../assets/channels/$channel_name.jpg");
 
-  create_channel($channel_name, $channel_desc);
-  subscribe($username, $channel_name);
+  try{ 
+    create_channel($channel_name, $channel_desc);
+    subscribe($username, $channel_name);
+    imagejpeg($small, "../assets/channels/$channel_name.jpg");
+  }
+  catch (Exception $e) {
+    if($e->errorInfo[2] == "UNIQUE constraint failed: channel.name")
+      die('Channel already exists.');
+    else 
+      die($e->errorInfo[2]);
+  }
   die('ok');
 ?>

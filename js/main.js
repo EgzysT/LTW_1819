@@ -120,7 +120,7 @@ let asideWithSearchBtn = document.querySelector('.aside.with-subscribe, .aside#m
 if(asideWithSearchBtn) {
     let adjustHeights = () => {
         if(createChannelAside) { 
-            createChannelAside.classList.remove('no-display');
+            //createChannelAside.classList.remove('no-display');
             createChannelAside.style.height = asideWithSearchBtn.offsetHeight + "px";
         }
         searchAside.classList.remove('no-display');
