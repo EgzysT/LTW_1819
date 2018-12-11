@@ -1217,14 +1217,15 @@ body > .container {
 	font-size: 2em;
 	box-shadow: 0 0px 2px 0 #888;
 }
-#edit-profile-form {
+.edit-profile-form {
 	display: block;
+	border-bottom: 2px solid #789;
 }
-#edit-profile-form > input {
+.edit-profile-form > input {
 	display: block;
 	margin: 0.5em 1em;
 }
-#edit-profile-form > textarea {
+.edit-profile-form > textarea {
 	display: block;
 	margin: 0.5em 1em;
 	resize: none;
@@ -1233,18 +1234,18 @@ body > .container {
 	border-radius: 5px;
 	border: 1px solid #bbb;
 }
-#edit-profile-form > textarea:focus {
+.edit-profile-form > textarea:focus {
 	border: 2px solid #369;
 }
-#edit-profile-form > textarea label {
+.edit-profile-form > textarea label {
 	font-family: var(--serif-font), serif;
 }
-#edit-profile-form > h3{
+.edit-profile-form > h3{
 	padding: 1.5em 0 0.5em 1em;
 	margin: 0;
 	font-size: 1.25em;
 }
-#edit-profile-form > img {
+.edit-profile-form > img {
 	display: block;
 	padding: 0.0em 1em;
 	max-width: 256px;
@@ -1259,12 +1260,12 @@ body > .container {
 	image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
 	-ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
 }
-#edit-profile-form > p {
+.edit-profile-form > p {
 	display: block;
 	padding: 0.0em 1em;
 	font-size: 1em;
 }
-#edit-profile-form > input[type=submit] {
+.edit-profile-form > input[type=submit] {
 	display: block;
 	margin: 3em 1em 1em 1em;
 	width: 50%
