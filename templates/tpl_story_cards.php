@@ -128,7 +128,7 @@
      *  - the number of points
      */?>
 
-    <article id="comment">
+    <article class="comment">
 
         <header>
             <a href="./profile.php?user=<?=$comment->author_name?>" class="author-name"><?=$comment->author_name?></a>
@@ -137,12 +137,12 @@
             <p>points</p>
 
         <?php if($_SESSION['username']){ ?>
-            <div id="reply" data-id="<?=$comment->id?>">
+            <div class="reply" data-id="<?=$comment->id?>">
                 <i class="far fa-comment-alt"></i>
                 <p>reply</p>
             </div>
 
-            <div id="arrows" class="arrows">
+            <div class="arrows">
                 <p class="arrow-up"> <i data-id="<?=$comment->id?>" class="fas fa-arrow-alt-circle-up <?php if($comment->vote_type === 'u') echo 'selected'; ?>"></i> </p>
                 <p class="arrow-down"> <i data-id="<?=$comment->id?>" class="fas fa-arrow-alt-circle-down <?php if($comment->vote_type === 'd') echo 'selected'; ?>"></i> </p>
             </div>
@@ -153,7 +153,7 @@
             <p class="lg-content"><?=$comment->content?></p>
         </div>
 
-        <div id="reply-form" >
+        <div class="reply-form" >
             <?php
                 draw_comment_form($comment->id);
             ?>
@@ -173,7 +173,7 @@
 <?php function draw_comment_form($parent_post) { 
     ?>
 
-    <form method="post" data-id="<?=$parent_post?>" action="../actions/action_comment.php" id="comment-form" >
+    <form method="post" data-id="<?=$parent_post?>" action="../actions/action_comment.php" class="comment-form" >
         <input class="content" type="text-area" name="content" placeholder="What are your thoughts?" required>
         <input class="button button-blue button-block" type="submit" value="Comment" >
     </form>
