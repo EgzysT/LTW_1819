@@ -508,7 +508,8 @@ body > .container {
 	grid-template-rows: auto auto;
 	grid-template-columns: 1fr;
 	grid-template-areas: "stories" /* Default for small screens */
-						 "aside";
+						 "aside"
+						 "comments";
 	grid-gap: 0;
 	margin-bottom: 2em;
 }
@@ -519,6 +520,12 @@ body > .container {
 		grid-template-areas: "stories aside";
 		grid-column-gap: 1em;
 	}
+	.one-story {
+		grid-template-columns: 4fr 2fr;
+		grid-template-areas: 	"stories aside"
+								"comments aside";
+		grid-column-gap: 1em;
+	}
 }
 
 @media (min-width: 1000px) {
@@ -527,12 +534,25 @@ body > .container {
 		grid-template-areas: "stories aside";
 		grid-column-gap: 1.25em;
 	}
+	.one-story {
+		grid-template-columns: 5fr 2fr;
+		grid-template-areas: 	"stories aside"
+								"comments aside";
+		grid-column-gap: 1.25em;
+	}
 }
 
 @media (min-width: 1200px) {
-	.channel, .profile, .one-story {
+	.channel, .profile {
 		grid-template-columns: 6fr 2fr;
 		grid-template-areas: "stories aside";
+		grid-column-gap: 1.5em;
+	}
+
+	.one-story {
+		grid-template-columns: 6fr 2fr;
+		grid-template-areas: 	"stories aside"
+								"comments aside";
 		grid-column-gap: 1.5em;
 	}
 }
@@ -815,7 +835,6 @@ body > .container {
 	border-radius: 2px;
 	background-color: var(--panel-color);
 	box-shadow: 0px 0px 2px 0px var(--medium-shadow-color);
-	margin-bottom: 1em;
 }
 
 .card > header {
@@ -934,7 +953,6 @@ body > .container {
 	display: grid;
 	margin-top: 1.5em;
 	position:relative;
-	grid-template-rows: 4.5em auto;
 }
 
 #full-story .sc-aside {
@@ -999,17 +1017,19 @@ body > .container {
 
 #full-story header {
 	height: 3.8em;
+	grid-row: 1;
+	grid-column: 2;
 }
 
-#full-story header, #full-story .body {
+#full-story .body {
 	grid-column: 2;
+	word-break: break-all;
 }
 
 #full-story .body .lg-content, .comment .body .lg-content{
 	color: var(--dark-color);
 	text-align: justify;
 	line-height: 1.5em;
-	word-wrap: break-word;
 }
 
 
@@ -1033,6 +1053,11 @@ body > .container {
 	Comment
 
 */
+
+#comments {
+	grid-area: comments;
+	margin-top: 1em;
+}
 
 .comment{
 	display: grid;
@@ -1131,7 +1156,7 @@ body > .container {
 
 */
 .comment-form {
-	margin: 1em 0em;
+	margin-bottom: 1em;
 	background-color: #FAFAFA;
 	box-shadow: 0 0 3px 0 #CCC;
 }

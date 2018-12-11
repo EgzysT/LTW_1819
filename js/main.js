@@ -387,7 +387,7 @@ function addReplyFormEvents (comment) {
         let replyForm = curr_reply_div.querySelector('#comment-form');
         // let warningForm = comment.querySelectorAll('#comment-warning')[0];
 
-        let contentField_reply = replyForm.querySelector('input[name="content"]');
+        let contentField_reply = replyForm.querySelector('textarea[name="content"]');
         let subcomment_div = comment.querySelector('.subcomments');
         let subcomments = comment.querySelectorAll('#comment');
 
