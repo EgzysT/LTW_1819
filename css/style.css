@@ -563,7 +563,7 @@ body > .container {
 	margin-bottom: 1.5em;
 }
 
-#stories {
+#stories > h3 {
 	margin-top: 0.4em;
 }
 
