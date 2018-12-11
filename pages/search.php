@@ -8,7 +8,7 @@
   include_once('../database/db_user.php');
   include_once('../database/db_channel.php');
 
-  $page_title = 'Bluedit';
+  $page_title = 'Bluedit - Search';
   $username = $_SESSION['username'];
 
   draw_header($username, $page_title); ?>
@@ -17,7 +17,7 @@
     
     <?php
       $stories = getStories($_GET);
-      draw_story_cards($stories); 
+      draw_story_cards($stories, '<h3>Showing '.count($stories).' search results: </h3>'); 
       ?> 
 
       <section class="aside-container">
