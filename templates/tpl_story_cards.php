@@ -174,7 +174,7 @@
     ?>
 
     <form method="post" data-id="<?=$parent_post?>" action="../actions/action_comment.php" class="comment-form" >
-        <input class="content" type="text-area" name="content" placeholder="What are your thoughts?" required>
+        <textarea class="content" type="text-area" name="content" placeholder="What are your thoughts?" required></textarea>
         <input class="button button-blue button-block" type="submit" value="Comment" >
     </form>
 

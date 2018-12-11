@@ -1009,6 +1009,7 @@ body > .container {
 	color: var(--dark-color);
 	text-align: justify;
 	line-height: 1.5em;
+	word-wrap: break-word;
 }
 
 
@@ -1073,6 +1074,7 @@ body > .container {
 
 .comment > * {
 	margin: 0em 1em;
+	word-break: break-word;
 }
 
 .comment > header p {
@@ -1139,6 +1141,8 @@ body > .container {
 	border: 0;
 	background-color: #F8F8F8;
 	min-height: 5em;
+	margin-bottom: 0.5em;
+	word-wrap: none;
 }
 
 .comment-form input[type='text'] {

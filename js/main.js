@@ -137,12 +137,128 @@ if(asideWithSearchBtn) {
                            /* CREATE CHANNEL ASIDE */
     // Create channel handling
     let createChannelAside = document.querySelector('#create-channel-aside');
-    let createChannelButton = asideWithSearchBtn.querySelector('#create-channel-button');
-    createChannelButton.onclick = () => {
-        adjustHeights();
-        asideWithSearchBtn.classList.toggle('rotate-180Y');
-        createChannelAside.classList.remove('hidden');
-        createChannelAside.classList.toggle('rotate-180Y');
+    let createChannelButton = document.querySelector('#create-channel-button');
+    if(createChannelButton) // Not available if user isn't logged in.
+    {
+        createChannelButton.onclick = () => {
+            adjustHeights();
+            mainAside.classList.toggle('rotate-180Y');
+            createChannelAside.classList.remove('hidden');
+            createChannelAside.classList.remove('no-display');
+            setTimeout(() => {
+                createChannelAside.classList.toggle('rotate-180Y');
+            }, 20);
+        };
+        // Handle cancel button.
+        createChannelAside.querySelector('.cancel-button').onclick = () => {
+            mainAside.classList.toggle('rotate-180Y');
+            createChannelAside.classList.toggle('rotate-180Y');
+            return false;
+        };
+        // Handle image upload preview
+        let previewDiv = createChannelAside.querySelector('#channel-upload-image');
+        createChannelAside.querySelector('input[type="file"]').onchange = (e) => {
+            previewDiv.style.background = `url('${URL.createObjectURL(event.target.files[0])}') center/cover`;
+        };
+        // Handle form submission.
+        let loginAjaxContainer = document.querySelector('#ajax-form-container');
+        let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
+        let ajaxFailBox = loginAjaxContainer.querySelector('#ajax-form-failure-fill');
+        let ajaxSuccessBox = loginAjaxContainer.querySelector('#ajax-form-success-fill');
+        let createChannelForm = loginAjaxContainer.querySelector('form');
+        createChannelForm.onsubmit = (e) => {
+            e.preventDefault();
+            ajaxRequestBox.style.display = 'flex';
+            // Do special xhr request.
+            let formData = new FormData(createChannelForm);
+            let channel_name = formData.get('channel_name');
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', '../actions/action_create_channel.php', true);
+            xhr.addEventListener("load", function () {
+                let response = this.responseText;
+                console.log(response);
+                if(response !== 'ok') { 
+                    ajaxFailBox.style.display = 'flex';
+                    ajaxFailBox.querySelector('#error-message').innerHTML = response;
+                }
+                else {
+                    ajaxSuccessBox.style.display = 'flex';
+                    // Redirect user after 1s.
+                    setTimeout(function(){window.location.replace(`./channel.php?name=${channel_name}`); }, 1000);
+                }
+                ajaxRequestBox.style.display = 'none';
+            });
+            xhr.send(formData);
+        }
+        // Close failure ajax box button handler.
+        ajaxFailBox.querySelector('button').onclick = () => {
+            ajaxFailBox.style.display = 'none';
+        }
+    }
+}
+
+/* Story submission functions */
+let submitStoryForm = document.querySelector('#submit-story-form');
+if (submitStoryForm) {
+    /* Handle signup submission trough AJAX */
+    let loginAjaxContainer = document.querySelector('#ajax-form-container');
+    let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
+    let ajaxFailBox = loginAjaxContainer.querySelector('#ajax-form-failure-fill');
+    let ajaxSuccessBox = loginAjaxContainer.querySelector('#ajax-form-success-fill');
+
+    let titleField = submitStoryForm.querySelector('input[name="story_title"]');
+    let textField = submitStoryForm.querySelector('textarea[name="story_text"]');
+    let channelName = submitStoryForm.querySelector('.channel-name a').textContent.substr(1);
+
+    // Submit form handler.
+    submitStoryForm.onsubmit = (e) => {
+        e.preventDefault();
+        ajaxRequestBox.style.display = 'flex';
+        // Ajax request
+        makeHTTPRequest('../actions/action_submission.php', 
+            'post', 
+            {   channel_name: channelName, 
+                story_title: titleField.value, 
+                story_text: textField.value,
+                csrf: csrf
+            }, 
+            (response) => { /* callback */
+                if(response === 'ok') { // Nasty trick to see if a number was returned.
+                    ajaxSuccessBox.style.display = 'flex';
+                    // Redirect user after 1s.
+                    setTimeout(function(){window.location.replace(`./channel.php?name=${channelName}`); }, 1000);
+                }
+                else { // Error.
+                    ajaxFailBox.style.display = 'flex';
+                    ajaxFailBox.querySelector('#error-message').innerHTML = response;
+                }
+                ajaxRequestBox.style.display = 'none';
+            }
+        );
+    }
+
+    // Close failure ajax box button handler.
+    ajaxFailBox.querySelector('button').onclick = () => {
+        ajaxFailBox.style.display = 'none';
+    }
+}
+
+/* Search Modal */
+let searchModal = document.querySelector('.modal-search');
+if(searchModal) {
+    let searchButton = document.querySelector('#search-button');
+    let cancelButtons = searchModal.querySelectorAll('.modal-close');
+    let outerBackground = document.querySelector('#modal-outer-background');
+
+    let closeModal = (e) => {
+        if(e)
+            e.preventDefault();
+        searchModal.classList.add('no-display');
+        outerBackground.classList.add('no-display');
+    }
+    let openModal = () => {
+        searchModal.classList.remove('no-display');
+        outerBackground.classList.remove('no-display');
     };
     // Handle cancel button.
     createChannelAside.querySelector('.cancel-button').onclick = () => {
@@ -251,7 +367,7 @@ function addVotesEvents(downvoteButton, upvoteButton, points) {
 let commentForm = document.querySelector('#comments form');
 if (commentForm && comments) {
 
-    let contentField = commentForm.querySelector('input[name="content"]');
+    let contentField = commentForm.querySelector('textarea[name="content"]');
     let comment_el = document.getElementById("comments");
 
     // main comment form - the one that appears after the story
