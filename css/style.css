@@ -835,6 +835,7 @@ body > .container {
 	border-radius: 2px;
 	background-color: var(--panel-color);
 	box-shadow: 0px 0px 2px 0px var(--medium-shadow-color);
+	margin-bottom: 1em;
 }
 
 .card > header {
@@ -1023,7 +1024,7 @@ body > .container {
 
 #full-story .body {
 	grid-column: 2;
-	word-break: break-all;
+	word-break: break-word;
 }
 
 #full-story .body .lg-content, .comment .body .lg-content{

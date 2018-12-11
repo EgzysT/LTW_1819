@@ -343,7 +343,7 @@ function addVotesEvents(downvoteButton, upvoteButton, points) {
 let commentForm = document.querySelector('#comments form');
 if (commentForm && comments) {
 
-    let contentField = commentForm.querySelector('input[name="content"]');
+    let contentField = commentForm.querySelector('textarea[name="content"]');
     let comment_el = document.getElementById("comments");
 
     // main comment form - the one that appears after the story
