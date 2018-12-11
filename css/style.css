@@ -1100,6 +1100,7 @@ body > .container {
 	margin: 0.2em;
 	font-size: 1.1em;
 	vertical-align: bottom;
+	cursor: pointer;
 }
 
 .comment header .arrows .arrow-up:hover, .comment header .arrows .arrow-up i.selected {
