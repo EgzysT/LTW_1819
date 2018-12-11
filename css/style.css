@@ -1024,7 +1024,7 @@ body > .container {
 
 #full-story .body {
 	grid-column: 2;
-	word-break: break-all;
+	word-break: break-word;
 }
 
 #full-story .body .lg-content, .comment .body .lg-content{
