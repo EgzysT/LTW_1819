@@ -86,9 +86,15 @@
         </div>
 
             <div class="sc-aside">
+            
+            <?php if($_SESSION['username']){ ?>
                 <p class="arrow-up"> <i data-id="<?=$story->id?>" class="fas fa-arrow-alt-circle-up <?php if($vote_type === 'u') echo 'selected'; ?>"></i> </p>
+            <?php } ?>        
                 <p id="points"><?=$story->points?></p>
+            <?php if($_SESSION['username']){ ?>   
                 <p class="arrow-down"> <i data-id="<?=$story->id?>" class="fas fa-arrow-alt-circle-down <?php if($vote_type === 'd') echo 'selected'; ?>"></i> </p>
+            <?php } ?>        
+                
             </div>
     </article>
 
@@ -122,7 +128,7 @@
      *  - the number of points
      */?>
 
-    <article id="comment">
+    <article class="comment">
 
         <header>
             <a href="./profile.php?user=<?=$comment->author_name?>" class="author-name"><?=$comment->author_name?></a>
@@ -130,31 +136,29 @@
             <p class="points"><?=$comment->points?></p>
             <p>points</p>
 
-            <?php if($_SESSION['username']){ ?>
-            <div id="reply" data-id="<?=$comment->id?>">
+        <?php if($_SESSION['username']){ ?>
+            <div class="reply" data-id="<?=$comment->id?>">
                 <i class="far fa-comment-alt"></i>
                 <p>reply</p>
             </div>
-            <?php } ?>
 
-            <div id="arrows" class="arrows">
+            <div class="arrows">
                 <p class="arrow-up"> <i data-id="<?=$comment->id?>" class="fas fa-arrow-alt-circle-up <?php if($comment->vote_type === 'u') echo 'selected'; ?>"></i> </p>
                 <p class="arrow-down"> <i data-id="<?=$comment->id?>" class="fas fa-arrow-alt-circle-down <?php if($comment->vote_type === 'd') echo 'selected'; ?>"></i> </p>
             </div>
+        <?php } ?>
         </header>
 
         <div class="body">
             <p class="lg-content"><?=$comment->content?></p>
         </div>
 
-        <div id="reply-form" >
+        <div class="reply-form" >
             <?php
                 draw_comment_form($comment->id);
             ?>
         </div>
         
-        <?php draw_warning(); ?>
-
         <div class="subcomments">
             <?php 
                 foreach($comment->comments as $subcomment)
@@ -169,18 +173,9 @@
 <?php function draw_comment_form($parent_post) { 
     ?>
 
-    <form method="post" data-id="<?=$parent_post?>" action="../actions/action_comment.php" id="comment-form" >
-        <input class="content" type="text-area" name="content" placeholder="What are your thoughts?" required>
+    <form method="post" data-id="<?=$parent_post?>" action="../actions/action_comment.php" class="comment-form" >
+        <textarea class="content" type="text-area" name="content" placeholder="What are your thoughts?" required></textarea>
         <input class="button button-blue button-block" type="submit" value="Comment" >
     </form>
-
-<?php } ?>
-
-<?php function draw_warning() { 
-    ?>
-
-    <div id="comment-warning">
-        <p>Log in to add a comment</p>
-    </div>
 
 <?php } ?>

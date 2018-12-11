@@ -31,14 +31,42 @@
     }
 
     if(array_key_exists('channel', $options)) {
-      $query = $query.'AND channel.name = :channel';
+      $query = $query.'AND channel.name = :channel ';
     }
 
     if(array_key_exists('author', $options)) {
-      $query = $query.'AND user.username = :author';
+      $query = $query.'AND user.username = :author ';
     }
 
-    $query = $query.' ORDER BY post.posted_at DESC';
+    if(array_key_exists('author_like', $options)) {
+      $query = $query.'AND user.username LIKE :author_like COLLATE NOCASE ';
+    }
+
+    if(array_key_exists('content_like', $options)) {
+      $query = $query.'AND post.content LIKE :content_like COLLATE NOCASE ';
+    }
+
+    if(array_key_exists('sort_by', $options)) {
+      if($options['sort_by'] === 'recent')
+        $query = $query.' ORDER BY post.posted_at';        
+      else if($options['sort_by'] === 'upvoted')
+        $query = $query.' ORDER BY points';
+      else if($options['sort_by'] === 'comments')
+        $query = $query.' ORDER BY comments';
+    }
+    else 
+      $query = $query.' ORDER BY post.posted_at';   
+      
+    if(array_key_exists('sort_order', $options)) {
+      if($options['sort_order'] === 'ascending')
+        $query = $query.' ASC';        
+      else if($options['sort_order'] === 'descending')
+        $query = $query.' DESC';
+    }
+    else 
+      $query = $query.' DESC';   
+
+    //die($query);
 
     $stmt = $db->prepare($query);
 
@@ -52,6 +80,16 @@
 
     if(array_key_exists('author', $options)) {
       $stmt->bindParam(':author', $options['author'], PDO::PARAM_STR);
+    }
+
+    if(array_key_exists('author_like', $options)) {
+      $author_temp = "%".$options['author_like']."%";
+      $stmt->bindParam(':author_like', $author_temp, PDO::PARAM_STR);
+    }
+
+    if(array_key_exists('content_like', $options)) {
+      $content_temp = "%".$options['content_like']."%";
+      $stmt->bindParam(':content_like', $content_temp, PDO::PARAM_STR);
     }
 
     $stmt->execute();
@@ -133,7 +171,7 @@
     (post.upvotes_count - post.downvotes_count) as points,
     user.username as author_name, 
     post.posted_at as timestamp
-    FROM comment, post, channel, user WHERE post.id= comment.post_id AND comment.parent_post= ?  Group by post.id');
+    FROM comment, post, channel, user WHERE post.id= comment.post_id AND post.user_id = user.id AND comment.parent_post= ?  Group by post.id');
     $stmt->execute(array($post_id));
     $comments = $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -182,7 +220,7 @@
     (post.upvotes_count - post.downvotes_count) as points,
     user.username as author_name, 
     post.posted_at as timestamp
-    FROM comment, post, channel, user WHERE post.id= comment.post_id AND comment.post_id= ?  Group by post.id');
+    FROM comment, post, channel, user WHERE post.id= comment.post_id AND post.user_id = user.id AND comment.post_id= ?  Group by post.id');
     $stmt->execute(array($last_id));
     $comment = $stmt->fetch(PDO::FETCH_OBJ);
 
