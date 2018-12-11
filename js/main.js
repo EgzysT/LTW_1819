@@ -73,7 +73,7 @@ if (loginForm) {
                 if(response === 'ok') { 
                     ajaxSuccessBox.style.display = 'flex';
                     // Redirect user after 0.5s.
-                    setTimeout(function(){ window.location.replace(document.referrer); }, 500);
+                    setTimeout(function(){ window.location.replace("./main.php"); }, 500);
                 }
                 else if(response === 'fail') { 
                     ajaxFailBox.style.display = 'flex';
@@ -115,12 +115,24 @@ if(asideChannel) {
     }
 }
 
-/* Main aside JS - Create Channel */
-let mainAside = document.querySelector('.aside.with-subscribe, .aside#main-aside');
-if(mainAside) {
+/* Main aside JS - Search and Create Channel */
+let asideWithSearchBtn = document.querySelector('.aside.with-subscribe, .aside#main-aside');
+if(asideWithSearchBtn) {
     let adjustHeights = () => {
-        if(createChannelAside) 
-            createChannelAside.style.height = mainAside.offsetHeight + "px";
+        createChannelAside.classList.remove('no-display');
+        searchAside.classList.remove('no-display');
+        createChannelAside.style.height = asideWithSearchBtn.offsetHeight + "px";
+        searchAside.style.height = asideWithSearchBtn.offsetHeight + "px";
+    };
+                            /* SEARCH ASIDE */
+    // Search handling
+    let searchButton = asideWithSearchBtn.querySelector('#search-button');
+    let searchAside = document.querySelector('#search-aside');
+    searchButton.onclick = () => {
+        adjustHeights();
+        asideWithSearchBtn.classList.toggle('rotate-180Y');
+        searchAside.classList.remove('hidden');
+        searchAside.classList.toggle('rotate-180Y');
     };
                            /* CREATE CHANNEL ASIDE */
     // Create channel handling
@@ -135,7 +147,7 @@ if(mainAside) {
             createChannelAside.classList.remove('no-display');
             setTimeout(() => {
                 createChannelAside.classList.toggle('rotate-180Y');
-            }, 0);
+            }, 20);
         };
         // Handle cancel button.
         createChannelAside.querySelector('.cancel-button').onclick = () => {
@@ -248,11 +260,21 @@ if(searchModal) {
         searchModal.classList.remove('no-display');
         outerBackground.classList.remove('no-display');
     };
-    
-    for(let cancelButton of cancelButtons) {
-        cancelButton.onclick = closeModal;
+    // Handle cancel button.
+    createChannelAside.querySelector('.cancel-button').onclick = () => {
+        asideWithSearchBtn.classList.toggle('rotate-180Y');
+        createChannelAside.classList.toggle('rotate-180Y');
+        return false;
+    };
+    // Handle image upload preview
+    let previewDiv = createChannelAside.querySelector('#channel-upload-image');
+    createChannelAside.querySelector('input[type="file"]').onchange = (e) => {
+        previewDiv.style.background = `url('${URL.createObjectURL(event.target.files[0])}') center/cover`;
+    };
+    // Prevent form submission.
+    createChannelAside.querySelector('form').onsubmit = (e) => {
+        e.preventDefault();
     }
-    searchButton.onclick = openModal;
 }
 
 /* Upvote/ Downvote for stories Ajax */
@@ -262,11 +284,12 @@ if(storyAside) {
     let downvoteButton = storyAside.querySelector('.arrow-down i');
     let points = storyAside.querySelector('#points');
 
-    addVotesEvents(downvoteButton, upvoteButton, points);
+    if (downvoteButton && upvoteButton && points)
+        addVotesEvents(downvoteButton, upvoteButton, points);
 }
 
 /* Upvote/ Downvote for comments Ajax */
-let comments = document.querySelectorAll('#comment');
+let comments = document.querySelectorAll('.comment');
 if(comments) {
 
     for (let comment of comments) {
@@ -274,7 +297,8 @@ if(comments) {
         let downvoteButton = comment.querySelector('.arrow-down i');
         let points = comment.querySelector('.points');
 
-        addVotesEvents(downvoteButton, upvoteButton, points);
+        if (downvoteButton && upvoteButton && points)
+            addVotesEvents(downvoteButton, upvoteButton, points);
     }
 }
 
@@ -343,7 +367,7 @@ function addVotesEvents(downvoteButton, upvoteButton, points) {
 let commentForm = document.querySelector('#comments form');
 if (commentForm && comments) {
 
-    let contentField = commentForm.querySelector('input[name="content"]');
+    let contentField = commentForm.querySelector('textarea[name="content"]');
     let comment_el = document.getElementById("comments");
 
     // main comment form - the one that appears after the story
@@ -378,43 +402,24 @@ if (commentForm && comments) {
 // shows the reply forms when reply is clicked and handles submission
 function addReplyFormEvents (comment) {
 
-    let reply = comment.querySelector('#reply');
+    let reply = comment.querySelector('.reply');
 
     if (reply) {
 
         // the current form is the first form of the array
-        let curr_reply_div = comment.querySelectorAll('#reply-form')[0];
-        let replyForm = curr_reply_div.querySelector('#comment-form');
-        // let warningForm = comment.querySelectorAll('#comment-warning')[0];
+        let curr_reply_div = comment.querySelector('.reply-form');
+        let replyForm = curr_reply_div.querySelector('.comment-form');
 
         let contentField_reply = replyForm.querySelector('input[name="content"]');
         let subcomment_div = comment.querySelector('.subcomments');
-        let subcomments = comment.querySelectorAll('#comment');
+        let subcomments = comment.querySelectorAll('.comment');
 
         // when clicking the reply form appears
         reply.onclick = () => {
-            makeHTTPRequest('../actions/action_session.php', 
-                'post', 
-                {   }, 
-                (is_user_set) => {
-                    
-                    if (curr_reply_div.style.display == 'block')
-                        curr_reply_div.style.display = 'none';
-                    
-                    // else if (warningForm.style.display == 'block')
-                    //     warningForm.style.display = 'none';
-                    
-                    else if (is_user_set == 'ok')
-                        curr_reply_div.style.display = 'block';
-                    
-                    else 
-                        curr_reply_div.style.display = 'none';
-                        // warningForm.style.display = 'block';
-                    
-                }
-            );
-
-            
+            if (curr_reply_div.style.display == 'block')
+                curr_reply_div.style.display = 'none';
+            else
+                curr_reply_div.style.display = 'block';
         }
 
         // add the comment after submission
@@ -486,7 +491,7 @@ function createComment(new_comment_str) {
        
     // creates reply		     
     let reply = document.createElement('div');		   
-    reply.setAttribute('id', 'reply');		
+    reply.setAttribute('class', 'reply');		
     reply.setAttribute('data-id', '' + new_comment[id_index]);
     reply.innerHTML = ""+ reply_fa.outerHTML + "<p> reply</p>";		
        
@@ -533,15 +538,12 @@ function createComment(new_comment_str) {
 
     //creates the input content class
     let reply_form = document.createElement('div');
-    reply_form.setAttribute('id', 'reply-form');
+    reply_form.setAttribute('class', 'reply-form');
 
-    let comment_form = document.getElementById('comment-form').cloneNode(true);
+    let comment_form = document.getElementsByClassName('comment-form')[0].cloneNode(true);
     comment_form.setAttribute('data-id', '' + new_comment[id_index]);
 
     reply_form.innerHTML = commentForm.outerHTML;
-
-    // creates the comment warning
-    // let comment_warning = document.getElementById('comment-warning').cloneNode(true);
 
     //creates subcomments div
     let subcomments = document.createElement('div');
@@ -549,7 +551,7 @@ function createComment(new_comment_str) {
 
     // creates the comment
     let new_comment_html = document.createElement('article');
-    new_comment_html.setAttribute('id', 'comment');
+    new_comment_html.setAttribute('class', 'comment');
     new_comment_html.innerHTML = header.outerHTML + body.outerHTML 
                                 + reply_form.outerHTML + subcomments.outerHTML;
                                 // + comment_warning.outerHTML;
@@ -576,7 +578,7 @@ function makeHTTPRequest(url, type, params, callback) {
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     request.addEventListener("load", function () {
         callback(this.responseText);
-    });
+    })  
     request.send(encodeForAjax(params));
 }
 

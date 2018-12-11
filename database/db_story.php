@@ -133,7 +133,7 @@
     (post.upvotes_count - post.downvotes_count) as points,
     user.username as author_name, 
     post.posted_at as timestamp
-    FROM comment, post, channel, user WHERE post.id= comment.post_id AND comment.parent_post= ?  Group by post.id');
+    FROM comment, post, channel, user WHERE post.id= comment.post_id AND post.user_id = user.id AND comment.parent_post= ?  Group by post.id');
     $stmt->execute(array($post_id));
     $comments = $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -182,7 +182,7 @@
     (post.upvotes_count - post.downvotes_count) as points,
     user.username as author_name, 
     post.posted_at as timestamp
-    FROM comment, post, channel, user WHERE post.id= comment.post_id AND comment.post_id= ?  Group by post.id');
+    FROM comment, post, channel, user WHERE post.id= comment.post_id AND post.user_id = user.id AND comment.post_id= ?  Group by post.id');
     $stmt->execute(array($last_id));
     $comment = $stmt->fetch(PDO::FETCH_OBJ);
 
