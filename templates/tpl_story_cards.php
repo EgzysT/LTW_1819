@@ -86,9 +86,15 @@
         </div>
 
             <div class="sc-aside">
+            
+            <?php if($_SESSION['username']){ ?>
                 <p class="arrow-up"> <i data-id="<?=$story->id?>" class="fas fa-arrow-alt-circle-up <?php if($vote_type === 'u') echo 'selected'; ?>"></i> </p>
+            <?php } ?>        
                 <p id="points"><?=$story->points?></p>
+            <?php if($_SESSION['username']){ ?>   
                 <p class="arrow-down"> <i data-id="<?=$story->id?>" class="fas fa-arrow-alt-circle-down <?php if($vote_type === 'd') echo 'selected'; ?>"></i> </p>
+            <?php } ?>        
+                
             </div>
     </article>
 
@@ -130,17 +136,17 @@
             <p class="points"><?=$comment->points?></p>
             <p>points</p>
 
-            <?php if($_SESSION['username']){ ?>
+        <?php if($_SESSION['username']){ ?>
             <div id="reply" data-id="<?=$comment->id?>">
                 <i class="far fa-comment-alt"></i>
                 <p>reply</p>
             </div>
-            <?php } ?>
 
             <div id="arrows" class="arrows">
                 <p class="arrow-up"> <i data-id="<?=$comment->id?>" class="fas fa-arrow-alt-circle-up <?php if($comment->vote_type === 'u') echo 'selected'; ?>"></i> </p>
                 <p class="arrow-down"> <i data-id="<?=$comment->id?>" class="fas fa-arrow-alt-circle-down <?php if($comment->vote_type === 'd') echo 'selected'; ?>"></i> </p>
             </div>
+        <?php } ?>
         </header>
 
         <div class="body">
@@ -153,8 +159,6 @@
             ?>
         </div>
         
-        <?php draw_warning(); ?>
-
         <div class="subcomments">
             <?php 
                 foreach($comment->comments as $subcomment)
@@ -173,14 +177,5 @@
         <textarea class="content" type="text-area" name="content" placeholder="What are your thoughts?" required></textarea>
         <input class="button button-blue button-block" type="submit" value="Comment" >
     </form>
-
-<?php } ?>
-
-<?php function draw_warning() { 
-    ?>
-
-    <div id="comment-warning">
-        <p>Log in to add a comment</p>
-    </div>
 
 <?php } ?>

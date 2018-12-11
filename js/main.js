@@ -262,7 +262,8 @@ if(storyAside) {
     let downvoteButton = storyAside.querySelector('.arrow-down i');
     let points = storyAside.querySelector('#points');
 
-    addVotesEvents(downvoteButton, upvoteButton, points);
+    if (downvoteButton && upvoteButton && points)
+        addVotesEvents(downvoteButton, upvoteButton, points);
 }
 
 /* Upvote/ Downvote for comments Ajax */
@@ -274,7 +275,8 @@ if(comments) {
         let downvoteButton = comment.querySelector('.arrow-down i');
         let points = comment.querySelector('.points');
 
-        addVotesEvents(downvoteButton, upvoteButton, points);
+        if (downvoteButton && upvoteButton && points)
+            addVotesEvents(downvoteButton, upvoteButton, points);
     }
 }
 
@@ -385,37 +387,10 @@ function addReplyFormEvents (comment) {
         // the current form is the first form of the array
         let curr_reply_div = comment.querySelectorAll('#reply-form')[0];
         let replyForm = curr_reply_div.querySelector('#comment-form');
-        // let warningForm = comment.querySelectorAll('#comment-warning')[0];
 
         let contentField_reply = replyForm.querySelector('input[name="content"]');
         let subcomment_div = comment.querySelector('.subcomments');
         let subcomments = comment.querySelectorAll('#comment');
-
-        // when clicking the reply form appears
-        reply.onclick = () => {
-            makeHTTPRequest('../actions/action_session.php', 
-                'post', 
-                {   }, 
-                (is_user_set) => {
-                    
-                    if (curr_reply_div.style.display == 'block')
-                        curr_reply_div.style.display = 'none';
-                    
-                    // else if (warningForm.style.display == 'block')
-                    //     warningForm.style.display = 'none';
-                    
-                    else if (is_user_set == 'ok')
-                        curr_reply_div.style.display = 'block';
-                    
-                    else 
-                        curr_reply_div.style.display = 'none';
-                        // warningForm.style.display = 'block';
-                    
-                }
-            );
-
-            
-        }
 
         // add the comment after submission
         replyForm.onsubmit = (e) => {

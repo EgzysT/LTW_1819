@@ -934,6 +934,7 @@ body > .container {
 	display: grid;
 	margin-top: 1.5em;
 	position:relative;
+	grid-template-rows: 4.5em auto;
 }
 
 #full-story .sc-aside {
