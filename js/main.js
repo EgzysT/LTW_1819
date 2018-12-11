@@ -135,7 +135,7 @@ if(mainAside) {
             createChannelAside.classList.remove('no-display');
             setTimeout(() => {
                 createChannelAside.classList.toggle('rotate-180Y');
-            }, 0);
+            }, 20);
         };
         // Handle cancel button.
         createChannelAside.querySelector('.cancel-button').onclick = () => {
