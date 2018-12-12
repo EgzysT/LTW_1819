@@ -908,6 +908,12 @@ body > .container {
 	color: var(--dark-color);
 }
 
+.card .body a, .comment a { /* Link to channel */
+	color: var(--main-color);
+	text-shadow: 1px 1px 1px #71717170;
+}
+
+	
 .card .body .sm-content {
 	color: var(--dark-color);
 	text-align: justify;

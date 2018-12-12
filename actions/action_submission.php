@@ -5,6 +5,8 @@
   include_once('../includes/session.php');
   include_once('../database/db_story.php');
   include_once('../database/db_channel.php');
+  include_once('../database/db_user.php');
+
 
   $username = $_SESSION['username'];
   if(!$username)
@@ -30,6 +32,37 @@
 
   if(!get_channel_info($channel_name)) 
     die('Channel doesn\'t exist.');
+
+  // check if there is a reference to a user
+  preg_match_all('#(?<=\/u\/).+?(?=\/)#', $story_text, $matches);
+
+  foreach ($matches as $match) {
+    if ($match) {
+      $user = getUserProfile($match[0]);
+
+      if ($user) {
+        $search = '#\/u\/' . $match[0] . '\/#';
+        $replace =  '<a href="./profile.php?user=' . $match[0] . '" class="author-name">' . $match[0] . '</a>';
+        $story_text = preg_replace($search, $replace, $story_text);
+      }
+    }
+  }
+
+  // check if there is a reference to a channel
+  preg_match_all('#(?<=\/c\/).+?(?=\/)#', $story_text, $matches);
+
+  foreach ($matches as $match) {
+    if ($match) {
+      $channel = get_channel_info($match[0]);
+
+      if ($channel) {
+        $search = '#\/c\/' . $match[0] . '\/#';
+        $replace =  '<a href="./profile.php?channel=' . $match[0] . '" class="sc_channel">' . $match[0] . '</a>';
+        $story_text = preg_replace($search, $replace, $story_text);
+      }
+    }
+  }
+
 
   createStory($channel_name, $username, $story_title, $story_text);
 

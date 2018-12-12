@@ -506,8 +506,7 @@ function createComment(new_comment_str) {
     // creates the content
     let content = document.createElement('p');
     content.setAttribute('class', 'lg-content');
-    content.innerText = "" + new_comment[content_index];
-
+    content.innerHTML =  new_comment[content_index];
     //creates the body
     let body = document.createElement('div');
     body.setAttribute('class', 'body');
