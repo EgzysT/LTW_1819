@@ -45,6 +45,8 @@
   else
     $logged_in = false;
 
+    $content = $current_story->content;
+
 
   draw_header($username, $page_title);  ?>
 

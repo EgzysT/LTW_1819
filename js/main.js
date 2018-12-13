@@ -188,6 +188,8 @@ if(mainAside) {
 /* Story submission functions */
 let submitStoryForm = document.querySelector('#submit-story-form');
 if (submitStoryForm) {
+    /* Enable markdown editor */
+    new SimpleMDE({spellChecker: false});
     /* Handle signup submission trough AJAX */
     let loginAjaxContainer = document.querySelector('#ajax-form-container');
     let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
@@ -506,8 +508,7 @@ function createComment(new_comment_str) {
     // creates the content
     let content = document.createElement('p');
     content.setAttribute('class', 'lg-content');
-    content.innerText = "" + new_comment[content_index];
-
+    content.innerHTML =  new_comment[content_index];
     //creates the body
     let body = document.createElement('div');
     body.setAttribute('class', 'body');
