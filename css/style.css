@@ -1036,6 +1036,7 @@ body > .container {
 	color: var(--dark-color);
 	text-align: justify;
 	line-height: 1.5em;
+	padding-bottom: 0.5em;
 }
 
 
