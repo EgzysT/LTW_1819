@@ -1096,6 +1096,7 @@ body > .container {
 #comments {
 	grid-area: comments;
 	margin-top: 1em;
+	border-radius: 2px;
 }
 
 .comment{

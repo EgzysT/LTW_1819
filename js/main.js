@@ -94,25 +94,29 @@ let asideChannel = document.querySelector('.channel .aside-channel.with-subscrib
 if(asideChannel) {
     let subscribeButton = asideChannel.querySelector('#subscribe');
     let unsubscribeButton = asideChannel.querySelector('#unsubscribe');
-    let channel_name = asideChannel.querySelector('#channel_name').textContent;
-    let toggleRotation = () => {
-        subscribeButton.classList.toggle('rotate-180Y');
-        unsubscribeButton.classList.toggle('rotate-180Y');
+    if(subscribeButton || unsubscribeButton) 
+    {
+        let channel_name = asideChannel.querySelector('#channel_name').textContent;
+        let toggleRotation = () => {
+            subscribeButton.classList.toggle('rotate-180Y');
+            unsubscribeButton.classList.toggle('rotate-180Y');
+        }
+        // User subscribes.
+        subscribeButton.onclick = () => {
+            toggleRotation();
+            makeHTTPRequest('../actions/action_subscribe.php', 
+            'post', 
+            {action: 'subscribe', channel_name: channel_name, csrf: csrf}, (response) => { console.log(response) });
+        }
+        // User unsubscribes.
+        unsubscribeButton.onclick = () => {
+            toggleRotation();
+            makeHTTPRequest('../actions/action_subscribe.php', 
+            'post', 
+            {action: 'unsubscribe', channel_name: channel_name, csrf: csrf}, (response) => { console.log(response) });
+        }
     }
-    // User subscribes.
-    subscribeButton.onclick = () => {
-        toggleRotation();
-        makeHTTPRequest('../actions/action_subscribe.php', 
-        'post', 
-        {action: 'subscribe', channel_name: channel_name, csrf: csrf}, (response) => { console.log(response) });
-    }
-    // User unsubscribes.
-    unsubscribeButton.onclick = () => {
-        toggleRotation();
-        makeHTTPRequest('../actions/action_subscribe.php', 
-        'post', 
-        {action: 'unsubscribe', channel_name: channel_name, csrf: csrf}, (response) => { console.log(response) });
-    }
+    
 }
 
 /* Main aside JS - Create Channel */
