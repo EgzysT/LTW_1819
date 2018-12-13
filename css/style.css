@@ -949,10 +949,17 @@ body > .container {
 }
 
 .card li {
-	display: inline-block;
 	margin: 0 1em 0 0;
 	height: 100%;
 	display: list-item;
+}
+
+.card footer li {
+	display: inline-block;
+}
+
+.card footer li {
+	display: inline-block;
 }
 
 
