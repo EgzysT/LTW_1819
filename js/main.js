@@ -188,6 +188,8 @@ if(mainAside) {
 /* Story submission functions */
 let submitStoryForm = document.querySelector('#submit-story-form');
 if (submitStoryForm) {
+    /* Enable markdown editor */
+    new SimpleMDE({spellChecker: false});
     /* Handle signup submission trough AJAX */
     let loginAjaxContainer = document.querySelector('#ajax-form-container');
     let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
