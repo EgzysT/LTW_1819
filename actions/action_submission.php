@@ -3,6 +3,7 @@
    * Checks if the log in credentials exists, setting messages in case they're not valid
    */
   include_once('../includes/session.php');
+  include_once('../includes/Parsedown.php');
   include_once('../database/db_story.php');
   include_once('../database/db_channel.php');
   include_once('../database/db_user.php');
@@ -26,12 +27,16 @@
       die('Story title is too long.');
 
   if(strlen($story_text) < 70)
-    die('Story title is too short.');
-  if(strlen($story_title) > 2500)
-    die('Story title is too long.');
+    die('Story content is too short.');
+  if(strlen($story_text) > 5000)
+    die('Story content is too long.');
 
   if(!get_channel_info($channel_name)) 
     die('Channel doesn\'t exist.');
+
+  // Escape storytext.
+  $story_title = htmlspecialchars($story_title);
+  $story_text = htmlspecialchars($story_text);
 
   // check if there is a reference to a user
   preg_match_all('#(?<=\/u\/).+?(?=\/)#', $story_text, $matches);
@@ -63,6 +68,8 @@
     }
   }
 
+  $Parsedown = new \Parsedown();
+  $story_text = $Parsedown->text($story_text);
 
   createStory($channel_name, $username, $story_title, $story_text);
 

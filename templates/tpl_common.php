@@ -17,6 +17,8 @@
       <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans+Condensed:300|Lato" rel="stylesheet">
       <link rel="icon" href="../assets/favicon.ico">
       <script src="../js/main.js" defer></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+      <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     </head>
 
     <body>

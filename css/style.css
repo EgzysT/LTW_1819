@@ -294,6 +294,7 @@ Log in, Sign up and submit story form styling
 
 #submission input { 
 	width: 100%;
+	padding-left: 1em;
 }
 
 .panel {
@@ -902,7 +903,7 @@ body > .container {
 	word-break: break-word;
 }
 
-.card .body h2 {
+.card .body h2.title {
 	font-family: var(--serif-font);
 	font-size: 2em;
 	margin: 0.5em 0.2em 0;
@@ -948,9 +949,17 @@ body > .container {
 }
 
 .card li {
-	display: inline-block;
 	margin: 0 1em 0 0;
 	height: 100%;
+	display: list-item;
+}
+
+.card footer li {
+	display: inline-block;
+}
+
+.card footer li {
+	display: inline-block;
 }
 
 
@@ -1042,8 +1051,26 @@ body > .container {
 	color: var(--dark-color);
 	text-align: justify;
 	line-height: 1.5em;
+	padding-bottom: 0.5em;
 }
 
+#full-story .body .lg-content h1,
+.sm-content h1 {
+	font-size: 2.5em;
+	font-family: var(--serif-font);
+}
+
+#full-story .body .lg-content h2,
+.sm-content h2 {
+	font-size: 2em;
+	font-family: var(--serif-font);
+}
+
+#full-story .body .lg-content h3,
+.sm-content h3 {
+	font-size: 1.6em;
+	font-family: var(--serif-font);
+}
 
 @media (min-width: 800px) {
 	#full-story .sc-aside {
@@ -1069,6 +1096,7 @@ body > .container {
 #comments {
 	grid-area: comments;
 	margin-top: 1em;
+	border-radius: 2px;
 }
 
 .comment{

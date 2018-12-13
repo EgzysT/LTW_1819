@@ -20,8 +20,7 @@
     channel.name as channel, 
     user.username as author_name, 
     user.profile_pic as profile_pic,
-    post.posted_at as timestamp,
-    (SELECT count(*) FROM comment WHERE post.id = comment.post_id) as comments
+    post.posted_at as timestamp
     FROM story, post, channel, user WHERE ';
   
     $query = $query.'story.channel_id = channel.id AND story.post_id = post.id AND user.id = post.user_id AND post.content != "[deleted]" ';
@@ -98,6 +97,7 @@
     foreach($stories as $story) {
       $story->posted_ago = time_ago($story->timestamp);
       $story->date = date("H:i:s d-m-y", $story->timestamp);
+      $story->comments = count(getComments($story->id, NULL));
     }
 
     return $stories;

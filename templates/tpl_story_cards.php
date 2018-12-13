@@ -40,7 +40,7 @@
 
         <div class="body">
             <h2 class="title"><?=$story->title?></h2>
-            <p class="sm-content"><?=$story->content?></p>
+            <div class="sm-content"><?=$story->content?></div>
         </div>
 
         <footer>
@@ -82,7 +82,7 @@
 
         <div class="body">
             <h2 class="title"><?=$story->title?></h2>
-            <p class="lg-content"><?=$story->content?></p>
+            <div class="lg-content"><?=$story->content?></div>
         </div>
 
             <div class="sc-aside">
