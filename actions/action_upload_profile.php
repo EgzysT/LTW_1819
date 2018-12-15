@@ -31,11 +31,11 @@
 			if($check !== false) {
 				echo "File is an image - " . $check["mime"] . ".  \n";
 				$uploadOk = 1;
-				list($width, $height) = getimagesize($_FILES["newProfilePic"]["tmp_name"]);
-				if ($width !== $height) {
-					echo "Image is not square, unable to upload, please select a square image and try again.";
-					$uploadOk = 0;
-				}
+				// list($width, $height) = getimagesize($_FILES["newProfilePic"]["tmp_name"]);
+				// if ($width !== $height) {
+				// 	echo "Image is not square, unable to upload, please select a square image and try again.";
+				// 	$uploadOk = 0;
+				// }
 			} else {
 				echo "File is not an image.";
 				$uploadOk = 0;
@@ -65,13 +65,43 @@
 				echo "Sorry, your file was not uploaded.";
 			// if everything is ok, try to upload file
 			} else {
-				if (move_uploaded_file($_FILES["newProfilePic"]["tmp_name"], $target_file)) {
-					echo "The file ". basename( $_FILES["newProfilePic"]["name"]). " has been uploaded.";
-					updateUserPicPath($username, $target_file);
-					die(header('Location: ../pages/edit_profile.php'));
-				} else {
-					echo "Sorry, there was an error uploading your file.";
+				$original;
+				switch ($imageFileType) {
+					case 'jpg':
+						$original = imagecreatefromjpeg($_FILES['newProfilePic']['tmp_name']);
+						break;
+					case 'png':
+						$original = imagecreatefrompng($_FILES['newProfilePic']['tmp_name']);
+						break;
+					case 'jpeg':
+						$original = imagecreatefromjpeg($_FILES['newProfilePic']['tmp_name']);
+						break;
+					case 'gif':
+						$original = imagecreatefromgif($_FILES['newProfilePic']['tmp_name']);
+						break;
 				}
+				$width = imagesx($original);
+				$height = imagesy($original);
+				$maxSize = min($width, $height);
+				$squaredImg = imagecreatetruecolor($maxSize, $maxSize);
+				imagecopyresized($squaredImg, $original, 0, 0, ($width>$maxSize)?($width-$maxSize)/2:0, ($height>$maxSize)?($height-$maxSize)/2:0, $maxSize, $maxSize, $maxSize, $maxSize);
+				switch ($imageFileType) {
+					case 'jpg':
+						imagejpeg($squaredImg, $target_file);
+						break;
+					case 'png':
+						imagepng($squaredImg, $target_file);
+						break;
+					case 'jpeg':
+						imagejpeg($squaredImg, $target_file);
+						break;
+					case 'gif':
+						imagegif($squaredImg, $target_file);
+						break;
+				}
+				echo "The file ". basename( $_FILES["newProfilePic"]["name"]). " has been uploaded.";
+				updateUserPicPath($username, $target_file);
+				die(header('Location: ../pages/edit_profile.php'));
 			}
 		}
 	}	
