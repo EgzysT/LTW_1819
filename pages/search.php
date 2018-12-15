@@ -8,7 +8,7 @@
   include_once('../database/db_user.php');
   include_once('../database/db_channel.php');
 
-  $page_title = 'Bluedit';
+  $page_title = 'Bluedit - Search';
   $username = $_SESSION['username'];
 
   draw_header($username, $page_title); ?>
@@ -16,15 +16,8 @@
   <section class="channel">
     
     <?php
-      $stories;
-      if ($username && count(getSubscribedChannels($username)) !== 0) {
-        $stories = getStories(['subscribed_by' => $username]);
-      } 
-      else {
-        $stories = getStories([]);
-      } 
-      // $stories = $username ? getStories(['subscribed_by' => $username]) : getStories([]);
-      draw_story_cards($stories); 
+      $stories = getStories($_GET);
+      draw_story_cards($stories, '<h3>Showing '.count($stories).' search results: </h3>'); 
       ?> 
 
       <section class="aside-container">
@@ -46,7 +39,7 @@
 
   <?php
 
-  draw_search_modal();
+  draw_search_modal($_GET);
   draw_modal_outer_background();
   draw_footer();
 

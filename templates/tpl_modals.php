@@ -1,4 +1,4 @@
-<?php function draw_submit_story_aside() {
+<?php function draw_search_modal($GET = []) {
 /**
  * Draws the modal for a story submission.
  */ ?>
@@ -10,33 +10,33 @@
         </span>
         <i class="fas fa-search"></i> Search Content
       </header>
-      <form method="post" action="#" id="search-form">
-          <div class="modal-division">
+      <form method="get" action="./search.php" id="search-form">
+          <!--<div class="modal-division">
             <header>
               <p> Search in </p>
             </header>
             <div class="options">
               <label>
-                <input type="checkbox" name="author_search_in" value="title" checked> Stories
+                <input type="checkbox" name="search_in_stories" value="yes" checked> Stories
               </label>
               <label>
-                <input type="checkbox" name="author_search_in" value="title" checked> Comments
+                <input type="checkbox" name="search_in_comments" value="yes" checked> Comments
               </label>
             </div>
-          </div>
+          </div> -->
           <div class="modal-division">
             <header>
               <p> Sort by </p>
             </header>
             <div class="options">
               <label>
-                <input type="radio" name="sort_by" value="recent" checked> Most recent
+                <input type="radio" name="sort_by" value="recent" <?php if(!array_key_exists('sort_by', $GET) || $GET['sort_by'] === 'recent') echo 'checked'; ?>> Most recent
               </label>
               <label>
-                <input type="radio" name="sort_by" value="upvoted"> Most upvoted
+                <input type="radio" name="sort_by" value="upvoted" <?php if(array_key_exists('sort_by', $GET) && $GET['sort_by'] === 'upvoted') echo 'checked'; ?>> Most upvoted
               </label>
               <label>
-                <input type="radio" name="sort_by" value="comments"> Most comments
+                <input type="radio" name="sort_by" value="comments" <?php if(array_key_exists('sort_by', $GET) && $GET['sort_by'] === 'comments') echo 'checked'; ?>> Most comments
               </label>
             </div>
           </div>
@@ -46,10 +46,10 @@
             </header>
             <div class="options">
               <label>
-                <input type="radio" name="sort_order" value="descending" checked> Descending
+                <input type="radio" name="sort_order" value="descending" <?php if(!array_key_exists('sort_order', $GET) || $GET['sort_order'] === 'descending') echo 'checked'; ?>> Descending
               </label>
               <label>
-                <input type="radio" name="sort_order" value="ascending"> Ascending
+                <input type="radio" name="sort_order" value="ascending" <?php if(array_key_exists('sort_order', $GET) && $GET['sort_order'] === 'ascending') echo 'checked'; ?>> Ascending
               </label>
             </div>
           </div>
@@ -58,12 +58,12 @@
               <p> Search terms </p>
             </header>
             <div class="options">
-              <input type="text" name="author_name" placeholder="author name">
-              <input type="text" name="content" placeholder="search term">
+              <input type="text" name="author_like" placeholder="author name" <?php if(array_key_exists('author_like', $GET)) echo 'value="'.$GET['author_like'].'"'; ?>>
+              <input type="text" name="content_like" placeholder="search term" <?php if(array_key_exists('content_like', $GET)) echo 'value="'.$GET['content_like'].'"'; ?>>
             </div>
           </div>
           <input type="submit" value="Search" class="button button-blue button-block">
-          <button class="button button-red button-block modal-close">Cancel</button>
+          <!-- <button class="button button-red button-block modal-close">Cancel</button> -->
       </form>
   </section>
   </div>

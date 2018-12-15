@@ -73,7 +73,7 @@ if (loginForm) {
                 if(response === 'ok') { 
                     ajaxSuccessBox.style.display = 'flex';
                     // Redirect user after 0.5s.
-                    setTimeout(function(){ window.location.replace("./main.php"); }, 500);
+                    setTimeout(function(){ window.location.replace(document.referrer); }, 500);
                 }
                 else if(response === 'fail') { 
                     ajaxFailBox.style.display = 'flex';
@@ -94,45 +94,37 @@ let asideChannel = document.querySelector('.channel .aside-channel.with-subscrib
 if(asideChannel) {
     let subscribeButton = asideChannel.querySelector('#subscribe');
     let unsubscribeButton = asideChannel.querySelector('#unsubscribe');
-    let channel_name = asideChannel.querySelector('#channel_name').textContent;
-    let toggleRotation = () => {
-        subscribeButton.classList.toggle('rotate-180Y');
-        unsubscribeButton.classList.toggle('rotate-180Y');
+    if(subscribeButton || unsubscribeButton) 
+    {
+        let channel_name = asideChannel.querySelector('#channel_name').textContent;
+        let toggleRotation = () => {
+            subscribeButton.classList.toggle('rotate-180Y');
+            unsubscribeButton.classList.toggle('rotate-180Y');
+        }
+        // User subscribes.
+        subscribeButton.onclick = () => {
+            toggleRotation();
+            makeHTTPRequest('../actions/action_subscribe.php', 
+            'post', 
+            {action: 'subscribe', channel_name: channel_name, csrf: csrf}, (response) => { console.log(response) });
+        }
+        // User unsubscribes.
+        unsubscribeButton.onclick = () => {
+            toggleRotation();
+            makeHTTPRequest('../actions/action_subscribe.php', 
+            'post', 
+            {action: 'unsubscribe', channel_name: channel_name, csrf: csrf}, (response) => { console.log(response) });
+        }
     }
-    // User subscribes.
-    subscribeButton.onclick = () => {
-        toggleRotation();
-        makeHTTPRequest('../actions/action_subscribe.php', 
-        'post', 
-        {action: 'subscribe', channel_name: channel_name, csrf: csrf}, (response) => { console.log(response) });
-    }
-    // User unsubscribes.
-    unsubscribeButton.onclick = () => {
-        toggleRotation();
-        makeHTTPRequest('../actions/action_subscribe.php', 
-        'post', 
-        {action: 'unsubscribe', channel_name: channel_name, csrf: csrf}, (response) => { console.log(response) });
-    }
+    
 }
 
-/* Main aside JS - Search and Create Channel */
-let asideWithSearchBtn = document.querySelector('.aside.with-subscribe, .aside#main-aside');
-if(asideWithSearchBtn) {
+/* Main aside JS - Create Channel */
+let mainAside = document.querySelector('.aside.with-subscribe, .aside#main-aside');
+if(mainAside) {
     let adjustHeights = () => {
-        createChannelAside.classList.remove('no-display');
-        searchAside.classList.remove('no-display');
-        createChannelAside.style.height = asideWithSearchBtn.offsetHeight + "px";
-        searchAside.style.height = asideWithSearchBtn.offsetHeight + "px";
-    };
-                            /* SEARCH ASIDE */
-    // Search handling
-    let searchButton = asideWithSearchBtn.querySelector('#search-button');
-    let searchAside = document.querySelector('#search-aside');
-    searchButton.onclick = () => {
-        adjustHeights();
-        asideWithSearchBtn.classList.toggle('rotate-180Y');
-        searchAside.classList.remove('hidden');
-        searchAside.classList.toggle('rotate-180Y');
+        if(createChannelAside) 
+            createChannelAside.style.height = mainAside.offsetHeight + "px";
     };
                            /* CREATE CHANNEL ASIDE */
     // Create channel handling
@@ -200,6 +192,8 @@ if(asideWithSearchBtn) {
 /* Story submission functions */
 let submitStoryForm = document.querySelector('#submit-story-form');
 if (submitStoryForm) {
+    /* Enable markdown editor */
+    new SimpleMDE({spellChecker: false});
     /* Handle signup submission trough AJAX */
     let loginAjaxContainer = document.querySelector('#ajax-form-container');
     let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
@@ -260,21 +254,11 @@ if(searchModal) {
         searchModal.classList.remove('no-display');
         outerBackground.classList.remove('no-display');
     };
-    // Handle cancel button.
-    createChannelAside.querySelector('.cancel-button').onclick = () => {
-        asideWithSearchBtn.classList.toggle('rotate-180Y');
-        createChannelAside.classList.toggle('rotate-180Y');
-        return false;
-    };
-    // Handle image upload preview
-    let previewDiv = createChannelAside.querySelector('#channel-upload-image');
-    createChannelAside.querySelector('input[type="file"]').onchange = (e) => {
-        previewDiv.style.background = `url('${URL.createObjectURL(event.target.files[0])}') center/cover`;
-    };
-    // Prevent form submission.
-    createChannelAside.querySelector('form').onsubmit = (e) => {
-        e.preventDefault();
+    
+    for(let cancelButton of cancelButtons) {
+        cancelButton.onclick = closeModal;
     }
+    searchButton.onclick = openModal;
 }
 
 /* Upvote/ Downvote for stories Ajax */
@@ -410,7 +394,9 @@ function addReplyFormEvents (comment) {
         let curr_reply_div = comment.querySelector('.reply-form');
         let replyForm = curr_reply_div.querySelector('.comment-form');
 
-        let contentField_reply = replyForm.querySelector('input[name="content"]');
+        console.log(replyForm);
+
+        let contentField_reply = replyForm.querySelector('textarea[name="content"]');
         let subcomment_div = comment.querySelector('.subcomments');
         let subcomments = comment.querySelectorAll('.comment');
 
@@ -425,6 +411,10 @@ function addReplyFormEvents (comment) {
         // add the comment after submission
         replyForm.onsubmit = (e) => {
             e.preventDefault();
+
+            console.log("Parent post");
+            console.log(replyForm.getAttribute('data-id'))
+
             makeHTTPRequest('../actions/action_comment.php', 
             'post', 
             {   
@@ -432,6 +422,7 @@ function addReplyFormEvents (comment) {
                 post: replyForm.getAttribute('data-id')
             }, 
             (new_comment) => {
+                console.log(new_comment);
                 // resets the form to its initials values
                 replyForm.reset();
                 // hides the form
@@ -456,12 +447,14 @@ function createComment(new_comment_str) {
     // info in each index value
     let id_index = 0, content_index = 1, points_index = 4, author_name = 5, posted_ago = 7, time = 8;
 
+
     // tests if the string is valid
     if(new_comment_str == "" || !new_comment_str)
         return;
         
     // splits received string to an array
     let new_comment = new_comment_str.split("|");
+    console.log(new_comment[id_index]);
 
     
     // creates the user
@@ -528,8 +521,7 @@ function createComment(new_comment_str) {
     // creates the content
     let content = document.createElement('p');
     content.setAttribute('class', 'lg-content');
-    content.innerText = "" + new_comment[content_index];
-
+    content.innerHTML =  new_comment[content_index];
     //creates the body
     let body = document.createElement('div');
     body.setAttribute('class', 'body');
@@ -540,10 +532,34 @@ function createComment(new_comment_str) {
     let reply_form = document.createElement('div');
     reply_form.setAttribute('class', 'reply-form');
 
-    let comment_form = document.getElementsByClassName('comment-form')[0].cloneNode(true);
-    comment_form.setAttribute('data-id', '' + new_comment[id_index]);
 
-    reply_form.innerHTML = commentForm.outerHTML;
+    // creates the text_area
+    let text_area = document.createElement('textarea');
+    text_area.setAttribute('class', 'content');
+    text_area.setAttribute('type', 'text-area');
+    text_area.setAttribute('name', 'content');
+    text_area.setAttribute('placeholder', 'What are your thoughts?');
+
+    // creates the submit button
+    let button = document.createElement('input');
+    button.setAttribute('class', 'button button-blue button-block');
+    button.setAttribute('type', 'submit');
+    button.setAttribute('value', 'Comment');
+
+
+    // creates the form
+    let comment_form = document.createElement('form');
+    comment_form.setAttribute('class', 'comment-form');
+    comment_form.setAttribute('method', 'post');
+    comment_form.setAttribute('data-id', '' + new_comment[id_index]);
+    comment_form.setAttribute('action', '../actions/action_comment.php');
+    comment_form.innerHTML = text_area.outerHTML + button.outerHTML;
+
+
+    reply_form.innerHTML = comment_form.outerHTML;
+
+    // console.log(new_comment[id_index]);
+    // console.log(commentForm.outerHTML);
 
     //creates subcomments div
     let subcomments = document.createElement('div');
@@ -554,8 +570,6 @@ function createComment(new_comment_str) {
     new_comment_html.setAttribute('class', 'comment');
     new_comment_html.innerHTML = header.outerHTML + body.outerHTML 
                                 + reply_form.outerHTML + subcomments.outerHTML;
-                                // + comment_warning.outerHTML;
-
 
     addReplyFormEvents(new_comment_html);
 

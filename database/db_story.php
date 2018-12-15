@@ -20,8 +20,7 @@
     channel.name as channel, 
     user.username as author_name, 
     user.profile_pic as profile_pic,
-    post.posted_at as timestamp,
-    (SELECT count(*) FROM comment WHERE post.id = comment.post_id) as comments
+    post.posted_at as timestamp
     FROM story, post, channel, user WHERE ';
   
     $query = $query.'story.channel_id = channel.id AND story.post_id = post.id AND user.id = post.user_id AND post.content != "[deleted]" ';
@@ -31,14 +30,42 @@
     }
 
     if(array_key_exists('channel', $options)) {
-      $query = $query.'AND channel.name = :channel';
+      $query = $query.'AND channel.name = :channel ';
     }
 
     if(array_key_exists('author', $options)) {
-      $query = $query.'AND user.username = :author';
+      $query = $query.'AND user.username = :author ';
     }
 
-    $query = $query.' ORDER BY post.posted_at DESC';
+    if(array_key_exists('author_like', $options)) {
+      $query = $query.'AND user.username LIKE :author_like COLLATE NOCASE ';
+    }
+
+    if(array_key_exists('content_like', $options)) {
+      $query = $query.'AND post.content LIKE :content_like COLLATE NOCASE ';
+    }
+
+    if(array_key_exists('sort_by', $options)) {
+      if($options['sort_by'] === 'recent')
+        $query = $query.' ORDER BY post.posted_at';        
+      else if($options['sort_by'] === 'upvoted')
+        $query = $query.' ORDER BY points';
+      else if($options['sort_by'] === 'comments')
+        $query = $query.' ORDER BY comments';
+    }
+    else 
+      $query = $query.' ORDER BY post.posted_at';   
+      
+    if(array_key_exists('sort_order', $options)) {
+      if($options['sort_order'] === 'ascending')
+        $query = $query.' ASC';        
+      else if($options['sort_order'] === 'descending')
+        $query = $query.' DESC';
+    }
+    else 
+      $query = $query.' DESC';   
+
+    //die($query);
 
     $stmt = $db->prepare($query);
 
@@ -54,12 +81,23 @@
       $stmt->bindParam(':author', $options['author'], PDO::PARAM_STR);
     }
 
+    if(array_key_exists('author_like', $options)) {
+      $author_temp = "%".$options['author_like']."%";
+      $stmt->bindParam(':author_like', $author_temp, PDO::PARAM_STR);
+    }
+
+    if(array_key_exists('content_like', $options)) {
+      $content_temp = "%".$options['content_like']."%";
+      $stmt->bindParam(':content_like', $content_temp, PDO::PARAM_STR);
+    }
+
     $stmt->execute();
     $stories = $stmt->fetchAll(PDO::FETCH_OBJ);
 
     foreach($stories as $story) {
       $story->posted_ago = time_ago($story->timestamp);
       $story->date = date("H:i:s d-m-y", $story->timestamp);
+      $story->comments = count(getComments($story->id, NULL));
     }
 
     return $stories;

@@ -294,6 +294,7 @@ Log in, Sign up and submit story form styling
 
 #submission input { 
 	width: 100%;
+	padding-left: 1em;
 }
 
 .panel {
@@ -508,7 +509,8 @@ body > .container {
 	grid-template-rows: auto auto;
 	grid-template-columns: 1fr;
 	grid-template-areas: "stories" /* Default for small screens */
-						 "aside";
+						 "aside"
+						 "comments";
 	grid-gap: 0;
 	margin-bottom: 2em;
 }
@@ -519,6 +521,12 @@ body > .container {
 		grid-template-areas: "stories aside";
 		grid-column-gap: 1em;
 	}
+	.one-story {
+		grid-template-columns: 4fr 2fr;
+		grid-template-areas: 	"stories aside"
+								"comments aside";
+		grid-column-gap: 1em;
+	}
 }
 
 @media (min-width: 1000px) {
@@ -527,12 +535,25 @@ body > .container {
 		grid-template-areas: "stories aside";
 		grid-column-gap: 1.25em;
 	}
+	.one-story {
+		grid-template-columns: 5fr 2fr;
+		grid-template-areas: 	"stories aside"
+								"comments aside";
+		grid-column-gap: 1.25em;
+	}
 }
 
 @media (min-width: 1200px) {
-	.channel, .profile, .one-story {
+	.channel, .profile {
 		grid-template-columns: 6fr 2fr;
 		grid-template-areas: "stories aside";
+		grid-column-gap: 1.5em;
+	}
+
+	.one-story {
+		grid-template-columns: 6fr 2fr;
+		grid-template-areas: 	"stories aside"
+								"comments aside";
 		grid-column-gap: 1.5em;
 	}
 }
@@ -541,6 +562,10 @@ body > .container {
 	grid-area: stories;
 	margin-top: 1.5em;
 	margin-bottom: 1.5em;
+}
+
+#stories > h3 {
+	margin-top: 0.4em;
 }
 
 /**
@@ -815,7 +840,7 @@ body > .container {
 	border-radius: 2px;
 	background-color: var(--panel-color);
 	box-shadow: 0px 0px 2px 0px var(--medium-shadow-color);
-	margin-bottom: 1em;
+	margin-bottom: 1.5em;
 }
 
 .card > header {
@@ -873,17 +898,24 @@ body > .container {
 }
 
 .card .body {
-	padding-right: 20px;
-	padding-left: 20px;
+	padding-right: 1.2em;
+	padding-left: 1.2em;
+	word-break: break-word;
 }
 
-.card .body h2 {
+.card .body h2.title {
 	font-family: var(--serif-font);
 	font-size: 2em;
 	margin: 0.5em 0.2em 0;
 	color: var(--dark-color);
 }
 
+.card .body a, .comment a { /* Link to channel */
+	color: var(--main-color);
+	text-shadow: 1px 1px 1px #71717170;
+}
+
+	
 .card .body .sm-content {
 	color: var(--dark-color);
 	text-align: justify;
@@ -917,9 +949,17 @@ body > .container {
 }
 
 .card li {
-	display: inline-block;
 	margin: 0 1em 0 0;
 	height: 100%;
+	display: list-item;
+}
+
+.card footer li {
+	display: inline-block;
+}
+
+.card footer li {
+	display: inline-block;
 }
 
 
@@ -934,7 +974,6 @@ body > .container {
 	display: grid;
 	margin-top: 1.5em;
 	position:relative;
-	grid-template-rows: 4.5em auto;
 }
 
 #full-story .sc-aside {
@@ -999,19 +1038,39 @@ body > .container {
 
 #full-story header {
 	height: 3.8em;
+	grid-row: 1;
+	grid-column: 2;
 }
 
-#full-story header, #full-story .body {
+#full-story .body {
 	grid-column: 2;
+	word-break: break-word;
 }
 
 #full-story .body .lg-content, .comment .body .lg-content{
 	color: var(--dark-color);
 	text-align: justify;
 	line-height: 1.5em;
-	word-wrap: break-word;
+	padding-bottom: 0.5em;
 }
 
+#full-story .body .lg-content h1,
+.sm-content h1 {
+	font-size: 2.5em;
+	font-family: var(--serif-font);
+}
+
+#full-story .body .lg-content h2,
+.sm-content h2 {
+	font-size: 2em;
+	font-family: var(--serif-font);
+}
+
+#full-story .body .lg-content h3,
+.sm-content h3 {
+	font-size: 1.6em;
+	font-family: var(--serif-font);
+}
 
 @media (min-width: 800px) {
 	#full-story .sc-aside {
@@ -1033,6 +1092,12 @@ body > .container {
 	Comment
 
 */
+
+#comments {
+	grid-area: comments;
+	margin-top: 1em;
+	border-radius: 2px;
+}
 
 .comment{
 	display: grid;
@@ -1131,7 +1196,7 @@ body > .container {
 
 */
 .comment-form {
-	margin: 1em 0em;
+	margin-bottom: 1em;
 	background-color: #FAFAFA;
 	box-shadow: 0 0 3px 0 #CCC;
 }

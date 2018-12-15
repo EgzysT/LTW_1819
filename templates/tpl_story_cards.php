@@ -1,11 +1,11 @@
-<?php function draw_story_cards($stories) { 
+<?php function draw_story_cards($stories, $top_text = "") { 
     /**
      * Draws a section (#stories) containing several story cards
      * as articles. Uses the draw_story_card function to draw
      * each story card.
      */ ?>
     <section id="stories">
-
+        <?=$top_text?>
     <?php 
         foreach($stories as $story)
             draw_small_story_card($story);
@@ -40,7 +40,7 @@
 
         <div class="body">
             <h2 class="title"><?=$story->title?></h2>
-            <p class="sm-content"><?=$story->content?></p>
+            <div class="sm-content"><?=$story->content?></div>
         </div>
 
         <footer>
@@ -82,7 +82,7 @@
 
         <div class="body">
             <h2 class="title"><?=$story->title?></h2>
-            <p class="lg-content"><?=$story->content?></p>
+            <div class="lg-content"><?=$story->content?></div>
         </div>
 
             <div class="sc-aside">

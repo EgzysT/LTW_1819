@@ -45,13 +45,15 @@
   else
     $logged_in = false;
 
+    $content = $current_story->content;
+
 
   draw_header($username, $page_title);  ?>
 
   	<section id="one-story" class="one-story">
       <?php
           draw_aside_profile($username, $profile_pic, $bio, $points);
-          draw_full_story_card($current_story, $vote_type);
+          draw_full_story_card($current_story, $comments, $vote_type);
           draw_comments($comments, $story_id, $logged_in);
       ?>
 	  </section>
