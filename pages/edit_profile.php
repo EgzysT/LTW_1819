@@ -10,9 +10,10 @@
 
 	$profile = getUserProfile($username);
 	//TODO: check if it exists, watch out for safety from GET username
-  $profile_pic = $profile->profile_pic; //"https://picsum.photos/150/?random";
-  $bio = $profile->bio; //"This is my bio, deal with it. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mauris elit, pharetra vitae ipsum eget, elementum elementum elit. Mauris vulputate ultricies arcu, in egestas leo. Donec vel justo ut nunc gravida faucibus. Vestibulum elementum, erat molestie elementum convallis, ligula nunc sollicitudin metus, id lacinia ante diam dapibus lacus. Nulla facilisi. Etiam blandit erat nisl, nec vulputate lacus euismod luctus. Aenean iaculis iaculis nunc.";
-	$points = $profile->points; //100;
+  $profile_pic = $profile->profile_pic;
+	$bio = $profile->bio;
+	$points = $profile->points;
+	$email = $profile->email;
 	
 	if($profile_pic == NULL) {
 		$profile_pic = "../assets/profile_pics/0.jpg";
@@ -20,8 +21,11 @@
 	if($bio == NULL) {
 		$bio = "This misterious stranger has no bio yet! :o";
 	}
+	if($email == NULL) {
+		echo("Database Error: NULL email, please contact us in order to resolve this issue!");
+	}
 
 	draw_header($username, $page_title);
-	draw_edit_profile($username, $profile_pic, $bio);
+	draw_edit_profile($username, $profile_pic, $bio, $email);
   draw_footer();
 ?>

@@ -47,7 +47,7 @@
   function getUserProfile($username) {
     $db = Database::instance()->db();
 
-    $stmt = $db->prepare('SELECT user.id, user.profile_pic, user.bio, user.points FROM user WHERE username = ?');
+    $stmt = $db->prepare('SELECT user.id, user.profile_pic, user.bio, user.points, user.email FROM user WHERE username = ?');
     $stmt->execute(array($username));
 
     $user_profile = $stmt->fetch(PDO::FETCH_OBJ);
@@ -59,15 +59,27 @@
 
     $stmt = $db->prepare('UPDATE user SET bio = ? WHERE username = ?');
     $stmt->execute(array($newBio, $username));
-
-    $user_profile = $stmt->fetch(PDO::FETCH_OBJ);
   }
   function updateUserPicPath($username, $newPicPath) {
     $db = Database::instance()->db();
 
     $stmt = $db->prepare('UPDATE user SET profile_pic = ? WHERE username = ?');
     $stmt->execute(array($newPicPath, $username));
+  }
 
-    $user_profile = $stmt->fetch(PDO::FETCH_OBJ);
+  function updateUserEmail($username, $newEmail) {
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare('UPDATE user SET email = ? WHERE username = ?');
+    $stmt->execute(array($newEmail, $username));
+  }
+
+  function updateUserPassword($username, $newPassword) {
+    $db = Database::instance()->db();
+
+    $options = ['cost' => 12];
+
+    $stmt = $db->prepare('UPDATE user SET password = ? WHERE username = ?');
+    $stmt->execute(array(password_hash($newPassword, PASSWORD_DEFAULT, $options), $username));
   }
 ?>
