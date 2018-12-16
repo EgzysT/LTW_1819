@@ -13,6 +13,5 @@
 
   draw_header(null, $page_title);
   draw_signup();
-  draw_messages();
   draw_footer();
 ?>

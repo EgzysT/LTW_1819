@@ -51,15 +51,6 @@
       <div class="container">
 <?php } ?>
 
-<?php function draw_messages() { 
-    if (isset($_SESSION['messages'])) {?>
-        <section id="messages">
-            <?php foreach($_SESSION['messages'] as $message) { ?>
-              <div class="<?=$message['type']?>"><?=$message['content']?></div>
-            <?php } ?>
-        </section>
-<?php unset($_SESSION['messages']); } } ?>
-
 <?php function draw_footer() { 
 /**
  * Draws the footer for all pages.

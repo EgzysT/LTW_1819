@@ -5,6 +5,12 @@
   $username = $_SESSION['username'];
   if(!$username)
     exit(0);
+
+  // Only allow letters and numbers in username.
+  if (!preg_match ("/^[a-zA-Z0-9]+$/", $channel_name)) {
+    echo 'Channel name must only contain letters and digits.';
+    return;
+  }
   
   $channel_name = strtolower($_POST['channel_name']);
   $channel_desc = $_POST['channel_description'];

@@ -14,6 +14,5 @@
 
   draw_header(NULL, $page_title);
   draw_login();
-  draw_messages();
   draw_footer();
 ?>

@@ -8,14 +8,16 @@
 
 	$username = $_SESSION['username'];
 	
-	
   $page_title = 'Bluedit /u/'.$username;
 	
 	if(isset($_GET['user'])) {
-		$username = $_GET['user'];
+		$profile_username = $_GET['user'];
+	} 
+	else {
+		$profile_username = $username;
 	}
 
-	$profile = getUserProfile($username);
+	$profile = getUserProfile($profile_username);
 
 	if(!$profile) { // Profile doesn't exist
     header('Location: ./main');
@@ -27,7 +29,7 @@
 	<section id="profile" class="profile">
 		<?php 
 			draw_aside_profile($profile);
-			$stories = getStories(['author' => $username]);
+			$stories = getStories(['author' => $profile_username]);
 			draw_story_cards($stories);
 		?>
 	</section>

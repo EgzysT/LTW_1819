@@ -1,6 +1,6 @@
 <?php function draw_login() {
 /**
- * Draws the login section.
+ * Draws the login form.
  */ ?>
   <section id="auth" class="panel">
     
@@ -34,7 +34,7 @@
 
 <?php function draw_signup() { 
 /**
- * Draws the signup section.
+ * Draws the signup form.
  */ ?>
   <section id="auth" class="panel">
 

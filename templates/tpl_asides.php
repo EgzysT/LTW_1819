@@ -61,7 +61,7 @@ function draw_channel_aside($current_channel, $is_subscribed) {
     <aside class="aside aside-channel with-subscribe">
         <div class="aside-img" style="background: url('<?=$current_channel->image?>') no-repeat center bottom; background-size: 50%;"> </div>
         <h3 class="aside-header-text">#<span id="channel_name"><?=$current_channel->name?></span></h3>
-        <p class="aside-body-text"><?=$current_channel->description?></p>
+        <p class="aside-body-text"><?=htmlspecialchars($current_channel->description)?></p>
         <footer>
             <?php if($_SESSION['username']){ ?>
             <div>
@@ -111,8 +111,7 @@ function draw_channels_aside($channels, $header_text) {
 <?php }
 
 /**
- * Draws the aside for the profile in the story view page.
- *
+ * Draws the profile aside. It contains the specified user's avatar, points and number of stories and comments published.
  */
 function draw_aside_profile($profile) {?>
     <aside id="profile-info" class="aside">
@@ -120,7 +119,7 @@ function draw_aside_profile($profile) {?>
             <img src=<?=$profile->profile_pic?> alt="profile picture">
         </div>
         <h1 class="aside-header-text"><?=$profile->username?></h1>
-        <p class="aside-body-text"><?=$profile->bio?></p>
+        <p class="aside-body-text"><?=htmlspecialchars($profile->bio)?></p>
         <div class="account-activity">
             <p class="aside-body-text" title="Points"><i class="fas fa-balance-scale"></i> <?=$profile->points?></p>
             <p class="aside-body-text" title="Stories"><i class="fas fa-book"></i> <?=$profile->stories?></p>

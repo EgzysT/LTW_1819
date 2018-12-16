@@ -1,7 +1,4 @@
 <?php 
-	include_once('../includes/session.php');
-	include_once('../database/db_user.php');
-
 	function draw_edit_profile($username, $profile_pic, $bio, $email) {?>
 		<section id="edit-profile-section">
 			<h1>Edit Your Profile:</h1>

@@ -11,19 +11,6 @@
         <i class="fas fa-search"></i> Search Content
       </header>
       <form method="get" action="./search.php" id="search-form">
-          <!--<div class="modal-division">
-            <header>
-              <p> Search in </p>
-            </header>
-            <div class="options">
-              <label>
-                <input type="checkbox" name="search_in_stories" value="yes" checked> Stories
-              </label>
-              <label>
-                <input type="checkbox" name="search_in_comments" value="yes" checked> Comments
-              </label>
-            </div>
-          </div> -->
           <div class="modal-division">
             <header>
               <p> Sort by </p>
@@ -58,12 +45,11 @@
               <p> Search terms </p>
             </header>
             <div class="options">
-              <input type="text" name="author_like" placeholder="author name" <?php if(array_key_exists('author_like', $GET)) echo 'value="'.$GET['author_like'].'"'; ?>>
-              <input type="text" name="content_like" placeholder="search term" <?php if(array_key_exists('content_like', $GET)) echo 'value="'.$GET['content_like'].'"'; ?>>
+              <input type="text" name="author_like" placeholder="author name" <?php if(array_key_exists('author_like', $GET)) echo 'value="'.htmlspecialchars($GET['author_like']).'"'; ?>>
+              <input type="text" name="content_like" placeholder="search term" <?php if(array_key_exists('content_like', $GET)) echo 'value="'.htmlspecialchars($GET['content_like']).'"'; ?>>
             </div>
           </div>
           <input type="submit" value="Search" class="button button-blue button-block">
-          <!-- <button class="button button-red button-block modal-close">Cancel</button> -->
       </form>
   </section>
   </div>

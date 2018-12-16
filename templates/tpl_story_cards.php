@@ -81,7 +81,7 @@
         </header>
 
         <div class="body">
-            <h2 class="title"><?=$story->title?></h2>
+            <h2 class="title"><?=htmlspecialchars($story->title)?></h2>
             <div class="lg-content"><?=$story->content?></div>
         </div>
 
@@ -102,7 +102,7 @@
 
 <?php function draw_comments($comments, $parent_post) { 
     /**
-     * Draws a section (comments) containingall the comments passed as argument
+     * Draws a section (comments) containing all the comments passed as argument
      */?>
 
     <section id="comments">
@@ -120,12 +120,7 @@
 
 <?php function draw_comment($comment) { 
     /**
-     * Draws a big card for the story passed as an argument.
-     * A card is simply a block that contains:
-     *  - the author's name of the comment
-     *  - the date it was created,
-     *  - content
-     *  - the number of points
+     * Draws a card for the comment passed as an argument.
      */?>
 
     <article class="comment">
@@ -149,7 +144,7 @@
         </header>
 
         <div class="body">
-            <p class="lg-content"><?=$comment->content?></p>
+            <p class="lg-content"><?=htmlspecialchars($comment->content)?></p>
         </div>
 
         <div class="reply-form" >
@@ -169,8 +164,10 @@
 
 <?php } ?>
 
-<?php function draw_comment_form($parent_post) { 
-    ?>
+<?php function draw_comment_form($parent_post)  { 
+    /**
+     * Draws the submit comment form.
+     */?>
 
     <form method="post" data-id="<?=$parent_post?>" action="../actions/action_comment.php" class="comment-form" >
         <textarea class="content" type="text-area" name="content" placeholder="What are your thoughts?" required></textarea>
