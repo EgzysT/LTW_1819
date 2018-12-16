@@ -692,12 +692,26 @@ body > .container {
 	background-color: var(--panel-color);
 	box-shadow: 0px 0px 2px 0px var(--medium-shadow-color);
 }
-#profile-info > img {
-	display: block;
-	box-shadow: 0 3px 10px 0 var(--medium-shadow-color);
-	border-radius: 50%;
-	width: 90%;
-	margin: 1em auto;
+
+#profile-info .avatar-container {
+	width: 100%;
+	padding: 1em 0 0;
+	background: url('https://www.toptal.com/designers/subtlepatterns/patterns/christmas-black.png');
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	margin-bottom: 1.5em;
+	box-shadow: 0px 1px 1px 0px var(--medium-shadow-color);
+}
+
+#profile-info .avatar-container img {    
+	position: relative;
+    top: 1em;
+    box-shadow: 0px 0px 4px 0px var(--medium-shadow-color);
+	border-radius: 2px;
+	width: 150px;
+	height: 150px;
 }
 
 #profile-info > h1 {
@@ -706,12 +720,13 @@ body > .container {
 	margin-top: 1rem;
 	text-align: center;
 }
-#profile-info p {
+#profile-info > p {
 	margin: 0em;
 	padding: 1em;
+	
 }
-#profile-info p:first-of-type {
-	padding: 0em;
+#profile-info > p:first-of-type {
+	padding: 0.2em 1em 0.2em;
 }
 #profile-info > footer > p > a {
 	display: block;
@@ -724,6 +739,15 @@ body > .container {
 	/* display: block; */
 	/* float: right; */
 	display: block;
+}
+
+#profile-info .account-activity {
+	border-top: 1px solid rgba(0,0,0,.125);
+	padding: 0.2em 1em 0;    
+	margin-top: 0.5em;
+	display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .aside > footer > div {

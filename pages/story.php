@@ -7,7 +7,6 @@
   include_once('../templates/tpl_common.php');
   include_once('../templates/tpl_story_cards.php');
   include_once('../templates/tpl_asides.php');
-  include_once('../templates/tpl_profile.php');
   include_once('../database/db_story.php');
   include_once('../database/db_user.php');
   include_once('../database/db_post.php');
@@ -29,9 +28,6 @@
   }
 
   $profile = getUserProfile($current_story->author_name);
-  $profile_pic = $profile->profile_pic; 
-  $bio = $profile->bio; 
-  $points = $profile->points; 
 
   // See if user already upvoted / downvoted.
   $vote_type = NULL;
@@ -52,7 +48,7 @@
 
   	<section id="one-story" class="one-story">
       <?php
-          draw_aside_profile($username, $profile_pic, $bio, $points);
+          draw_aside_profile($profile);
           draw_full_story_card($current_story, $comments, $vote_type);
           draw_comments($comments, $story_id, $logged_in);
       ?>

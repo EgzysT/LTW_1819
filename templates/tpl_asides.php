@@ -108,4 +108,30 @@ function draw_channels_aside($channels, $header_text) {
             <?php } ?>
         </ul>
     </aside>
+<?php }
+
+/**
+ * Draws the aside for the profile in the story view page.
+ *
+ */
+function draw_aside_profile($profile) {?>
+    <aside id="profile-info" class="aside">
+        <div class="avatar-container">
+            <img src=<?=$profile->profile_pic?> alt="profile picture">
+        </div>
+        <h1 class="aside-header-text"><?=$profile->username?></h1>
+        <p class="aside-body-text"><?=$profile->bio?></p>
+        <div class="account-activity">
+            <p class="aside-body-text" title="Points"><i class="fas fa-balance-scale"></i> <?=$profile->points?></p>
+            <p class="aside-body-text" title="Stories"><i class="fas fa-book"></i> <?=$profile->points?></p>
+            <p class="aside-body-text" title="Comments"><i class="fas fa-comment"></i> <?=$profile->points?></p>
+        </div>
+        <?php if($profile->username == $_SESSION['username']) {?>
+            <footer>
+                <a href="../pages/edit_profile.php"><button class="button button-blue button-block">Edit Profile</button></a>
+            </footer>
+        <?php } ?>
+    </aside>
+
 <?php } ?>
+
