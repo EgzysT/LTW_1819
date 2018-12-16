@@ -106,14 +106,14 @@ if(asideChannel) {
             toggleRotation();
             makeHTTPRequest('../actions/action_subscribe.php', 
             'post', 
-            {action: 'subscribe', channel_name: channel_name, csrf: csrf}, (response) => { console.log(response) });
+            {action: 'subscribe', channel_name: channel_name, csrf: csrf}, (response) => {  });
         }
         // User unsubscribes.
         unsubscribeButton.onclick = () => {
             toggleRotation();
             makeHTTPRequest('../actions/action_subscribe.php', 
             'post', 
-            {action: 'unsubscribe', channel_name: channel_name, csrf: csrf}, (response) => { console.log(response) });
+            {action: 'unsubscribe', channel_name: channel_name, csrf: csrf}, (response) => {  });
         }
     }
     
@@ -168,7 +168,6 @@ if(mainAside) {
             xhr.open('POST', '../actions/action_create_channel.php', true);
             xhr.addEventListener("load", function () {
                 let response = this.responseText;
-                console.log(response);
                 if(response !== 'ok') { 
                     ajaxFailBox.style.display = 'flex';
                     ajaxFailBox.querySelector('#error-message').innerHTML = response;
@@ -283,6 +282,47 @@ if(comments) {
 
         if (downvoteButton && upvoteButton && points)
             addVotesEvents(downvoteButton, upvoteButton, points);
+    }
+}
+
+/* Edit profile Ajax */
+let editProfilePanel = document.querySelector('#edit-profile');
+if(editProfilePanel) {
+    let loginAjaxContainer = document.querySelector('#ajax-form-container');
+    let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
+    let ajaxFailBox = loginAjaxContainer.querySelector('#ajax-form-failure-fill');
+    let ajaxSuccessBox = loginAjaxContainer.querySelector('#ajax-form-success-fill');
+
+    // Main edit form
+    let editMain = editProfilePanel.querySelector('#edit-main');
+    let editMainForm = editMain.querySelector('form');
+    editMainForm.onsubmit = (e) => {
+        e.preventDefault();
+        ajaxRequestBox.style.display = 'flex';
+        // Do special xhr request.
+        let formData = new FormData(editMainForm);
+        // Ajax request
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '../actions/action_upload_profile.php', true);
+        xhr.addEventListener("load", function () {
+            let response = this.responseText;
+            if(response !== 'ok') { 
+                ajaxFailBox.style.display = 'flex';
+                ajaxFailBox.querySelector('#error-message').innerHTML = response;
+            }
+            else {
+                ajaxSuccessBox.style.display = 'flex';
+                // Redirect user after 1s.
+                setTimeout(function(){window.location.replace(`./channel.php?name=${channel_name}`); }, 1000);
+            }
+            ajaxRequestBox.style.display = 'none';
+        });
+        xhr.send(formData);
+    }
+
+    // Close failure ajax box button handler.
+    ajaxFailBox.querySelector('button').onclick = () => {
+        ajaxFailBox.style.display = 'none';
     }
 }
 
@@ -411,9 +451,6 @@ function addReplyFormEvents (comment) {
         replyForm.onsubmit = (e) => {
             e.preventDefault();
 
-            console.log("Parent post");
-            console.log(replyForm.getAttribute('data-id'))
-
             makeHTTPRequest('../actions/action_comment.php', 
             'post', 
             {   
@@ -421,7 +458,6 @@ function addReplyFormEvents (comment) {
                 post: replyForm.getAttribute('data-id')
             }, 
             (new_comment) => {
-                console.log(new_comment);
                 // resets the form to its initials values
                 replyForm.reset();
                 // hides the form
@@ -453,8 +489,6 @@ function createComment(new_comment_str) {
         
     // splits received string to an array
     let new_comment = new_comment_str.split("|");
-    console.log(new_comment[id_index]);
-
     
     // creates the user
     let user = document.createElement('a');
@@ -556,9 +590,6 @@ function createComment(new_comment_str) {
 
 
     reply_form.innerHTML = comment_form.outerHTML;
-
-    // console.log(new_comment[id_index]);
-    // console.log(commentForm.outerHTML);
 
     //creates subcomments div
     let subcomments = document.createElement('div');

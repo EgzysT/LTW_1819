@@ -11,7 +11,7 @@
   if(!$_SESSION['username'])
     echo('fail');
   else {
-    $content = $_POST['content'];
+    $content = htmlspecialchars($_POST['content']);
     $parent_post = $_POST['post'];
     
     $username = $_SESSION['username'];

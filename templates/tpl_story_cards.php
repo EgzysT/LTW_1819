@@ -144,7 +144,7 @@
         </header>
 
         <div class="body">
-            <p class="lg-content"><?=htmlspecialchars($comment->content)?></p>
+            <p class="lg-content"><?=$comment->content?></p>
         </div>
 
         <div class="reply-form" >

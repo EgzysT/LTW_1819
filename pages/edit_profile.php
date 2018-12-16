@@ -12,13 +12,8 @@
     die(header('Location: ../pages/main'));
 
 	$profile = getUserProfile($username);
-
-  $profile_pic = $profile->profile_pic;
-	$bio = $profile->bio;
-	$points = $profile->points;
-	$email = $profile->email;
 	
 	draw_header($username, $page_title);
-	draw_edit_profile($username, $profile_pic, $bio, $email);
+	draw_edit_profile($profile);
   draw_footer();
 ?>

@@ -293,7 +293,7 @@ Log in, Sign up and submit story form styling
 }
 
 #submission input { 
-	width: 100%;
+	width: 98%;
 	padding-left: 1em;
 }
 
@@ -411,7 +411,7 @@ textarea:focus {
 	padding: 0.4em;
 }
 
-#submission header {
+#submission header, #edit-profile header {
 	padding-left: 1.5em;
 }
 
@@ -1271,73 +1271,140 @@ body > .container {
 
 /**
 
-	Edit profile
+	Edit profile panel
 
 */
 
-#edit-profile-section {
-	background-color: var(--panel-color);
-	box-shadow: 0 1px 6px 0 var(--dark-shadow-color);
+#edit-profile { 
+	width: 60em;
+	display:grid;
+	grid-template-rows: auto auto;
+	grid-template-columns: auto;
+	grid-template-areas: "header"
+						 "edit-main"
+						 "edit-email"
+						 "edit-password";
+	grid-gap: 0;
 }
-#edit-profile-section > h1{
-	color: var(--main-color);
-	padding: 0.5em 1em;
-	margin-bottom: 0;
-	font-size: 2em;
-	box-shadow: 0 0px 2px 0 #888;
-}
-.edit-profile-form {
-	display: block;
-	border-bottom: 2px solid #789;
-}
-.edit-profile-form > input {
-	display: block;
-	margin: 0.5em 1em;
-}
-.edit-profile-form > textarea {
-	display: block;
-	margin: 0.5em 1em;
-	resize: none;
-	outline: none;
-	overflow: auto;
-	border-radius: 5px;
-	border: 1px solid #bbb;
-}
-.edit-profile-form > textarea:focus {
-	border: 2px solid #369;
-}
-.edit-profile-form > textarea label {
-	font-family: var(--serif-font), serif;
-}
-.edit-profile-form > h3{
-	padding: 1.5em 0 0.5em 1em;
-	margin: 0;
-	font-size: 1.25em;
-}
-.edit-profile-form > img {
-	display: block;
-	padding: 0.0em 1em;
-	max-width: 256px;
-	height: auto;
 
-	/* Just so it doesn't blur if pictures get streched beyond their size (removes anti-aliasing) */
-	image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
-	image-rendering: -moz-crisp-edges;          /* Firefox                        */
-	image-rendering: -o-crisp-edges;            /* Opera                          */
-	image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
-	image-rendering: pixelated; /* Chrome */
-	image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
-	-ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+@media (min-width: 700px) {
+	#edit-profile {
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto auto;
+		grid-template-areas: "header header"
+						 	 "edit-main edit-email"
+						 	 "edit-main edit-password";
+	}
+
+	#edit-profile #edit-email {
+		border-top: 0;
+		border-left: 1px solid rgba(0,0,0,.05);
+	}
+	
+	#edit-profile #edit-password {
+		border-top: 0;
+		border-left: 1px solid rgba(0,0,0,.05);
+	}
 }
-.edit-profile-form > p {
-	display: block;
-	padding: 0.0em 1em;
-	font-size: 1em;
+
+
+#edit-profile header {
+	grid-area: header;
 }
-.edit-profile-form > input[type=submit] {
+
+#edit-profile #edit-main {
+	grid-area: edit-main;
+}
+
+#edit-profile #edit-main form{
+	display: flex;
+	flex-direction: column;
+	padding-left: 2em;
+	padding-right: 2em;
+}
+
+#edit-profile #edit-main .button {
+	align-self: center;
+	width: 99%;
+	box-sizing: border-box;
+}
+
+#edit-profile #edit-main textarea { 
+	outline: 0;
+	padding: 0.8em;
+	box-shadow: 0;
+	box-sizing: border-box;
+}
+
+#edit-profile h3 { 
+	color: var(--main-color);
+}
+
+#edit-profile #edit-main .username {
+	color: var(--main-color);
+	font-family: var(--serif-font);
 	display: block;
-	margin: 3em 1em 1em 1em;
-	width: 50%
+    font-size: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 0;
+	text-align: center;
+	text-shadow: 2px 2px 1px #7171712b;
+}
+
+#edit-profile #edit-main .email {
+	color: var(--dark-color);
+	font-family: var(--serif-font);
+	display: block;
+    font-size: 1em;
+    margin-top: 0.3em;
+    margin-bottom: 2em;
+	text-align: center;
+}
+
+#edit-profile #edit-main #avatar {
+	display: block;
+	margin: 0 auto;
+	height: 200px;
+	width: 200px;
+	box-shadow: 0px 0px 8px 0px var(--medium-shadow-color);
+	display: flex;
+    align-content: center;
+    justify-content: center;
+	flex-direction: column;
+	margin-bottom: 1em;
+	background-size: cover;
+}
+
+#edit-profile #edit-main .custom-file-upload {
+	text-align: center;
+}
+
+#edit-profile #edit-main input[type="file"] {
+    display: none;
+}
+
+#edit-profile #edit-main .fa-stack {
+	color: var(--button-blue-color);
+	transition: 0.2s all linear;
+}
+
+#edit-profile #edit-main .fa-stack:hover {
+	color: #003265;;
+}
+
+#edit-profile #edit-email {
+	grid-area: edit-email;
+	border-top: 1px solid rgba(0,0,0,.125);
+}
+
+#edit-profile #edit-password {
+	grid-area: edit-password;
+	border-top: 1px solid rgba(0,0,0,.125);
+}
+
+#edit-profile form {
+	height: 100%;
+	box-sizing: border-box;
 }
 
 /* 
