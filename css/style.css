@@ -1232,8 +1232,7 @@ body > .container {
 }
 
 .comment-form .content {
-	text-indent: 1em;
-	margin-top: 0em;
+	padding: 0.5em;
 	border: 0;
 	background-color: #F8F8F8;
 	min-height: 5em;
