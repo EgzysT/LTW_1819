@@ -1,7 +1,7 @@
 <?php 
 
   if(!isset($_GET['id']))
-    die(header('Location: ./main.php'));
+    die(header('Location: ./main'));
 
   include_once('../includes/session.php');
   include_once('../templates/tpl_common.php');
@@ -17,15 +17,11 @@
   $current_story = getStory($story_id);
   
   if(!$current_story)
-    die(header('Location: ./main.php'));
+    die(header('Location: ./main'));
 
   $comments = getComments($story_id, $username);
 
   $page_title = 'Bluedit';
-
-  if(!$current_story) { // Story doesn't exist.
-    die(header('Location: ./main.php'));
-  }
 
   $profile = getUserProfile($current_story->author_name);
 
@@ -34,14 +30,6 @@
   
   if($username)
     $vote_type = get_vote($username, $current_story->id);
-
-  // checks if the user is loged in to know if it should print the comment form
-  if($_SESSION['username'])
-    $logged_in = true;
-  else
-    $logged_in = false;
-
-    $content = $current_story->content;
 
 
   draw_header($username, $page_title);  ?>

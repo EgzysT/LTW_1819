@@ -205,7 +205,10 @@
   function insertComment($parent_post, $content, $username) {
     $db = Database::instance()->db();
     
-    $stmt = $db->prepare('INSERT INTO post (content, user_id) VALUES (?, ?)');
+    $stmt = $db->prepare('INSERT INTO post (content, user_id)
+    SELECT ?, user.id
+    FROM user 
+    WHERE user.username = ?');
     $stmt->execute(array($content, $username));
     $last_id = $db->lastInsertId();
 

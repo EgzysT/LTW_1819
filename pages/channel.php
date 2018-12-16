@@ -1,7 +1,7 @@
 <?php 
 
   if(!isset($_GET['name']))
-    header('Location: ./main.php');
+    header('Location: ./main');
 
   include_once('../includes/session.php');
   include_once('../templates/tpl_common.php');
@@ -20,7 +20,7 @@
   $page_title = 'Bluedit #'.$current_page_channel->name;
 
   if(!$current_page_channel) { // Channel doesn't exist.
-    header('Location: ./main.php');
+    header('Location: ./main');
   }
 
   draw_header($username, $page_title); ?>

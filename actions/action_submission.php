@@ -62,7 +62,7 @@
 
       if ($channel) {
         $search = '#\/c\/' . $match[0] . '\/#';
-        $replace =  '<a href="./profile.php?channel=' . $match[0] . '" class="sc_channel">' . $match[0] . '</a>';
+        $replace =  '<a href="./channel.php?name=' . $match[0] . '" class="sc_channel">' . $match[0] . '</a>';
         $story_text = preg_replace($search, $replace, $story_text);
       }
     }

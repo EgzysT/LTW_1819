@@ -9,13 +9,13 @@
 
 
   if(!$_SESSION['username'])
-    die(header('Location: ../pages/main.php'));
+    die(header('Location: ../pages/main'));
 
 	$channel_name = $_GET['channel'];
 
 	// Redirect user to main page if channel doesn't exist.
   if(!get_channel_info($channel_name)) {
-    die(header('Location: ../pages/main.php'));
+    die(header('Location: ../pages/main'));
 	}
 
 	$username = $_SESSION['username'];

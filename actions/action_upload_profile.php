@@ -23,7 +23,7 @@
 		//check if any file was uploaded
 		if(!file_exists($_FILES['newProfilePic']['tmp_name']) || !is_uploaded_file($_FILES['newProfilePic']['tmp_name'])) {
 			echo 'No file upload';
-			die(header('Location: ../pages/edit_profile.php'));
+			die(header('Location: ../pages/edit_profile'));
 		}
 		else {
 			//check if file is an image
@@ -101,7 +101,7 @@
 				}
 				echo "The file ". basename( $_FILES["newProfilePic"]["name"]). " has been uploaded.";
 				updateUserPicPath($username, $target_file);
-				die(header('Location: ../pages/edit_profile.php'));
+				die(header('Location: ../pages/edit_profile'));
 			}
 		}
 	}	

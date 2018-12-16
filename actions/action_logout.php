@@ -4,6 +4,6 @@
   if($_SESSION['username'])
     unset($_SESSION['username']);
 
-  header('Location: ../pages/main.php');
+  header('Location: ../pages/main');
 
 ?>

@@ -717,7 +717,7 @@ body > .container {
 #profile-info > h1 {
 	display: block;
 	font-size: 2em;
-	margin-top: 1rem;
+	margin-top: 2rem;
 	text-align: center;
 	margin-bottom: 0.1em;
 }
@@ -1062,18 +1062,13 @@ body > .container {
     100% { transform: translateY(0) scale(1.05); }
 }
 
-#full-story .sc-aside {
-	grid-column: 2;
-}
 
 #full-story header {
 	height: 3.8em;
 	grid-row: 1;
-	grid-column: 2;
 }
 
 #full-story .body {
-	grid-column: 2;
 	word-break: break-word;
 }
 
@@ -1105,7 +1100,6 @@ body > .container {
 @media (min-width: 800px) {
 	#full-story .sc-aside {
 		margin-top: 1.5em;
-		grid-column: 1;
 		position: absolute;
 		left: -3em;
 	}

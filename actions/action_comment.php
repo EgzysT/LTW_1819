@@ -16,8 +16,6 @@
     
     $username = $_SESSION['username'];
 
-    $profile = getUserProfile($username);
-    $user_id = $profile->id;
   }
 
     // check if there is a reference to a user
@@ -45,13 +43,13 @@
 
       if ($channel) {
         $search = '#\/c\/' . $match[0] . '\/#';
-        $replace =  '<a href="./profile.php?channel=' . $match[0] . '" class="sc_channel">' . $match[0] . '</a>';
+        $replace =  '<a href="./channel.php?name=' . $match[0] . '" class="sc_channel">' . $match[0] . '</a>';
         $content = preg_replace($search, $replace, $content);
       }
     }
   }
 
-    $comment = insertComment($parent_post, $content, $user_id);
+    $comment = insertComment($parent_post, $content, $username);
 
     // turns the values stored in $comment into a string in which the values are separated by |
     $string = implode("|", get_object_vars($comment));

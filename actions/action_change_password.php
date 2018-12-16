@@ -19,7 +19,7 @@
 		else {
 			echo 'fail';
 		}
-		die(header('Location: ../pages/edit_profile.php'));
+		die(header('Location: ../pages/edit_profile'));
   }
 
 ?>
