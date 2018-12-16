@@ -727,6 +727,7 @@ body > .container {
 }
 #profile-info > p:first-of-type {
 	padding: 0.2em 1em 0.2em;
+	line-height: 150%;
 }
 #profile-info > footer > p > a {
 	display: block;
