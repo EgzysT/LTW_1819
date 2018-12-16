@@ -296,6 +296,13 @@ if(editProfilePanel) {
     // Main edit form
     let editMain = editProfilePanel.querySelector('#edit-main');
     let editMainForm = editMain.querySelector('form');
+
+    // Handle image upload preview
+    let previewDiv = editMain.querySelector('#avatar');
+    editMain.querySelector('input[type="file"]').onchange = (e) => {
+        previewDiv.style.background = `url('${URL.createObjectURL(event.target.files[0])}') center/cover`;
+    };
+
     editMainForm.onsubmit = (e) => {
         e.preventDefault();
         ajaxRequestBox.style.display = 'flex';
@@ -313,12 +320,68 @@ if(editProfilePanel) {
             else {
                 ajaxSuccessBox.style.display = 'flex';
                 // Redirect user after 1s.
-                setTimeout(function(){window.location.replace(`./channel.php?name=${channel_name}`); }, 1000);
+                setTimeout(function(){window.location.replace(`./edit_profile.php`); }, 250);
             }
             ajaxRequestBox.style.display = 'none';
         });
         xhr.send(formData);
     }
+
+    
+    // Email edit form 
+    let editEmail = editProfilePanel.querySelector('#edit-email');
+    let editEmailForm = editEmail.querySelector('form');
+    editEmailForm.onsubmit = (e) => {
+        e.preventDefault();
+        ajaxRequestBox.style.display = 'flex';
+        // Do special xhr request.
+        let formData = new FormData(editEmailForm);
+        // Ajax request
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '../actions/action_change_email.php', true);
+        xhr.addEventListener("load", function () {
+            let response = this.responseText;
+            if(response !== 'ok') { 
+                ajaxFailBox.style.display = 'flex';
+                ajaxFailBox.querySelector('#error-message').innerHTML = response;
+            }
+            else {
+                ajaxSuccessBox.style.display = 'flex';
+                // Redirect user after 1s.
+                setTimeout(function(){window.location.replace(`./edit_profile.php`); }, 250);
+            }
+            ajaxRequestBox.style.display = 'none';
+        });
+        xhr.send(formData);
+    }
+
+    // Email edit form 
+    let editPassword = editProfilePanel.querySelector('#edit-password');
+    let editPasswordForm = editPassword.querySelector('form');
+    editPasswordForm.onsubmit = (e) => {
+        e.preventDefault();
+        ajaxRequestBox.style.display = 'flex';
+        // Do special xhr request.
+        let formData = new FormData(editPasswordForm);
+        // Ajax request
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '../actions/action_change_password.php', true);
+        xhr.addEventListener("load", function () {
+            let response = this.responseText;
+            if(response !== 'ok') { 
+                ajaxFailBox.style.display = 'flex';
+                ajaxFailBox.querySelector('#error-message').innerHTML = response;
+            }
+            else {
+                ajaxSuccessBox.style.display = 'flex';
+                // Redirect user after 1s.
+                setTimeout(function(){window.location.replace(`./edit_profile.php`); }, 250);
+            }
+            ajaxRequestBox.style.display = 'none';
+        });
+        xhr.send(formData);
+    }
+
 
     // Close failure ajax box button handler.
     ajaxFailBox.querySelector('button').onclick = () => {

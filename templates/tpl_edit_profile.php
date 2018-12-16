@@ -8,7 +8,7 @@
 
       <header><h2><i class="fas fa-pen-fancy"></i> &nbsp;Edit profile</h2></header>
 
-      <!--<div id="ajax-form-container">-->
+      <div id="ajax-form-container">
         <!-- Ajax related HTML comes first -->
         <div id="ajax-form-request-fill">
           <i class="fas fa-cog fa-2x fa-spin"></i>
@@ -29,16 +29,16 @@
             <h4 class="email"><?=$profile->email?></h4>
             <div id="avatar" style="background-image: url('<?=$profile->profile_pic?>')">
                 <label class="custom-file-upload">
-                    <input type="file" name="image"/>
+                    <input type="file" name="newProfilePic"/>
                     <span class="fa-stack fa-2x">
                         <i class="far fa-square fa-stack-2x"></i>
                         <i class="fas fa-upload fa-stack-1x"></i>
                     </span>
               </label>
             </div>
-            <input type="file" name="newProfilePic" id="newProfilePic" accept=".jpg,.png,.jpeg,.gif">
             <h3>Tell us a little about yourself:</h3>
             <textarea name="bio" rows="5" cols="50"><?=$profile->bio?></textarea>
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
             <input class="button button-blue" value="Save" type="submit" name="submit">
           </form>
         </div>
@@ -47,6 +47,7 @@
           <h3>Change Email:</h3>
           <input type="password" name="password" placeholder="current password" autocomplete="off">
           <input type="email" name="newEmail" autocomplete="off" placeholder="new email">
+          <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
           <input class="button button-blue" type="submit" name="submit" value="Save">
         </form>
         </div>
@@ -56,9 +57,10 @@
             <input type="password" name="currPassword" placeholder="current password">
             <input type="password" name="newPassword1" placeholder="new password">
             <input type="password" name="newPassword2" placeholder="confirm new password">
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
             <input class="button button-blue" type="submit" name="submit" value="Save">
           </form>
         </div>
-      <!--</div>-->
+      </div>
 		</section>
 <?php } ?>

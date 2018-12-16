@@ -6,20 +6,23 @@
   include_once('../database/db_user.php');
 
   if(!$_SESSION['username'])
-    echo('fail');
-  else {
-		$username = $_SESSION['username'];
-		$password = $_POST['currPassword'];
-		$newPassword1 = $_POST['newPassword1'];
-		$newPassword2 = $_POST['newPassword2'];
-		if ($newPassword1 == $newPassword2 && checkUserPassword($username, $password)) {
-			updateUserPassword($username, $newPassword1);
-			echo 'ok';
-		}
-		else {
-			echo 'fail';
-		}
-		die(header('Location: ../pages/edit_profile'));
-  }
+		die('fail');
+	if($_SESSION['csrf'] !== $_POST['csrf'])
+		die('Invalid csrf');
+		
+	$username = $_SESSION['username'];
+	$password = $_POST['currPassword'];
+	$newPassword1 = $_POST['newPassword1'];
+	$newPassword2 = $_POST['newPassword2'];
+	if ($newPassword1 !== $newPassword2 ) {
+		die('Passwords don\'t match.');
+	}
+
+	if (checkUserPassword($username, $password)) {
+		updateUserPassword($username, $newPassword1);
+		echo 'ok';
+	}
+	else
+		die('Wrong current password.');
 
 ?>

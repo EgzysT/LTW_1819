@@ -1277,6 +1277,9 @@ body > .container {
 
 #edit-profile { 
 	width: 60em;
+}
+
+#edit-profile #ajax-form-container { 
 	display:grid;
 	grid-template-rows: auto auto;
 	grid-template-columns: auto;
@@ -1288,7 +1291,7 @@ body > .container {
 }
 
 @media (min-width: 700px) {
-	#edit-profile {
+	#edit-profile #ajax-form-container {
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: auto auto;
 		grid-template-areas: "header header"
