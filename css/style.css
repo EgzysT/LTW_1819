@@ -719,6 +719,7 @@ body > .container {
 	font-size: 2em;
 	margin-top: 1rem;
 	text-align: center;
+	margin-bottom: 0.1em;
 }
 #profile-info > p {
 	margin: 0em;
