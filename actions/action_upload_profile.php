@@ -8,6 +8,12 @@
     
 	//Bio Text area
   $username = $_SESSION['username'];
+  if(!$username)
+    die('Log in please.');
+
+  if(strlen($_POST["bio"]) > 180) {
+    die('Bio must be less than 180 characters.');
+  }
   updateUserBio($username, $_POST["bio"]);
 	if(!file_exists($_FILES['newProfilePic']['tmp_name']) || !is_uploaded_file($_FILES['newProfilePic']['tmp_name'])) {
     die('ok');
