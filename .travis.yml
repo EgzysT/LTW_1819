@@ -11,7 +11,7 @@ after_success:
 - ssh-keyscan foliveira.xyz >> ~/.ssh/known_hosts
 - git remote add dokku dokku@foliveira.xyz:ltw
 - git config --global push.default simple
-- git push dokku master
+- git push dokku master -f
 
 notifications:
   email: false
