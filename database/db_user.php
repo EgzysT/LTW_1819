@@ -25,6 +25,14 @@
 
     $stmt = $db->prepare('INSERT INTO user (username, password, email) VALUES (?, ?, ?)');
     $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options), $email));
+
+    $user_id = $db->lastInsertId();
+
+    $stmt = $db->prepare('INSERT INTO subscription (user_id, channel_id)
+    SELECT ?, channel.id
+    FROM channel ');
+    $stmt->execute(array($user_id));
+    
   }
 
   /**
@@ -47,7 +55,14 @@
   function getUserProfile($username) {
     $db = Database::instance()->db();
 
-    $stmt = $db->prepare('SELECT user.username, user.profile_pic, user.bio, user.points, user.email FROM user WHERE username = ?');
+    $stmt = $db->prepare('SELECT user.username, user.profile_pic, user.bio, user.points, user.email,
+      (SELECT count(*)
+        FROM post, comment
+        WHERE post.id = comment.post_id AND post.user_id = user.id) as comments,
+      (SELECT count(*)
+        FROM post, story
+        WHERE story.post_id = post.id AND post.user_id = user.id) as stories
+      FROM user WHERE username = ?');
     $stmt->execute(array($username));
 
     $user_profile = $stmt->fetch(PDO::FETCH_OBJ);

@@ -123,12 +123,16 @@ function draw_aside_profile($profile) {?>
         <p class="aside-body-text"><?=$profile->bio?></p>
         <div class="account-activity">
             <p class="aside-body-text" title="Points"><i class="fas fa-balance-scale"></i> <?=$profile->points?></p>
-            <p class="aside-body-text" title="Stories"><i class="fas fa-book"></i> <?=$profile->points?></p>
-            <p class="aside-body-text" title="Comments"><i class="fas fa-comment"></i> <?=$profile->points?></p>
+            <p class="aside-body-text" title="Stories"><i class="fas fa-book"></i> <?=$profile->stories?></p>
+            <p class="aside-body-text" title="Comments"><i class="fas fa-comment"></i> <?=$profile->comments?></p>
         </div>
         <?php if($profile->username == $_SESSION['username']) {?>
             <footer>
-                <a href="../pages/edit_profile.php"><button class="button button-blue button-block">Edit Profile</button></a>
+                    <a href="../pages/edit_profile.php"><button class="button button-blue button-block">Edit Profile</button></a>     
+            </footer>
+        <?php } else if (strpos($_SERVER['REQUEST_URI'], 'profile') === false){ ?>
+            <footer>
+                <a href="../pages/profile.php?user=<?=$profile->username?>"><button class="button button-blue button-block">View Profile</button></a>
             </footer>
         <?php } ?>
     </aside>

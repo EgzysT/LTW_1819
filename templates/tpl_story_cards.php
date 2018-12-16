@@ -133,8 +133,7 @@
         <header>
             <a href="./profile.php?user=<?=$comment->author_name?>" class="author-name"><?=$comment->author_name?></a>
             <p class="date" title="<?=$comment->date?>"><?=$comment->posted_ago?></p>
-            <p class="points"><?=$comment->points?></p>
-            <p>points</p>
+            <p><span class="points"><?=$comment->points?></span> points</p>
 
         <?php if($_SESSION['username']){ ?>
             <div class="reply" data-id="<?=$comment->id?>">

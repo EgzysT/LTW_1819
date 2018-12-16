@@ -1173,9 +1173,10 @@ body > .container {
 	margin-left: 1em;
 }
 
-.comment > header p.points {
+.comment > header .points {
 	width: 2em;
 	text-align: center;
+	display: inline-block;
 }
 
 .comment header .reply {
