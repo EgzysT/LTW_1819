@@ -38,7 +38,7 @@
       <?php
           draw_aside_profile($profile);
           draw_full_story_card($current_story, $comments, $vote_type);
-          draw_comments($comments, $story_id, $logged_in);
+          draw_comments($comments, $story_id, $username);
       ?>
 	  </section>
 

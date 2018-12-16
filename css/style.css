@@ -952,8 +952,8 @@ body > .container {
 	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 87%,rgb(234, 234, 234) 100%);
 } 
 
-.card .body .sm-content img {
-	width: 100%
+.sm-content img, .lg-content img {
+	max-width: 100%
 }
 
 .card ul {
@@ -1171,6 +1171,11 @@ body > .container {
 	color: var(--grey-color);
 	margin: 0;
 	margin-left: 1em;
+}
+
+.comment > header p.points {
+	width: 2em;
+	text-align: center;
 }
 
 .comment header .reply {
