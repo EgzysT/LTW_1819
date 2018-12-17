@@ -18,6 +18,10 @@
 
   }
 
+  // Validate csrf
+	if($_SESSION['csrf'] !== $_POST['csrf'])
+    die('Invalid csrf');
+
     // check if there is a reference to a user
   preg_match_all('#(?<=\/u\/).+?(?=\/)#', $content, $matches);
  
