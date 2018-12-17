@@ -10,5 +10,5 @@
   }
 
   if(!isset($_SESSION['username']))
-    $_SESSION['username'] = $username = NULL;
+    $_SESSION['username'] = NULL;
 ?>
