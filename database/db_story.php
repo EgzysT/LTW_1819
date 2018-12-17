@@ -65,8 +65,6 @@
     else 
       $query = $query.' DESC';   
 
-    //die($query);
-
     $stmt = $db->prepare($query);
 
     if(array_key_exists('channel', $options)) {
@@ -94,10 +92,12 @@
     $stmt->execute();
     $stories = $stmt->fetchAll(PDO::FETCH_OBJ);
 
+
     foreach($stories as $story) {
       $story->posted_ago = time_ago($story->timestamp);
       $story->date = date("H:i:s d-m-y", $story->timestamp);
-      $story->comments = count(getComments($story->id, NULL));
+      
+      $story->comments = countComments($story->id);
     }
 
     return $stories;
@@ -178,7 +178,6 @@
     $stmt2 = $db->prepare('SELECT 
     vote_type FROM vote, user Where user.username = ? AND user.id = vote.user_id AND vote.post_id = ?');
 
-
     foreach($comments as $comment) {
       $stmt2->execute(array($username, $comment->id));
       $vote_type = $stmt2->fetch(PDO::FETCH_OBJ);
@@ -186,19 +185,31 @@
       if ($vote_type)
         $comment->vote_type = $vote_type->vote_type;
 
-
       $comment->posted_ago = time_ago($comment->timestamp);
       $comment->date = date("H:i:s m-d-y", $comment->timestamp);
 
       $comment->comments = getComments($comment->id, $username);
-
     }
-
-
-
     return $comments;
   }
 
+  /**
+   * Returns the total numbers of comments and subcomments of a post
+   */
+  function countComments($post_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT post_id From comment Where comment.parent_post= ?');
+    $stmt->execute(array($post_id));
+    
+    $comments = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $total_comments = 0;
+
+    foreach($comments as $comment) {
+      $total_comments += countComments($comment->post_id) + 1;
+    }
+
+    return $total_comments;
+  }
   /**
    * Inserts a comment returning the comment just inserted
    */
