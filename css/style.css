@@ -214,13 +214,6 @@ body > header h1 {
 	color: var(--panel-color);
 }
 
-/* Hide logo icon on small screens. Adjust logo text font-size also. */
-@media (max-width: 470px) {
-	body > header h1 {
-		font-size: 1.1em;
-	}
-}
-
 body > header h1 a {
 	font-family: var(--serif-font);
 }
@@ -232,6 +225,16 @@ body > header nav {
 body > header nav ul {
 	padding: 0em;
 	margin: 0em;
+}
+
+/* Hide logo icon on small screens. Adjust logo text font-size also. */
+@media (max-width: 500px) {
+	body > header h1 {
+		font-size: 1.1em;
+	}
+	body > header nav { 
+		margin: 0;
+	}
 }
 
 body > header nav li {
@@ -1097,7 +1100,7 @@ body > .container {
 	font-family: var(--serif-font);
 }
 
-@media (min-width: 800px) {
+@media (min-width: 900px) {
 	#full-story .sc-aside {
 		margin-top: 1.5em;
 		position: absolute;
