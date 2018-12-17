@@ -566,13 +566,13 @@ function createComment(new_comment_str) {
     date.innerText = "" + new_comment[posted_ago];
 
     // creates the points
-    let points = document.createElement('p');
-    points.setAttribute('class', 'points');
-    points.innerText = "" + new_comment[points_index];
+    let points_number = document.createElement('span');
+    points_number.setAttribute('class', 'points');
+    points_number.innerText = "" + new_comment[points_index];
 
-    let points_wrd = document.createElement('p');
-    points_wrd.setAttribute('class', 'points');
-    points_wrd.innerText = "points";
+    let points = document.createElement('p');
+    points.innerHTML = points_number.outerHTML;
+    points.innerText = "points";
 
     //creates font awesome i for reply		    
     let reply_fa = document.createElement('i');		     
@@ -611,7 +611,7 @@ function createComment(new_comment_str) {
     // creates the header
     let header = document.createElement('header').cloneNode();
     header.innerHTML = user.outerHTML + date.outerHTML 
-                    + points.outerHTML + points_wrd.outerHTML
+                    + points.outerHTML
                     + reply.outerHTML + arrows.outerHTML;
 
     // creates the content
