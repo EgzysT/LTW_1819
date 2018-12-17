@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.2.1 on seg dez 17 14:17:18 2018
+-- File generated with SQLiteStudio v3.2.1 on seg dez 17 23:06:45 2018
 --
 -- Text encoding used: System
 --
@@ -366,6 +366,69 @@ INSERT INTO comment (
                     VALUES (
                         53,
                         52
+                    );
+
+INSERT INTO comment (
+                        post_id,
+                        parent_post
+                    )
+                    VALUES (
+                        56,
+                        50
+                    );
+
+INSERT INTO comment (
+                        post_id,
+                        parent_post
+                    )
+                    VALUES (
+                        57,
+                        51
+                    );
+
+INSERT INTO comment (
+                        post_id,
+                        parent_post
+                    )
+                    VALUES (
+                        58,
+                        51
+                    );
+
+INSERT INTO comment (
+                        post_id,
+                        parent_post
+                    )
+                    VALUES (
+                        59,
+                        57
+                    );
+
+INSERT INTO comment (
+                        post_id,
+                        parent_post
+                    )
+                    VALUES (
+                        60,
+                        59
+                    );
+
+INSERT INTO comment (
+                        post_id,
+                        parent_post
+                    )
+                    VALUES (
+                        61,
+                        58
+                    );
+
+INSERT INTO comment (
+                        post_id,
+                        parent_post
+                    )
+                    VALUES (
+                        62,
+                        60
                     );
 
 
@@ -1160,6 +1223,125 @@ INSERT INTO post (
                      0
                  );
 
+INSERT INTO post (
+                     id,
+                     content,
+                     posted_at,
+                     user_id,
+                     upvotes_count,
+                     downvotes_count
+                 )
+                 VALUES (
+                     56,
+                     'José Sócrates acusado de corrupção, branqueamento e fraude fiscal',
+                     1545069738,
+                     6,
+                     0,
+                     0
+                 );
+
+INSERT INTO post (
+                     id,
+                     content,
+                     posted_at,
+                     user_id,
+                     upvotes_count,
+                     downvotes_count
+                 )
+                 VALUES (
+                     57,
+                     'Declínio da mobilização dos “coletes amarelos” é prenúncio do fim do protesto, diz Governo francês',
+                     1545069772,
+                     6,
+                     0,
+                     1
+                 );
+
+INSERT INTO post (
+                     id,
+                     content,
+                     posted_at,
+                     user_id,
+                     upvotes_count,
+                     downvotes_count
+                 )
+                 VALUES (
+                     58,
+                     'Governo francês acusa: há “coletes amarelos” que querem o caos em França',
+                     1545070004,
+                     5,
+                     0,
+                     0
+                 );
+
+INSERT INTO post (
+                     id,
+                     content,
+                     posted_at,
+                     user_id,
+                     upvotes_count,
+                     downvotes_count
+                 )
+                 VALUES (
+                     59,
+                     'A ministra do Interior francesa advertiu para a existência de manifestantes violentos entre os &quot;coletes amarelos&quot;, dando o exemplo de um porta-voz que quis invadir o Palácio do Eliseu. <a href="./profile.php?user=josesocrates" class="author-name">josesocrates</a> tem razao',
+                     1545070097,
+                     5,
+                     0,
+                     0
+                 );
+
+INSERT INTO post (
+                     id,
+                     content,
+                     posted_at,
+                     user_id,
+                     upvotes_count,
+                     downvotes_count
+                 )
+                 VALUES (
+                     60,
+                     'Citado pela agência de notícias francesa, France-Presse, o Governo disse: “Temos motivos para temer uma grande violência”.',
+                     1545070171,
+                     6,
+                     1,
+                     0
+                 );
+
+INSERT INTO post (
+                     id,
+                     content,
+                     posted_at,
+                     user_id,
+                     upvotes_count,
+                     downvotes_count
+                 )
+                 VALUES (
+                     61,
+                     'Há três semanas que os franceses saem à rua, bloqueando rotundas e autoestradas do país, primeiro para exigir a suspensão de um novo imposto sobre os combustíveis, mas depois também para denunciar o empobrecimento. <a href="./channel.php?name=news" class="sc_channel">news</a>',
+                     1545070265,
+                     6,
+                     0,
+                     0
+                 );
+
+INSERT INTO post (
+                     id,
+                     content,
+                     posted_at,
+                     user_id,
+                     upvotes_count,
+                     downvotes_count
+                 )
+                 VALUES (
+                     62,
+                     'Mais de 400 pessoas foram detidas no sábado em Paris, de acordo com o chefe de polícia, que falou de atos de violência de “gravidade sem precedentes”.',
+                     1545070356,
+                     5,
+                     0,
+                     0
+                 );
+
 
 -- Table: story
 DROP TABLE IF EXISTS story;
@@ -1667,6 +1849,28 @@ INSERT INTO vote (
                      5,
                      50,
                      'u'
+                 );
+
+INSERT INTO vote (
+                     user_id,
+                     post_id,
+                     vote_type
+                 )
+                 VALUES (
+                     5,
+                     60,
+                     'u'
+                 );
+
+INSERT INTO vote (
+                     user_id,
+                     post_id,
+                     vote_type
+                 )
+                 VALUES (
+                     5,
+                     57,
+                     'd'
                  );
 
 
