@@ -20,7 +20,7 @@
 	$profile = getUserProfile($profile_username);
 
 	if(!$profile) { // Profile doesn't exist
-    header('Location: ./main');
+    header('Location: ./main.php');
   }
 
 	draw_header($username, $page_title);

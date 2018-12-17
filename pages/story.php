@@ -1,7 +1,7 @@
 <?php 
 
   if(!isset($_GET['id']))
-    die(header('Location: ./main'));
+    die(header('Location: ./main.php'));
 
   include_once('../includes/session.php');
   include_once('../templates/tpl_common.php');
@@ -17,7 +17,7 @@
   $current_story = getStory($story_id);
   
   if(!$current_story)
-    die(header('Location: ./main'));
+    die(header('Location: ./main.php'));
 
   $comments = getComments($story_id, $username);
 

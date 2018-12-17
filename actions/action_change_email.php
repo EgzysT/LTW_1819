@@ -6,7 +6,7 @@
   include_once('../database/db_user.php');
 
   if(!$_SESSION['username'])
-		echo('Log in first.');
+		die('Log in first.');
 		
 	// Validate csrf
 	if($_SESSION['csrf'] !== $_POST['csrf'])

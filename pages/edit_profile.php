@@ -9,7 +9,7 @@
 	$username = $_SESSION['username'];
 
 	if(!$username)
-    die(header('Location: ../pages/main'));
+    die(header('Location: ../pages/main.php'));
 
 	$profile = getUserProfile($username);
 	
