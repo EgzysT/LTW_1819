@@ -466,7 +466,8 @@ if (commentForm && comments) {
             'post', 
             {   
                 content: contentField.value, 
-                post: commentForm.getAttribute('data-id')
+                post: commentForm.getAttribute('data-id'),
+                csrf: csrf
             }, 
             (new_comment) => {
                 commentForm.reset();
@@ -518,7 +519,8 @@ function addReplyFormEvents (comment) {
             'post', 
             {   
                 content: contentField_reply.value, 
-                post: replyForm.getAttribute('data-id')
+                post: replyForm.getAttribute('data-id'),
+                csrf: csrf
             }, 
             (new_comment) => {
                 // resets the form to its initials values
